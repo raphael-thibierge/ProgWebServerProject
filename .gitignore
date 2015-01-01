@@ -22,3 +22,8 @@
 
 # Build data
 /build/
+
+
+
+# phpStrom
+/.idea
