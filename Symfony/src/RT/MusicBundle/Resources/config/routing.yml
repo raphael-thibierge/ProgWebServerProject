@@ -1,0 +1,19 @@
+rt_music_homepage:
+    path:     /musiciens/
+    defaults: { _controller: RTMusicBundle:Default:index }
+
+rt_music_musicienspage:
+    path:     /musiciens/{page}
+    defaults: { _controller: RTMusicBundle:Default:musiciens }
+
+rt_music_musicien_details_page:
+    path:     /musicien/{id}
+    defaults: { _controller: RTMusicBundle:Default:show }
+
+rt_music_musicien_picture:
+    path:     /musicien/picture/{id}
+    defaults: { _controller: RTMusicBundle:Default:displayPicture }
+
+rt_music_generatePicture:
+    path:     /musicien/generatePicture/{class}/{id}
+    defaults: { _controller: RTMusicBundle:Default:generatePicture }

@@ -1,0 +1,7 @@
+parameters:
+#    r_tapp.example.class: RT\appBundle\Example
+
+services:
+#    r_tapp.example:
+#        class: %r_tapp.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

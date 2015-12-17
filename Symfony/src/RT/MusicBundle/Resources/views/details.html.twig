@@ -1,0 +1,28 @@
+{% extends('RTappBundle::layout.html.twig') %}
+
+{% block title %}
+    {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <h1 class="text-center">{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}</h1>
+    </div>
+
+    <div class="row">
+        <p>Prénom : {{ musicien.prénomMusicien }}</p>
+        <p>Nom : {{ musicien.nomMusicien }}</p>
+        <p>Année de naissance : {% if musicien.annéeNaissance != null %}{{ musicien.annéeNaissance }}{% else %} <span class="text-danger">Non renseigné</span>{% endif %}</p>
+        <p>Année de mort : {% if musicien.annéeMort != null %}{{ musicien.annéeMort }}{% else %} <span class="text-danger">Non renseigné</span>{% endif %}</p>
+        <p>Pays : {{ musicien.codePays }}</p>
+        
+        <img src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : musicien.codeMusicien}) }}" alt="">
+
+
+
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+r_tapp_homepage:
+    path:     /home
+    defaults: { _controller: RTappBundle:Default:index }
+
+r_tapp_contactpage:
+    path:     /contact
+    defaults: { _controller: RTappBundle:Default:contact }
+
+
+r_tapp_testpage:
+    path:     /test
+    defaults: { _controller: RTappBundle:Default:test }
