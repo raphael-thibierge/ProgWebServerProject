@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="10a396ce-e8f4-42b4-bd6e-880c1b582451" name="info-timide-symfony-project" url="http://info-ssh2.iut.u-bordeaux.fr">
+        <fileTransfer host="info-ssh2.iut.u-bordeaux.fr" port="22" rootFolder="/mnt/raxus/www/perso/2016/edao/ProgWebProject" accessType="SFTP" username="edao">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
