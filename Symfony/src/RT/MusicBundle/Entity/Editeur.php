@@ -1,5 +1,6 @@
 <?php
-namespace Acme\DemoBundle\Entity;
+namespace RT\MusicBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -74,11 +75,11 @@ class Editeur
     /**
      * Set codePays
      *
-     * @param \Acme\DemoBundle\Entity\Pays $codePays
+     * @param \RT\MusicBundle\Entity\Pays $codePays
      *
      * @return Editeur
      */
-    public function setCodePays(\Acme\DemoBundle\Entity\Pays $codePays = null)
+    public function setCodePays(\RT\MusicBundle\Entity\Pays $codePays = null)
     {
         $this->codePays = $codePays;
 

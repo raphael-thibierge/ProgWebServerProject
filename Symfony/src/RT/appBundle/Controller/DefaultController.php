@@ -11,9 +11,9 @@ class DefaultController extends Controller
         return $this->render('RTappBundle:Default:index.html.twig');
     }
 
-    public function contactAction()
+    public function aboutAction()
     {
-        return $this->render('RTappBundle:Default:contact.html.twig');
+        return $this->render('RTappBundle:Default:about.html.twig');
     }
 
     public function testAction(){

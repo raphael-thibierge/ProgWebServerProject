@@ -1,6 +1,5 @@
 <?php
-namespace Acme\DemoBundle\Entity;
-
+namespace RT\MusicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
