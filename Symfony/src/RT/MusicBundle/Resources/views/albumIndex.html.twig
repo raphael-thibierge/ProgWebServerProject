@@ -1,15 +1,18 @@
 {% extends('RTappBundle::layout.html.twig') %}
 
 {% block title %}
-    Coucou
+    {{ album.titreAlbum }}
 {% endblock %}
 
 {% block body %}
 
     <div class="row">
-        <div class="jumbotron">
-            coucou
-        </div>
+        <h1 class="text-center">{{ musicien.codeAlbum }}</h1>
     </div>
+
+
+    </div>
+
+
 
 {% endblock %}

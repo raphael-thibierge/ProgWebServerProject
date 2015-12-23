@@ -17,3 +17,7 @@ rt_music_musicien_picture:
 rt_music_generatePicture:
     path:     /musicien/generatePicture/{class}/{id}
     defaults: { _controller: RTMusicBundle:Default:generatePicture }
+
+rt_music_albums:
+    path:     /albums/
+    defaults: { _controller: RTMusicBundle:Album:index }

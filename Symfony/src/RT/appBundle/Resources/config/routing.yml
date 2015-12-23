@@ -6,7 +6,3 @@ r_tapp_aboutpage:
     path:     /about
     defaults: { _controller: RTappBundle:Default:about }
 
-
-r_tapp_testpage:
-    path:     /test
-    defaults: { _controller: RTappBundle:Default:test }
