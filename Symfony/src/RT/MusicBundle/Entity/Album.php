@@ -62,6 +62,12 @@ class Album
      */
     private $codeEditeur;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ASIN", type="string", length=400, nullable=false)
+     */
+    private $ASIN;
 
     /**
      * Get codeAlbum
@@ -192,4 +198,25 @@ class Album
     {
         return $this->codeEditeur;
     }
+
+    /**
+     * @return string
+     */
+    public function getASIN()
+    {
+        return $this->ASIN;
+    }
+
+    /**
+     * @param string $ASIN
+     *
+     * @return Album
+     */
+    public function setASIN($ASIN)
+    {
+        $this->ASIN = $ASIN;
+
+        return $this;
+    }
+
 }
