@@ -1,9 +1,9 @@
 rt_music:
-    resource: "@RTMusicBundle/Resources/config/routing.yml"
+    resource: "@IUTCatalogBundle/Resources/config/routing.yml"
     prefix:   /
 
 r_tapp:
-    resource: "@RTappBundle/Resources/config/routing.yml"
+    resource: "@IUTappBundle/Resources/config/routing.yml"
     prefix:   /
 
 

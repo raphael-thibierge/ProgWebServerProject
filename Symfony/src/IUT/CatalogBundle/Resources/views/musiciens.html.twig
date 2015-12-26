@@ -1,0 +1,63 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    Musiciens
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="row">
+        <h1 class="text-center">Liste des musiciens</h1>
+    </div>
+
+    <div class="row">
+
+
+
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <tr><td><h4>Nom</h4></td><td><h4>Prénom</h4></td></tr>
+            {% for musicien in musiciens %}
+                <tr><td><a href="{{ path('rt_music_musicien_details_page', {'id' : musicien.codeMusicien}) }}">{{ musicien.nomMusicien }}</a></td><td>{{ musicien.prénomMusicien }}</td></tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+    {# Pagination #}
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+            <nav>
+                <ul class="pagination">
+                    {% if page > 1 %}
+                        <li>
+                            <a href="{{ path('rt_music_musicienspage', {'page' : page-1}) }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for i in 1..nbPages %}
+
+                        <li {% if i == page %} class="active" {% endif %}><a href="{{ path('rt_music_musicienspage', {'page' : i}) }}">{{ i }}</a></li>
+                    {% endfor %}
+
+                    {% if page < nbPages %}
+                        <li>
+                            <a href="{{ path('rt_music_musicienspage', {'page' : page+1}) }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    {% endblock %}

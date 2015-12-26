@@ -692,10 +692,10 @@ class appDevDebugProjectContainer extends Container
         $c->setNamespace('sf2orm_default_a814535a1968db1a898e8c7b0d526e7d0df926947b5367328b3e8954ff9b0be5');
 
         $d = new \Doctrine\ORM\Mapping\Driver\DriverChain();
-        $d->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($this->get('annotation_reader'), array(0 => '/Users/raphael/Sites/ProgWebServeurProject/Symfony/src/RT/MusicBundle/Entity')), 'RT\\MusicBundle\\Entity');
+        $d->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($this->get('annotation_reader'), array(0 => '/Users/raphael/Sites/ProgWebServeurProject/Symfony/src/IUT/CatalogBundle/Entity')), 'IUT\\CatalogBundle\\Entity');
 
         $e = new \Doctrine\ORM\Configuration();
-        $e->setEntityNamespaces(array('RTMusicBundle' => 'RT\\MusicBundle\\Entity'));
+        $e->setEntityNamespaces(array('RTMusicBundle' => 'IUT\\CatalogBundle\\Entity'));
         $e->setMetadataCacheImpl($a);
         $e->setQueryCacheImpl($b);
         $e->setResultCacheImpl($c);
@@ -3079,8 +3079,8 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('/Users/raphael/Sites/ProgWebServeurProject/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views', 'Twig');
         $instance->addPath('/Users/raphael/Sites/ProgWebServeurProject/Symfony/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views', 'Swiftmailer');
         $instance->addPath('/Users/raphael/Sites/ProgWebServeurProject/Symfony/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views', 'Doctrine');
-        $instance->addPath('/Users/raphael/Sites/ProgWebServeurProject/Symfony/src/RT/appBundle/Resources/views', 'RTapp');
-        $instance->addPath('/Users/raphael/Sites/ProgWebServeurProject/Symfony/src/RT/MusicBundle/Resources/views', 'RTMusic');
+        $instance->addPath('/Users/raphael/Sites/ProgWebServeurProject/Symfony/src/IUT/appBundle/Resources/views', 'RTapp');
+        $instance->addPath('/Users/raphael/Sites/ProgWebServeurProject/Symfony/src/IUT/CatalogBundle/Resources/views', 'RTMusic');
         $instance->addPath('/Users/raphael/Sites/ProgWebServeurProject/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('/Users/raphael/Sites/ProgWebServeurProject/Symfony/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views', 'SensioDistribution');
         $instance->addPath('/Users/raphael/Sites/ProgWebServeurProject/Symfony/app/Resources/views');
@@ -3566,8 +3566,8 @@ class appDevDebugProjectContainer extends Container
                 'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle',
                 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle',
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
-                'RTappBundle' => 'RT\\appBundle\\RTappBundle',
-                'RTMusicBundle' => 'RT\\MusicBundle\\RTMusicBundle',
+                'RTappBundle' => 'IUT\\appBundle\\RTappBundle',
+                'RTMusicBundle' => 'IUT\\CatalogBundle\\RTMusicBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
                 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle',

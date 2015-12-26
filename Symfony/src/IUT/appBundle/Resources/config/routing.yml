@@ -1,0 +1,8 @@
+r_tapp_homepage:
+    path:     /home
+    defaults: { _controller: IUTappBundle:Default:index }
+
+r_tapp_aboutpage:
+    path:     /about
+    defaults: { _controller: IUTappBundle:Default:about }
+

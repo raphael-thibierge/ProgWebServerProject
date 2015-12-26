@@ -143,46 +143,46 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         return $this->redirect($pathinfo.'/', 'rt_music_homepage');
                     }
 
-                    return array (  '_controller' => 'RT\\MusicBundle\\Controller\\DefaultController::indexAction',  '_route' => 'rt_music_homepage',);
+                    return array (  '_controller' => 'IUT\\CatalogBundle\\Controller\\DefaultController::indexAction',  '_route' => 'rt_music_homepage',);
                 }
 
                 // rt_music_musicienspage
                 if (preg_match('#^/musiciens/(?P<page>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'rt_music_musicienspage')), array (  '_controller' => 'RT\\MusicBundle\\Controller\\DefaultController::musiciensAction',));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'rt_music_musicienspage')), array (  '_controller' => 'IUT\\CatalogBundle\\Controller\\DefaultController::musiciensAction',));
                 }
 
             }
 
             // rt_music_musicien_details_page
             if (preg_match('#^/musicien/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rt_music_musicien_details_page')), array (  '_controller' => 'RT\\MusicBundle\\Controller\\DefaultController::showAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rt_music_musicien_details_page')), array (  '_controller' => 'IUT\\CatalogBundle\\Controller\\DefaultController::showAction',));
             }
 
             // rt_music_musicien_picture
             if (0 === strpos($pathinfo, '/musicien/picture') && preg_match('#^/musicien/picture/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rt_music_musicien_picture')), array (  '_controller' => 'RT\\MusicBundle\\Controller\\DefaultController::displayPictureAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rt_music_musicien_picture')), array (  '_controller' => 'IUT\\CatalogBundle\\Controller\\DefaultController::displayPictureAction',));
             }
 
             // rt_music_generatePicture
             if (0 === strpos($pathinfo, '/musicien/generatePicture') && preg_match('#^/musicien/generatePicture/(?P<class>[^/]++)/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rt_music_generatePicture')), array (  '_controller' => 'RT\\MusicBundle\\Controller\\DefaultController::generatePictureAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rt_music_generatePicture')), array (  '_controller' => 'IUT\\CatalogBundle\\Controller\\DefaultController::generatePictureAction',));
             }
 
         }
 
         // r_tapp_homepage
         if ($pathinfo === '/home') {
-            return array (  '_controller' => 'RT\\appBundle\\Controller\\DefaultController::indexAction',  '_route' => 'r_tapp_homepage',);
+            return array (  '_controller' => 'IUT\\appBundle\\Controller\\DefaultController::indexAction',  '_route' => 'r_tapp_homepage',);
         }
 
         // r_tapp_contactpage
         if ($pathinfo === '/contact') {
-            return array (  '_controller' => 'RT\\appBundle\\Controller\\DefaultController::contactAction',  '_route' => 'r_tapp_contactpage',);
+            return array (  '_controller' => 'IUT\\appBundle\\Controller\\DefaultController::contactAction',  '_route' => 'r_tapp_contactpage',);
         }
 
         // r_tapp_testpage
         if ($pathinfo === '/test') {
-            return array (  '_controller' => 'RT\\appBundle\\Controller\\DefaultController::testAction',  '_route' => 'r_tapp_testpage',);
+            return array (  '_controller' => 'IUT\\appBundle\\Controller\\DefaultController::testAction',  '_route' => 'r_tapp_testpage',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

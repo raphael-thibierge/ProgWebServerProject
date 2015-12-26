@@ -1,0 +1,31 @@
+rt_music_homepage:
+    path:     /musiciens/
+    defaults: { _controller: IUTCatalogBundle:Default:index }
+
+rt_music_musicienspage:
+    path:     /musiciens/{page}
+    defaults: { _controller: IUTCatalogBundle:Default:musiciens }
+
+rt_music_musicien_details_page:
+    path:     /musicien/{id}
+    defaults: { _controller: IUTCatalogBundle:Default:showMusicien }
+
+rt_music_musicien_picture:
+    path:     /musicien/picture/{id}
+    defaults: { _controller: IUTCatalogBundle:Default:displayPicture }
+
+rt_music_generatePicture:
+    path:     /musicien/generatePicture/{class}/{id}
+    defaults: { _controller: IUTCatalogBundle:Default:generatePicture }
+
+rt_music_albums:
+    path:     /albums/
+    defaults: { _controller: IUTCatalogBundle:Album:index }
+
+rt_music_album_details:
+    path:     /album/{id}
+    defaults: { _controller: IUTCatalogBundle:Album:show }
+
+rt_test:
+  path:       /test
+  defaults:   { _controller: IUTCatalogBundle:Default:test }

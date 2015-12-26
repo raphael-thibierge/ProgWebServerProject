@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use IUT\appBundle\IUTappBundle;
 
 class AppKernel extends Kernel
 {
@@ -16,8 +17,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new RT\appBundle\RTappBundle(),
-            new RT\MusicBundle\RTMusicBundle(),
+            new IUT\appBundle\IUTappBundle(),
+            new IUT\CatalogBundle\IUTCatalogBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

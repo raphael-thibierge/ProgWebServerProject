@@ -1,7 +1,0 @@
-parameters:
-#    rt_music.example.class: RT\MusicBundle\Example
-
-services:
-#    rt_music.example:
-#        class: %rt_music.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

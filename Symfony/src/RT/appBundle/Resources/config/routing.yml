@@ -1,8 +1,0 @@
-r_tapp_homepage:
-    path:     /home
-    defaults: { _controller: RTappBundle:Default:index }
-
-r_tapp_aboutpage:
-    path:     /about
-    defaults: { _controller: RTappBundle:Default:about }
-

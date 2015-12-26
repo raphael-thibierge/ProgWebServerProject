@@ -1,0 +1,21 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    Paget Test
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    {{  album.titreAlbum }}
+
+    {% for oeuvre in oeuvres %}
+        <div class="row">
+            {{  oeuvre.titreOeuvre }}
+        </div>
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

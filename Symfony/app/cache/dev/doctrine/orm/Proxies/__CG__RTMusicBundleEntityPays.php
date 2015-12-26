@@ -64,10 +64,10 @@ class Pays extends \RT\MusicBundle\Entity\Pays implements \Doctrine\ORM\Proxy\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'RT\\MusicBundle\\Entity\\Pays' . "\0" . 'codePays', '' . "\0" . 'RT\\MusicBundle\\Entity\\Pays' . "\0" . 'nomPays');
+            return array('__isInitialized__', '' . "\0" . 'IUT\\CatalogBundle\\Entity\\Pays' . "\0" . 'codePays', '' . "\0" . 'IUT\\CatalogBundle\\Entity\\Pays' . "\0" . 'nomPays');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'RT\\MusicBundle\\Entity\\Pays' . "\0" . 'codePays', '' . "\0" . 'RT\\MusicBundle\\Entity\\Pays' . "\0" . 'nomPays');
+        return array('__isInitialized__', '' . "\0" . 'IUT\\CatalogBundle\\Entity\\Pays' . "\0" . 'codePays', '' . "\0" . 'IUT\\CatalogBundle\\Entity\\Pays' . "\0" . 'nomPays');
     }
 
     /**
