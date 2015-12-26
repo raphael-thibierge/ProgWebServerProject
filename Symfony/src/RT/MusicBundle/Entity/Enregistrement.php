@@ -199,11 +199,11 @@ class Enregistrement
     /**
      * Set codeComposition
      *
-     * @param \Acme\DemoBundle\Entity\Composition $codeComposition
+     * @param \RT\MusicBundle\Entity\Composition $codeComposition
      *
      * @return Enregistrement
      */
-    public function setCodeComposition(\Acme\DemoBundle\Entity\Composition $codeComposition = null)
+    public function setCodeComposition(\RT\MusicBundle\Entity\Composition $codeComposition = null)
     {
         $this->codeComposition = $codeComposition;
 
@@ -213,7 +213,7 @@ class Enregistrement
     /**
      * Get codeComposition
      *
-     * @return \Acme\DemoBundle\Entity\Composition
+     * @return \RT\MusicBundle\Entity\Composition
      */
     public function getCodeComposition()
     {

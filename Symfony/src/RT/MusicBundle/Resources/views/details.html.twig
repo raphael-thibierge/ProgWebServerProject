@@ -33,4 +33,15 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Morceaux interprétés</h2>
+
+            {% for enregistrement in enregistrement %}
+                <p>{{ enregistrement.titre }}</p>
+
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}

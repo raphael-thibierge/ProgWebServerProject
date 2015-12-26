@@ -18,8 +18,14 @@ class DefaultController extends Controller
         }
 
         $musicien = $this->getDoctrine()->getRepository('RTMusicBundle:Musicien')->find($id);
+
+        // composed
         $composers = $this->getDoctrine()->getRepository('RTMusicBundle:Composer')->findBy(array('codeMusicien' => $musicien));
         $oeuvres = $this->getDoctrine()->getRepository('RTMusicBundle:Oeuvre')->findBy(array('codeOeuvre' => $composers));
+
+        // interpreted
+        $interpreter = $this->getDoctrine()->getRepository('RTMusicBundle:Interpreter')->findBy(array('codeMusicien' => $musicien));
+        $enregistrements = $this->getDoctrine()->getRepository('RTMusicBundle:Enregistrement')->findBy(array('codeEnregistrement' => $interpreter));
 
         if ($musicien === null){
             throw $this->createNotFoundException("Le musicien n'existe pas");
@@ -30,6 +36,7 @@ class DefaultController extends Controller
         return $this->render('RTMusicBundle::details.html.twig', array(
             'musicien' => $musicien,
             'oeuvres' => $oeuvres,
+            'enregistrement' => $enregistrements,
         ));
     }
 
