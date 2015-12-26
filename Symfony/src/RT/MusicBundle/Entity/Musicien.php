@@ -201,11 +201,11 @@ class Musicien
     /**
      * Set codePays
      *
-     * @param \Acme\DemoBundle\Entity\Pays $codePays
+     * @param \RT\MusicBundle\Entity\Pays $codePays
      *
      * @return Musicien
      */
-    public function setCodePays(\Acme\DemoBundle\Entity\Pays $codePays = null)
+    public function setCodePays(\RT\MusicBundle\Entity\Pays $codePays = null)
     {
         $this->codePays = $codePays;
 
@@ -221,4 +221,15 @@ class Musicien
     {
         return $this->codePays;
     }
+
+
+
+    //*************************************************************************
+    //                              ADDED
+    //*************************************************************************
+
+
+
+
+
 }

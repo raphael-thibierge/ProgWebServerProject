@@ -2,6 +2,7 @@
 
 namespace RT\MusicBundle\Controller;
 
+use RT\MusicBundle\Entity\Musicien;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
@@ -11,18 +12,24 @@ class DefaultController extends Controller
         return $this->musiciensAction(1);
     }
 
-    public function showAction($id){
+    public function showMusicienAction($id){
         if($id < 1){
             throw $this->createNotFoundException("Le code musicien doit être positif");
         }
 
         $musicien = $this->getDoctrine()->getRepository('RTMusicBundle:Musicien')->find($id);
-        if ($musicien == null){
+        $composers = $this->getDoctrine()->getRepository('RTMusicBundle:Composer')->findBy(array('codeMusicien' => $musicien));
+        $oeuvres = $this->getDoctrine()->getRepository('RTMusicBundle:Oeuvre')->findBy(array('codeOeuvre' => $composers));
+
+        if ($musicien === null){
             throw $this->createNotFoundException("Le musicien n'existe pas");
         }
 
+
+
         return $this->render('RTMusicBundle::details.html.twig', array(
             'musicien' => $musicien,
+            'oeuvres' => $oeuvres,
         ));
     }
 
@@ -47,6 +54,25 @@ class DefaultController extends Controller
             'musiciens' => $musiciens->getQuery()->getResult(),
             'nbPages' => $nbPages,
             'page' => $page
+        ));
+
+    }
+
+
+    public function testAction(){
+
+
+        $album = $this->getDoctrine()->getRepository('RTMusicBundle:Album')->find(15);
+
+        $bachMusicien = $this->getDoctrine()->getRepository('RTMusicBundle:Musicien')->find(2);
+        $bach = $this->getDoctrine()->getRepository('RTMusicBundle:Composer')->findBy(array('codeMusicien' => $bachMusicien));
+        $oeuvres = $this->getDoctrine()->getRepository('RTMusicBundle:Oeuvre')->findBy(array('codeOeuvre' => $bach));
+
+
+
+        return $this->render('RTMusicBundle::test.html.twig', array(
+            'album' => $album,
+            'oeuvres' => $oeuvres,
         ));
     }
 

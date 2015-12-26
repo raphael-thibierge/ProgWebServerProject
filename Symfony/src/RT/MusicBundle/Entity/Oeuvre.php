@@ -4,6 +4,7 @@
 namespace RT\MusicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use RT\MusicBundle\Entity\TypeMorceaux;
 
 /**
  * Oeuvre
@@ -232,11 +233,11 @@ class Oeuvre
     /**
      * Set codeType
      *
-     * @param \TypeMorceaux $codeType
+     * @param TypeMorceaux $codeType
      *
      * @return Oeuvre
      */
-    public function setCodeType(\TypeMorceaux $codeType = null)
+    public function setCodeType(TypeMorceaux $codeType = null)
     {
         $this->codeType = $codeType;
 

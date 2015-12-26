@@ -21,12 +21,6 @@ class Composer
      */
     private $codeComposer;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="Code", type="integer", nullable=true)
-     */
-    private $code;
 
     /**
      * @var \Musicien
@@ -59,29 +53,6 @@ class Composer
         return $this->codeComposer;
     }
 
-    /**
-     * Set code
-     *
-     * @param integer $code
-     *
-     * @return Composer
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
-
-        return $this;
-    }
-
-    /**
-     * Get code
-     *
-     * @return integer
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
 
     /**
      * Set codeMusicien

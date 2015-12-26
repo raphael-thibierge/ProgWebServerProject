@@ -24,8 +24,8 @@ class MusicienRepository extends EntityRepository
         return new Paginator($query, true);
     }
 
-    public function getCompositionAlbum($id){
 
-    }
+
+
 
 }

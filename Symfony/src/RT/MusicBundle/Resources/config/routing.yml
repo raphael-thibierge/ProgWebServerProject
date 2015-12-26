@@ -8,7 +8,7 @@ rt_music_musicienspage:
 
 rt_music_musicien_details_page:
     path:     /musicien/{id}
-    defaults: { _controller: RTMusicBundle:Default:show }
+    defaults: { _controller: RTMusicBundle:Default:showMusicien }
 
 rt_music_musicien_picture:
     path:     /musicien/picture/{id}
@@ -21,3 +21,11 @@ rt_music_generatePicture:
 rt_music_albums:
     path:     /albums/
     defaults: { _controller: RTMusicBundle:Album:index }
+
+rt_music_album_details:
+    path:     /album/{id}
+    defaults: { _controller: RTMusicBundle:Album:show }
+
+rt_test:
+  path:       /test
+  defaults:   { _controller: RTMusicBundle:Default:test }

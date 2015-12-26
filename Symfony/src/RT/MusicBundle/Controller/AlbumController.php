@@ -14,4 +14,11 @@ class AlbumController extends Controller
         ));
     }
 
+    public function showAction($id){
+        $album = null;
+        return $this->render('RTMusicBundle:album:details.html.twig', array(
+            'album' => $album,
+        ));
+    }
+
 }

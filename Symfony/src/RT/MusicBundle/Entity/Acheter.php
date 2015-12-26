@@ -34,7 +34,7 @@ class Acheter
     /**
      * @var \Abonné
      *
-     * @ORM\ManyToOne(targetEntity="Abonné")
+     * @ORM\ManyToOne(targetEntity="Abonne")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Abonné", referencedColumnName="Code_Abonné")
      * })
