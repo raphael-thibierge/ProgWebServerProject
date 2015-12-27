@@ -1,0 +1,40 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    Albums
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">Liste des albums</h1>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr><td></td><td><strong>Titre</strong></td><td><strong>Année</strong></td><td><strong>Editeur</strong></td><td><strong>Genre</strong></td></tr>
+                    </thead>
+                    <tbody>
+                        {%  for album in albums %}
+                            <tr>
+                                <td><img width="100px" height="100px" class="img-circle"   src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}"
+                                         alt="photo de l'album {{ album.titreAlbum }}"></td>
+                                <td><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></td>
+                                <td>{{ album.annéeAlbum }}</td>
+                                <td>{{ album.codeEditeur }}</td>
+                                <td>{{ album.codeGenre }}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

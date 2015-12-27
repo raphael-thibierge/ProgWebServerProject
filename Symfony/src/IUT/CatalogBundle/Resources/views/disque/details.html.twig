@@ -1,0 +1,68 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    {{ disque.référenceAlbum }} {{ disque.référenceDisque }}
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>{{ disque.référenceAlbum }} {{ disque.référenceDisque }}</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>Code Disque : {{ disque.codeDisque }}</p>
+        <p>Réference Disque : {{ disque.référenceDisque }}</p>
+{#
+    TODO - find something more than disque.codeAlbum.codeAlbum
+#}
+    <p>Album : <a href="{{ path('rt_music_album_details', {'id' : disque.codeAlbum.codeAlbum }) }}">{{ disque.référenceAlbum }}</a></p>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Morceaux</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="com-md-12">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr><td><strong>Titre</strong></td><td><strong>Durée</strong></td><td><strong>Prix</strong></td></tr>
+                </thead>
+                <tbody>
+                    {%  for enregistrement in enregistrements %}
+                    <tr>
+                    <td>{{ enregistrement.Titre }}</td>
+                        <td>{{ enregistrement.durée }}</td>
+                        <td>{{ enregistrement.prix }}</td>
+                    </tr>
+                        {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

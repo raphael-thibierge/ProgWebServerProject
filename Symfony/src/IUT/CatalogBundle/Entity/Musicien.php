@@ -201,11 +201,11 @@ class Musicien
     /**
      * Set codePays
      *
-     * @param \IUT\MusicBundle\Entity\Pays $codePays
+     * @param \IUT\CatalogBundle\Entity\Pays $codePays
      *
      * @return Musicien
      */
-    public function setCodePays(\IUT\MusicBundle\Entity\Pays $codePays = null)
+    public function setCodePays(\IUT\CatalogBundle\Entity\Pays $codePays = null)
     {
         $this->codePays = $codePays;
 

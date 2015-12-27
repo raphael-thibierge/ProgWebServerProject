@@ -1,14 +1,14 @@
 rt_music_homepage:
     path:     /musiciens/
-    defaults: { _controller: IUTCatalogBundle:Default:index }
+    defaults: { _controller: IUTCatalogBundle:Musicien:index }
 
 rt_music_musicienspage:
     path:     /musiciens/{page}
-    defaults: { _controller: IUTCatalogBundle:Default:musiciens }
+    defaults: { _controller: IUTCatalogBundle:Musicien:list }
 
 rt_music_musicien_details_page:
     path:     /musicien/{id}
-    defaults: { _controller: IUTCatalogBundle:Default:showMusicien }
+    defaults: { _controller: IUTCatalogBundle:Musicien:show }
 
 rt_music_musicien_picture:
     path:     /musicien/picture/{id}
@@ -29,3 +29,8 @@ rt_music_album_details:
 rt_test:
   path:       /test
   defaults:   { _controller: IUTCatalogBundle:Default:test }
+
+
+catalog_disque_details:
+    path:     /disque/{id}
+    defaults: { _controller: IUTCatalogBundle:Disque:show }

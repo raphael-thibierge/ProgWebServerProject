@@ -1,7 +1,7 @@
 {% extends('IUTappBundle::layout.html.twig') %}
 
 {% block title %}
-    {{ album.titreAlbum}}
+    {{ editeur.titreAlbum}}
 {% endblock %}
 
 {% block body %}
@@ -27,19 +27,6 @@
             <p>Code ASIN: {{ album.ASIN }}</p>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Disques</h2>
-            {% for disque in disques %}
-                <p> <a href="{{ path('catalog_disque_details', {'id' : disque.codeDisque}) }}">{{ disque.référenceAlbum }} {{ disque.référenceDisque }} </a></p>
-            {% endfor %}
-        </div>
-    </div>
-
-
-
-
 
 
 {% endblock %}

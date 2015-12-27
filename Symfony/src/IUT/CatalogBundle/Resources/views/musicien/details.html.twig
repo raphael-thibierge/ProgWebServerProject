@@ -1,0 +1,54 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <img src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : musicien.codeMusicien}) }}" alt="photo du musicien {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p>Prénom : {{ musicien.prénomMusicien }}</p>
+            <p>Nom : {{ musicien.nomMusicien }}</p>
+            <p>Année de naissance : {% if musicien.annéeNaissance != null %}{{ musicien.annéeNaissance }}{% else %} <span class="text-danger">Non renseigné</span>{% endif %}</p>
+            <p>Année de mort : {% if musicien.annéeMort != null %}{{ musicien.annéeMort }}{% else %} <span class="text-danger">Non renseigné</span>{% endif %}</p>
+            <p>Pays : {{ musicien.codePays }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Oeuvres composées</h2>
+
+            {% for oeuvre in oeuvres %}
+                <p>{{ oeuvre.titreOeuvre }}</p>
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Morceaux interprétés</h2>
+
+            {% for enregistrement in enregistrement %}
+                <p>{{ enregistrement.titre }}</p>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

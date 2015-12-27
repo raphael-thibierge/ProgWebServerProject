@@ -18,17 +18,32 @@
     </div>
 
     <div class="row">
-        <table class="table">
-            <tr><td><h4>Nom</h4></td><td><h4>Prénom</h4></td></tr>
-            {% for musicien in musiciens %}
-                <tr><td><a href="{{ path('rt_music_musicien_details_page', {'id' : musicien.codeMusicien}) }}">{{ musicien.nomMusicien }}</a></td><td>{{ musicien.prénomMusicien }}</td></tr>
-            {% endfor %}
-
-        </table>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr><td></td><td>Nom</td><td>Prénom</td></tr>
+                    </thead>
+                    <tbody>
+                        {% for musicien in musiciens %}
+                            <tr>
+                                <td><img width="100px" height="100px" class="img-circle"   src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : musicien.codeMusicien}) }}"
+                                         alt="photo de {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}">
+                                </td>
+                                <td><a href="{{ path('rt_music_musicien_details_page', {'id' : musicien.codeMusicien}) }}">{{ musicien.nomMusicien }}</a></td>
+                                <td>{{ musicien.prénomMusicien }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    {# Pagination #}
 
+
+
+    {# Pagination #}
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 

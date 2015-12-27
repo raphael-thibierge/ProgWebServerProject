@@ -3,6 +3,8 @@
 namespace IUT\CatalogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use IUT\CatalogBundle\Entity\Genre;
+use IUT\CatalogBundle\Entity\Editeur;
 
 /**
  * Album
@@ -154,11 +156,11 @@ class Album
     /**
      * Set codeGenre
      *
-     * @param \Genre $codeGenre
+     * @param Genre $codeGenre
      *
      * @return Album
      */
-    public function setCodeGenre(\Genre $codeGenre = null)
+    public function setCodeGenre(Genre $codeGenre = null)
     {
         $this->codeGenre = $codeGenre;
 
@@ -178,11 +180,11 @@ class Album
     /**
      * Set codeEditeur
      *
-     * @param \Editeur $codeEditeur
+     * @param Editeur $codeEditeur
      *
      * @return Album
      */
-    public function setCodeEditeur(\Editeur $codeEditeur = null)
+    public function setCodeEditeur(Editeur $codeEditeur = null)
     {
         $this->codeEditeur = $codeEditeur;
 
@@ -218,5 +220,7 @@ class Album
 
         return $this;
     }
+
+
 
 }

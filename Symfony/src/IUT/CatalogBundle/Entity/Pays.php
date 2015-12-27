@@ -63,6 +63,7 @@ class Pays
     {
         return $this->nomPays;
     }
+
     public function __toString() {
         return $this->nomPays;
     }

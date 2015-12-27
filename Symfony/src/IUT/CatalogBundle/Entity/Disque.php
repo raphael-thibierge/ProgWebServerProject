@@ -5,9 +5,9 @@ namespace IUT\CatalogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Disque
+ * disque
  *
- * @ORM\Table(name="Disque", indexes={@ORM\Index(name="IDX_F200E9945B515BDB", columns={"Code_Album"})})
+ * @ORM\Table(name="disque", indexes={@ORM\Index(name="IDX_F200E9945B515BDB", columns={"Code_Album"})})
  * @ORM\Entity
  */
 class Disque

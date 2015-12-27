@@ -1,6 +1,6 @@
 <?php
 
-/* RTMusicBundle::musiciens.html.twig */
+/* RTMusicBundle::index.html.twig */
 class __TwigTemplate_d36f67eea08824db75f48be580022e87e24d340f74a696f59bb595f85096554e extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
@@ -143,7 +143,7 @@ class __TwigTemplate_d36f67eea08824db75f48be580022e87e24d340f74a696f59bb595f8509
 
     public function getTemplateName()
     {
-        return "RTMusicBundle::musiciens.html.twig";
+        return "RTMusicBundle::index.html.twig";
     }
 
     public function isTraitable()
