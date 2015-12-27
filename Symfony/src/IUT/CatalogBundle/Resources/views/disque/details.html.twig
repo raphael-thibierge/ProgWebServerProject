@@ -41,7 +41,7 @@
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
-                    <tr><td><strong>Titre</strong></td><td><strong>Durée</strong></td><td><strong>Prix</strong></td></tr>
+                    <tr><td><strong>Titre</strong></td><td><strong>Durée</strong></td><td><strong>Prix</strong></td><td></td></tr>
                 </thead>
                 <tbody>
                     {%  for enregistrement in enregistrements %}
@@ -49,6 +49,8 @@
                     <td>{{ enregistrement.Titre }}</td>
                         <td>{{ enregistrement.durée }}</td>
                         <td>{{ enregistrement.prix }}</td>
+                        <td> <audio  src="{{ enregistrement.nomDeFichier }}">
+                            </audio></td>
                     </tr>
                         {% endfor %}
                 </tbody>

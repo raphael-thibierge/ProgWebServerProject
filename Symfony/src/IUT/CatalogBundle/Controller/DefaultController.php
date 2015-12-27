@@ -48,4 +48,6 @@ class DefaultController extends Controller
         $response->setContent($image);
         return $response;
     }
+
+
 }
