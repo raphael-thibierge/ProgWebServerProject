@@ -17,11 +17,16 @@
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                    <tr><td><strong>Nom</strong></td></tr>
+                    <tr>
+                        <td></td>
+                        <td><strong>Nom</strong></td>
+                    </tr>
                     </thead>
                     <tbody>
                     {%  for instrument in instruments %}
                         <tr>
+                            <td><img width="100px" height="100px" class="img-circle"   src="{{ path('rt_music_generatePicture', {'class':'Instrument', 'id' : instrument.codeInstrument}) }}"
+                                     alt="photo de l'instrument {{ instrument.nomInstrument }}"></td>
                             <td><a href="{{ path('catalog_instrument_details', {'id' : instrument.codeInstrument }) }}">{{ instrument.nomInstrument }}</a></td>
                         </tr>
                     {% endfor %}
