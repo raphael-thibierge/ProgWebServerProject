@@ -36,7 +36,7 @@ class MusicienController extends Controller
         return $this->render('IUTCatalogBundle:musicien:details.html.twig', array(
             'musicien' => $musicien,
             'oeuvres' => $oeuvres,
-            'enregistrement' => $enregistrements,
+            'enregistrements' => $enregistrements,
         ));
     }
 
