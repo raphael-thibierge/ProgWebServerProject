@@ -37,6 +37,10 @@
                 <p>{{ oeuvre.titreOeuvre }}</p>
 
             {% endfor %}
+
+            {% if oeuvres == null %}
+                <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas composé d'oeuvres.</p>
+            {% endif %}
         </div>
     </div>
 
@@ -44,10 +48,14 @@
         <div class="col-md-12">
             <h2>Morceaux interprétés</h2>
 
-            {% for enregistrement in enregistrement %}
+            {% for enregistrement in enregistrements %}
                 <p>{{ enregistrement.titre }}</p>
 
             {% endfor %}
+
+            {% if enregistrements == null %}
+                <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas interprété de morceaux.</p>
+            {% endif %}
         </div>
     </div>
 
