@@ -43,3 +43,11 @@ catalog_genre_index:
 catalog_genre_details:
     path:     /genre/{id}
     defaults: { _controller: IUTCatalogBundle:Genre:show }
+
+catalog_instrument_index:
+    path:     /instruments
+    defaults: { _controller: IUTCatalogBundle:Instrument:index }
+
+catalog_instrument_details:
+    path:     /instrument/{id}
+    defaults: { _controller: IUTCatalogBundle:Instrument:show }

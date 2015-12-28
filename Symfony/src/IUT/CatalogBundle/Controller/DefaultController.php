@@ -37,6 +37,7 @@ class DefaultController extends Controller
         switch ($class){
             case 'Musicien' : $content = $entity->getImage(); break;
             case 'Album' : $content = $entity->getPochette(); break;
+            case 'Instrument' : $content = $entity->getImage(); break;
             default: break;
         }
 

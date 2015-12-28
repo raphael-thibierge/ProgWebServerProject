@@ -1,0 +1,28 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    {{ instrument.nomInstrument }}
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>{{ instrument.nomInstrument }}</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <img src="{{ path('rt_music_generatePicture', {'class':'Instrument', 'id' : instrument.codeInstrument}) }}" alt="image de l'instrument de musique {{ instrument.nomInstrument }}">
+
+{#
+    TODO - albums list
+#}
+
+    </div>
+</div>
+
+
+
+{% endblock %}

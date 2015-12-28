@@ -1,14 +1,14 @@
 {% extends('IUTappBundle::layout.html.twig') %}
 
 {% block title %}
-    Genres
+    Instruments
 {% endblock %}
 
 {% block body %}
 
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center">Liste des genres</h1>
+            <h1 class="text-center">Liste des instruments</h1>
         </div>
     </div>
 
@@ -20,9 +20,9 @@
                     <tr><td><strong>Nom</strong></td></tr>
                     </thead>
                     <tbody>
-                    {%  for genre in genres %}
+                    {%  for instrument in instruments %}
                         <tr>
-                            <td><a href="{{ path('catalog_genre_details', {'id' : genre.codeGenre }) }}">{{ genre.libelléAbrégé }}</a></td>
+                            <td><a href="{{ path('catalog_instrument_details', {'id' : instrument.codeInstrument }) }}">{{ instrument.nomInstrument }}</a></td>
                         </tr>
                     {% endfor %}
 
