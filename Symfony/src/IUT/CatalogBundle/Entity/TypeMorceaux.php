@@ -92,4 +92,9 @@ class TypeMorceaux
     {
         return $this->description;
     }
+
+    public function __toString()
+    {
+        return $this->libelléType;
+    }
 }

@@ -25,6 +25,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">Projet Symfony</a>
             </div>
@@ -34,6 +35,7 @@
                     <li {% if app.request.attributes.get('_route') == 'r_tapp_homepage' %} class="active" {% endif %}><a href="{{ path('r_tapp_homepage') }}">Home</a></li>
                     <li {% if app.request.attributes.get('_route') == 'rt_music_homepage' %} class="active" {% endif %}><a href="{{ path('rt_music_homepage') }}">Musiciens</a></li>
                     <li {% if app.request.attributes.get('_route') == 'rt_music_albums' %} class="active" {% endif %}><a href="{{ path('rt_music_albums') }}">Albums</a></li>
+                    <li {% if app.request.attributes.get('_route') == 'catalog_oeuvre_index' %} class="active" {% endif %}><a href="{{ path('catalog_oeuvre_index') }}">Oeuvres</a></li>
                     <li {% if app.request.attributes.get('_route') == 'catalog_genre_index' %} class="active" {% endif %}><a href="{{ path('catalog_genre_index') }}">Genres</a></li>
                     <li {% if app.request.attributes.get('_route') == 'catalog_instrument_index' %} class="active" {% endif %}><a href="{{ path('catalog_instrument_index') }}">Instruments</a></li>
                     <li {% if app.request.attributes.get('_route') == 'r_tapp_aboutpage' %} class="active" {% endif %}><a href="{{ path('r_tapp_aboutpage') }}">A propos</a></li>

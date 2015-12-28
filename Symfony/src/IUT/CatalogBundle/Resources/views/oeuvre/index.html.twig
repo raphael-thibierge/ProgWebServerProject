@@ -1,0 +1,41 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    Oeuvres
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Liste des oeuvres</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <td><strong>Titre</strong></td>
+                        <td><strong>Opus</strong></td>
+                        <td><strong>Type</strong></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%  for oeuvre in oeuvres %}
+                        <tr>
+                            <td><a href="{{ path('catalog_oeuvre_details', {'id' : oeuvre.codeOeuvre }) }}">{{ oeuvre.titreOeuvre }}</a></td>
+                            <td>{{ oeuvre.opus }}</td>
+                            <td>{{ oeuvre.codeType }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

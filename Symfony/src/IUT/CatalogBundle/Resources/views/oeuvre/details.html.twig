@@ -1,0 +1,29 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    {{ oeuvre.titreOeuvre }}
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>{{ oeuvre.titreOeuvre }}</h1>
+        <p>{{ oeuvre.sousTitre }}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>Opus : {{ oeuvre.opus }}</p>
+        <p>Année : {% if oeuvre.année != 0 %}{{ oeuvre.année }}{% else %} <span class="text-danger">Non renseigné</span>{% endif %}</p></p>
+        <p>Type : {{ oeuvre.codeType }}</p>
+        <p>Tonnalité : {{ oeuvre.tonalité }}</p>
+    </div>
+</div>
+
+{#
+    TODO - albums list
+#}
+
+{% endblock %}

@@ -51,3 +51,11 @@ catalog_instrument_index:
 catalog_instrument_details:
     path:     /instrument/{id}
     defaults: { _controller: IUTCatalogBundle:Instrument:show }
+
+catalog_oeuvre_index:
+    path:     /oeuvres
+    defaults: { _controller: IUTCatalogBundle:Oeuvre:index }
+
+catalog_oeuvre_details:
+    path:     /oeuvre/{id}
+    defaults: { _controller: IUTCatalogBundle:Oeuvre:show }
