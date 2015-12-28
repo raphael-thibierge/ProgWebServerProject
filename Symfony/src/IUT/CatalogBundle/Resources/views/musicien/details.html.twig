@@ -59,4 +59,24 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Albums</h2>
+
+            {% if albums is defined %}
+                {% if albums == null %}
+                <p>Les oeuvres composées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ne figurent dans aucun album.</p>
+
+                {% else %}
+                    <p>Les oeuvres composées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} figurent dans les albums suivants :</p>
+                    {% for album in albums %}
+                        <p>{{ album.titreAlbum }}</p>
+                    {% endfor %}
+
+                {% endif %}
+            {% endif %}
+
+        </div>
+    </div>
+
 {% endblock %}
