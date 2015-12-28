@@ -31,7 +31,7 @@ class CompositionDisque
     /**
      * @var \disque
      *
-     * @ORM\ManyToOne(targetEntity="disque")
+     * @ORM\ManyToOne(targetEntity="Disque")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Disque", referencedColumnName="Code_Disque")
      * })
