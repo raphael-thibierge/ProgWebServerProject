@@ -34,3 +34,12 @@ rt_test:
 catalog_disque_details:
     path:     /disque/{id}
     defaults: { _controller: IUTCatalogBundle:Disque:show }
+
+
+catalog_genre_index:
+    path:     /genres
+    defaults: { _controller: IUTCatalogBundle:Genre:index }
+
+catalog_genre_details:
+    path:     /genre/{id}
+    defaults: { _controller: IUTCatalogBundle:Genre:show }
