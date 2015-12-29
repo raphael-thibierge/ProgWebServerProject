@@ -11,29 +11,44 @@
         <h1 class="text-center">Liste des compositeurs</h1>
     </div>
 
-    <div class="row"></div>
+
+    {#  Generation de la barre pour l'ordre alphabétique    #}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="text-center text-danger">non fonctionnel</div>
+            <nav class="block-center">
+                <ul class="pagination">
+                    {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWYZ"|split('')  %}
+                    {% for letter in letters %}
+                        <li><a href="#">{{ letter }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
 
     <div class="row">
-    <div class="col-md-12">
-    <div class="table-responsive">
-    <table class="table table-hover">
-    <thead>
-    <tr><td></td><td>Nom</td><td>Prénom</td></tr>
-    </thead>
-    <tbody>
-    {% for composer in composers %}
-        <tr>
-        <td><img width="100px" height="100px" class="img-circle"   src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : composer.codeMusicien}) }}"
-                 alt="photo de {{ composer.prénomMusicien }} {{ composer.nomMusicien }}">
-        </td>
-        <td><a href="{{ path('rt_music_musicien_details_page', {'id' : composer.codeMusicien}) }}">{{ composer.nomMusicien }}</a></td>
-        <td>{{ composer.prénomMusicien }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-    </table>
-    </div>
-    </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                     <thead>
+                        <tr><td></td><td>Nom</td><td>Prénom</td></tr>
+                     </thead>
+                    <tbody>
+                    {% for composer in composers %}
+                        <tr>
+                            <td><img width="100px" height="100px" class="img-circle"   src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : composer.codeMusicien}) }}"
+                                     alt="photo de {{ composer.prénomMusicien }} {{ composer.nomMusicien }}">
+                            </td>
+                            <td><a href="{{ path('rt_music_musicien_details_page', {'id' : composer.codeMusicien}) }}">{{ composer.nomMusicien }}</a></td>
+                            <td>{{ composer.prénomMusicien }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-        {% endblock %}
+
+{% endblock %}

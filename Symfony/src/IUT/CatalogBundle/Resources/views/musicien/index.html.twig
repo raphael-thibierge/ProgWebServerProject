@@ -11,7 +11,20 @@
         <h1 class="text-center">Liste des musiciens</h1>
     </div>
 
-    <div class="row"></div>
+    {#  Generation de la barre pour l'ordre alphabétique    #}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="text-center text-danger">non fonctionnel</div>
+            <nav class="block-center">
+                <ul class="pagination">
+                    {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWYZ"|split('')  %}
+                    {% for letter in letters %}
+                        <li><a href="#">{{ letter }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">
