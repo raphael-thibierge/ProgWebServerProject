@@ -59,3 +59,7 @@ catalog_oeuvre_index:
 catalog_oeuvre_details:
     path:     /oeuvre/{id}
     defaults: { _controller: IUTCatalogBundle:Oeuvre:show }
+
+catalog_musicien_composers:
+    path:     /composers/
+    defaults: { _controller: IUTCatalogBundle:Musicien:composers }

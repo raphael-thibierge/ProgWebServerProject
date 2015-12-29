@@ -23,11 +23,20 @@ class MusicienController extends Controller
         $composers = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composer')->findBy(array('codeMusicien' => $musicien));
         $oeuvres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')->findBy(array('codeOeuvre' => $composers));
 
+        // albums containing records composed by this musician
+
+       $compositionOeuvre = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionOeuvre')->findBy(array('codeOeuvre' => $oeuvres));
+        /*$composition = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composition')->findBy(array('codeComposition' =>        $compositionOeuvre));
+        $enregistrementsComposed = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')->findBy(array              ('codeComposition' => $composition));
+        $compositionDisque = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')->findBy(array('codeEnregistrement' => $enregistrementsComposed));
+        $disques = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')->findBy(array('codeDisque' => $compositionDisque));
+        $albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->findBy(array('codeAlbum' => $disques));
+*/
         // interpreted
         $interpreter = $this->getDoctrine()->getRepository('IUTCatalogBundle:Interpreter')->findBy(array('codeMusicien' => $musicien));
         $enregistrements = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')->findBy(array('codeEnregistrement' => $interpreter));
 
-        if ($musicien === null){
+        if ($musicien == null){
             throw $this->createNotFoundException("Le musicien n'existe pas");
         }
 
@@ -37,6 +46,7 @@ class MusicienController extends Controller
             'musicien' => $musicien,
             'oeuvres' => $oeuvres,
             'enregistrements' => $enregistrements,
+            //'albums' => $albums,
         ));
     }
 
@@ -66,4 +76,20 @@ class MusicienController extends Controller
 
     }
 
+    public function composersAction() {
+        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->findAll();
+        $composers = array();
+
+        foreach ($musiciens as $musicien) {
+            $composer = null;
+            $composer = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composer')->findBy(array('codeMusicien' => $musicien));
+
+            // Checking if the musician is a composer. If so, we add him to the list.
+            if ($composer != null)
+                $composers[] = $musicien;
+        }
+
+        return $this->render('IUTCatalogBundle:musicien:composers.html.twig', array('composers' => $composers));
+
+    }
 }
