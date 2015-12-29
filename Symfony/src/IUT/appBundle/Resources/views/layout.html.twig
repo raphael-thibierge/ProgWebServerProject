@@ -38,7 +38,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Musiciens <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li {% if app.request.attributes.get('_route') == 'catalog_musicien_composers' %} class="active" {% endif %}><a href="{{ path('catalog_musicien_composers') }}">Compositeurs</a></li>
-                            <li><a href="#">Interprètes</a></li>
+                            <li {% if app.request.attributes.get('_route') == 'catalog_musicien_interpretes' %} class="active" {% endif %}><a href="{{ path('catalog_musicien_interpretes') }}">Interprètes</a></li>
                             <li><a href="#">Chefs d'orchestre</a></li>
                             <li role="separator" class="divider"></li>
                             <li {% if app.request.attributes.get('_route') == 'rt_music_homepage' %} class="active" {% endif %}><a href="{{ path('rt_music_homepage') }}">Tous les musiciens</a></li>
