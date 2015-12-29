@@ -92,4 +92,22 @@ class MusicienController extends Controller
         return $this->render('IUTCatalogBundle:musicien:composers.html.twig', array('composers' => $composers));
 
     }
+
+    public function interpretesAction() {
+        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->findAll();
+        $interpretes = array();
+
+        foreach ($musiciens as $musicien) {
+            $interprete = null;
+            $interprete = $this->getDoctrine()->getRepository('IUTCatalogBundle:Interpreter')->findBy(array('codeMusicien' => $musicien));
+
+            if ($interprete != null) {
+                $interpretes[] = $musicien;
+            }
+
+        }
+
+        return $this->render('IUTCatalogBundle:musicien:interpretes.html.twig', array('interpretes' => $interpretes));
+
+    }
 }

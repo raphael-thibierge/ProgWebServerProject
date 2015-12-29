@@ -1,0 +1,39 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    Interprètes
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="row">
+        <h1 class="text-center">Liste des interprètes</h1>
+    </div>
+
+    <div class="row"></div>
+
+    <div class="row">
+    <div class="col-md-12">
+    <div class="table-responsive">
+    <table class="table table-hover">
+    <thead>
+    <tr><td></td><td>Nom</td><td>Prénom</td></tr>
+    </thead>
+    <tbody>
+    {% for interprete in interpretes %}
+        <tr>
+        <td><img width="100px" height="100px" class="img-circle"   src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : interprete.codeMusicien}) }}"
+                 alt="photo de {{ interprete.prénomMusicien }} {{ interprete.nomMusicien }}">
+        </td>
+        <td><a href="{{ path('rt_music_musicien_details_page', {'id' : interprete.codeMusicien}) }}">{{ interprete.nomMusicien }}</a></td>
+        <td>{{ interprete.prénomMusicien }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+
+    {% endblock %}

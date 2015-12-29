@@ -63,3 +63,7 @@ catalog_oeuvre_details:
 catalog_musicien_composers:
     path:     /composers/
     defaults: { _controller: IUTCatalogBundle:Musicien:composers }
+
+catalog_musicien_interpretes:
+    path:     /interpretes/
+    defaults: { _controller: IUTCatalogBundle:Musicien:interpretes }

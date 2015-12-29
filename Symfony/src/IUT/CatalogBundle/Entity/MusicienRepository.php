@@ -23,13 +23,4 @@ class MusicienRepository extends EntityRepository
 
         return new Paginator($query, true);
     }
-
-    public function getAllMusiciens() {
-        $query = $this->createQueryBuilder('c')
-            ->orderBy('c.nomMusicien')
-            ->getQuery();
-
-        return $query;
-    }
-
 }
