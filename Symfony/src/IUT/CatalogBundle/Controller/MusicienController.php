@@ -19,34 +19,39 @@ class MusicienController extends Controller
 
         $musicien = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->find($id);
 
+        if ($musicien == null){
+            throw $this->createNotFoundException("Le musicien n'existe pas.");
+        }
+
         // composed
         $composers = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composer')->findBy(array('codeMusicien' => $musicien));
         $oeuvres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')->findBy(array('codeOeuvre' => $composers));
 
         // albums containing records composed by this musician
-
-       $compositionOeuvre = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionOeuvre')->findBy(array('codeOeuvre' => $oeuvres));
-        /*$composition = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composition')->findBy(array('codeComposition' =>        $compositionOeuvre));
+/**
+        $compositionOeuvre = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionOeuvre')->findBy(array('codeOeuvre' => $oeuvres));
+        $composition = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composition')->findBy(array('codeComposition' =>        $compositionOeuvre));
         $enregistrementsComposed = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')->findBy(array              ('codeComposition' => $composition));
         $compositionDisque = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')->findBy(array('codeEnregistrement' => $enregistrementsComposed));
         $disques = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')->findBy(array('codeDisque' => $compositionDisque));
         $albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->findBy(array('codeAlbum' => $disques));
-*/
+**/
         // interpreted
         $interpreter = $this->getDoctrine()->getRepository('IUTCatalogBundle:Interpreter')->findBy(array('codeMusicien' => $musicien));
         $enregistrements = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')->findBy(array('codeEnregistrement' => $interpreter));
 
-        if ($musicien == null){
-            throw $this->createNotFoundException("Le musicien n'existe pas");
-        }
-
-
+        // Orchestres
+        /**
+        $direction = $this->getDoctrine()->getRepository('IUTCatalogBundle:Direction')->findBy(array('codeMusicien' => $musicien));
+        $orchestres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Orchestres')->findBy(array('codeOrchestre' => $direction));
+        **/
 
         return $this->render('IUTCatalogBundle:musicien:details.html.twig', array(
             'musicien' => $musicien,
             'oeuvres' => $oeuvres,
             'enregistrements' => $enregistrements,
             //'albums' => $albums,
+            //'orchestres' => $orchestres,
         ));
     }
 
@@ -110,4 +115,21 @@ class MusicienController extends Controller
         return $this->render('IUTCatalogBundle:musicien:interpretes.html.twig', array('interpretes' => $interpretes));
 
     }
+/*
+    public function chefsOrchestreAction() {
+        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->findAll();
+        $chefsOrchestre = array();
+
+        foreach ($musiciens as $musicien) {
+            $chefOrchestre = null;
+            $chefOrchestre = $this->getDoctrine()->getRepository('IUTCatalogBundle:Direction')->findBy(array('codeMusicien' => $musicien));
+
+
+            if ($chefOrchestre != null)
+                $chefsOrchestre[] = $musicien;
+        }
+
+        return $this->render('IUTCatalogBundle:musicien:chefsOrchestre.html.twig', array('chefsOrchestre' => $chefsOrchestre));
+
+    }*/
 }

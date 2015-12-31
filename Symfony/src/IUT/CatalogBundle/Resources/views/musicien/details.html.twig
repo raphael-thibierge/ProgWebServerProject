@@ -33,14 +33,15 @@
         <div class="col-md-12">
             <h2>Oeuvres composées</h2>
 
-            {% for oeuvre in oeuvres %}
-                <p>{{ oeuvre.titreOeuvre }}</p>
-
-            {% endfor %}
-
             {% if oeuvres == null %}
                 <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas composé d'oeuvres.</p>
+
+            {% else %}
+                {% for oeuvre in oeuvres %}
+                    <p>{{ oeuvre.titreOeuvre }}</p>
+                {% endfor %}
             {% endif %}
+
         </div>
     </div>
 
@@ -48,13 +49,33 @@
         <div class="col-md-12">
             <h2>Morceaux interprétés</h2>
 
-            {% for enregistrement in enregistrements %}
-                <p>{{ enregistrement.titre }}</p>
-
-            {% endfor %}
-
             {% if enregistrements == null %}
-                <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas interprété de morceaux.</p>
+                <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas interprété de morceaux, ou ces derniers ne sont pas connus.</p>
+
+            {% else %}
+                {% for enregistrement in enregistrements %}
+                    <p>{{ enregistrement.titre }}</p>
+                {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Orchestres dirigés</h2>
+
+            {% if orchestres is defined %}
+
+                {% if orchestres == null %}
+                    <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas dirigé d'orchestres.</p>
+
+                {% else %}
+                    {% for orchestre in orchestres %}
+                        <p>{{ orchestre.titre }}</p>
+                    {% endfor %}
+                {% endif %}
+
             {% endif %}
         </div>
     </div>

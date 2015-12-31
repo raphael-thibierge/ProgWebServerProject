@@ -67,3 +67,7 @@ catalog_musicien_composers:
 catalog_musicien_interpretes:
     path:     /interpretes/
     defaults: { _controller: IUTCatalogBundle:Musicien:interpretes }
+
+catalog_musicien_chefsOrchestre:
+    path:     /chefsOrchestres/
+    defaults: { _controller: IUTCatalogBundle:Musicien:chefsOrchestre }
