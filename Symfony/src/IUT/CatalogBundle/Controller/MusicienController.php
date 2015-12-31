@@ -115,7 +115,7 @@ class MusicienController extends Controller
         return $this->render('IUTCatalogBundle:musicien:interpretes.html.twig', array('interpretes' => $interpretes));
 
     }
-/*
+
     public function chefsOrchestreAction() {
         $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->findAll();
         $chefsOrchestre = array();
@@ -131,5 +131,5 @@ class MusicienController extends Controller
 
         return $this->render('IUTCatalogBundle:musicien:chefsOrchestre.html.twig', array('chefsOrchestre' => $chefsOrchestre));
 
-    }*/
+    }
 }
