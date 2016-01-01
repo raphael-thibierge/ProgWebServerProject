@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <div class="row">
+  {#  <div class="row">
         <div class="col-md-12">
             <h2>Morceaux interprétés</h2>
 
@@ -59,7 +59,7 @@
             {% endif %}
 
         </div>
-    </div>
+    </div>#}
 
     <div class="row">
         <div class="col-md-12">
@@ -98,6 +98,16 @@
             {% endif %}
 
         </div>
+    </div>
+
+
+    <div class="row">
+        {% for composition in compositions %}
+            <div class="row">
+            {{ composition.codeComposition.codeComposition }}
+
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

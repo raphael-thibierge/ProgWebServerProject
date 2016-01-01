@@ -8,7 +8,7 @@ class InstrumentController extends Controller
 {
     public function indexAction(){
         // get instrument list
-        $instruments = $this->getDoctrine()->getRepository('IUTCatalogBundle:Instrument')->findAll();
+        $instruments = $this->getDoctrine()->getRepository('IUTCatalogBundle:Instrument')->findBy(array(), array('nomInstrument' => 'ASC'));
         return $this->render('IUTCatalogBundle:instrument:index.html.twig', array(
             'instruments' => $instruments,
         ));

@@ -46,7 +46,7 @@ class Direction
      *
      * @ORM\ManyToOne(targetEntity="Enregistrement")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Code_Enregistrement", referencedColumnName="Code_Enregistrement")
+     *   @ORM\JoinColumn(name="Code_Morceau", referencedColumnName="Code_Morceau")
      * })
      */
     private $codeEnregistrement;
