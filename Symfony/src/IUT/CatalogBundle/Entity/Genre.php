@@ -63,7 +63,7 @@ class Genre
         return $this->libelléAbrégé;
     }
 
-    public function __toString() {
+   /* public function __toString() {
         return $this->libelléAbrégé;
-    }
+    }*/
 }

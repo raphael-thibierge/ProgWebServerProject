@@ -10,7 +10,7 @@ use IUT\CatalogBundle\Entity\TypeMorceaux;
  * Oeuvre
  *
  * @ORM\Table(name="Oeuvre", indexes={@ORM\Index(name="IDX_32522BC898F61075", columns={"Code_Type"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IUT\CatalogBundle\Entity\OeuvreRepository")
  */
 class Oeuvre
 {

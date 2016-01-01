@@ -14,12 +14,15 @@
     {#  Generation de la barre pour l'ordre alphabétique    #}
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="text-center text-danger">non fonctionnel</div>
             <nav class="block-center">
                 <ul class="pagination">
-                    {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWYZ"|split('')  %}
-                    {% for letter in letters %}
-                        <li><a href="#">{{ letter }}</a></li>
+                    {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"|split('')  %}
+                    {% for alphabetletter in letters %}
+                        <li {% if letter == alphabetletter %} class="active" {% endif %}>
+                            <a href="{{ path('catalog_musicien_interpretes_byLetter', {'letter' : alphabetletter}) }}">
+                                {{ alphabetletter }}
+                            </a>
+                        </li>
                     {% endfor %}
                 </ul>
             </nav>
@@ -37,7 +40,7 @@
     {% for interprete in interpretes %}
         <tr>
         <td><img width="100px" height="100px" class="img-circle"   src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : interprete.codeMusicien}) }}"
-                 alt="photo de {{ interprete.prénomMusicien }} {{ interprete.nomMusicien }}">
+                 alt="photo de {{ interprete.prénomMusicien }} {{ interprete.nomMusicien }}" >
         </td>
         <td><a href="{{ path('rt_music_musicien_details_page', {'id' : interprete.codeMusicien}) }}">{{ interprete.nomMusicien }}</a></td>
         <td>{{ interprete.prénomMusicien }}</td>

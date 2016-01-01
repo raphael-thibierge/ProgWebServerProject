@@ -11,7 +11,7 @@ class DisqueController extends Controller
         $disc = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')->find($id);
 
         if ($disc === null){
-            throw $this->createNotFoundException("Le musicien n'existe pas");
+            throw $this->createNotFoundException("Le disque n'existe pas");
         }
 
 

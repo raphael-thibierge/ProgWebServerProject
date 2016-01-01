@@ -7,12 +7,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class OeuvreController extends Controller
 {
     public function indexAction(){
-        // get oeuvre list
-        $oeuvres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')->findAll();
+        return $this->listAction('A');
+    }
+
+    public function listAction($letter){
+        $oeuvres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')
+            ->getOeuvreList($letter);
+
         return $this->render('IUTCatalogBundle:oeuvre:index.html.twig', array(
             'oeuvres' => $oeuvres,
+            'letter' => $letter,
         ));
     }
+
 
     public function showAction($id){
         // id verification
@@ -25,6 +32,8 @@ class OeuvreController extends Controller
         if ($oeuvre === null){
             throw $this->createNotFoundException("L'oeuvre n'existe pas");
         }
+
+        //$compositionOeuvre = $this->getDoctrine()->getRepository()
 
 
 

@@ -2,8 +2,8 @@ rt_music_homepage:
     path:     /musiciens/
     defaults: { _controller: IUTCatalogBundle:Musicien:index }
 
-rt_music_musicienspage:
-    path:     /musiciens/{page}
+catalog_music_all_musiciens_byLetter:
+    path:     /musiciens/{letter}
     defaults: { _controller: IUTCatalogBundle:Musicien:list }
 
 rt_music_musicien_details_page:
@@ -21,6 +21,10 @@ rt_music_generatePicture:
 rt_music_albums:
     path:     /albums/
     defaults: { _controller: IUTCatalogBundle:Album:index }
+
+catalog_music_albums_byLetter:
+    path:     /albums/{letter}
+    defaults: { _controller: IUTCatalogBundle:Album:list }
 
 rt_music_album_details:
     path:     /album/{id}
@@ -60,14 +64,30 @@ catalog_oeuvre_details:
     path:     /oeuvre/{id}
     defaults: { _controller: IUTCatalogBundle:Oeuvre:show }
 
+catalog_oeuvres_byLetter:
+    path:     /oeuvres/{letter}
+    defaults: { _controller: IUTCatalogBundle:Oeuvre:list }
+
 catalog_musicien_composers:
     path:     /composers/
     defaults: { _controller: IUTCatalogBundle:Musicien:composers }
+
+catalog_musicien_composers_byLetter:
+    path:     /composers/{letter}
+    defaults: { _controller: IUTCatalogBundle:Musicien:composersList }
 
 catalog_musicien_interpretes:
     path:     /interpretes/
     defaults: { _controller: IUTCatalogBundle:Musicien:interpretes }
 
+catalog_musicien_interpretes_byLetter:
+    path:     /interpretes/{letter}
+    defaults: { _controller: IUTCatalogBundle:Musicien:interpretesList }
+
 catalog_musicien_chefsOrchestre:
     path:     /chefsOrchestres/
     defaults: { _controller: IUTCatalogBundle:Musicien:chefsOrchestre }
+
+catalog_musicien_chefsOrchestre_byLetter:
+    path:     /chefsOrchestres/{letter}
+    defaults: { _controller: IUTCatalogBundle:Musicien:chefsOrchestreList }

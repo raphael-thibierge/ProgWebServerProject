@@ -27,23 +27,34 @@ class MusicienController extends Controller
         $composers = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composer')->findBy(array('codeMusicien' => $musicien));
         $oeuvres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')->findBy(array('codeOeuvre' => $composers));
 
-       /* // albums containing records composed by this musician
+
+
+        // albums containing records composed by this musician
 
         $compositionOeuvre = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionOeuvre')
             ->findBy(array('codeOeuvre' => $oeuvres));
-        $composition = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composition')
-            ->findBy(array('codeComposition' =>        $compositionOeuvre));
-        $enregistrementsComposed = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
-            ->findBy(array              ('codeComposition' => $composition));
-        $compositionDisque = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')
-            ->findBy(array('codeEnregistrement' => $enregistrementsComposed));
-        $disques = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')
-            ->findBy(array('codeDisque' => $compositionDisque));
-        $albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')
-            ->findBy(array('codeAlbum' => $disques));
+
+        //$compositionOeuvre = array_unique($compositionOeuvre, SORT_REGULAR);
+
+
+      //  $composition = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composition')
+        //    ->findOneBy(array('codeComposition' => $compositionOeuvre));
+
+      //  $enregistrementsComposed = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
+        //    ->findOneBy(array('codeComposition' => $compositionOeuvre));
+
+
+        //$compositionDisque = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')
+          //  ->findOneBy(array('codeEnregistrement' => $enregistrementsComposed));
+
+        //$disques = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')
+          //  ->findOneBy(array('codeDisque' => $compositionDisque));
+
+        //$albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')
+          //  ->findBy(array('codeAlbum' => $disques));
 
         // interpreted
-        $interpreter = $this->getDoctrine()->getRepository('IUTCatalogBundle:Interpreter')
+        /*$interpreter = $this->getDoctrine()->getRepository('IUTCatalogBundle:Interpreter')
             ->findBy(array('codeMusicien' => $musicien));
         $enregistrements = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
             ->findBy(array('codeEnregistrement' => $interpreter));*/
@@ -59,6 +70,7 @@ class MusicienController extends Controller
         return $this->render('IUTCatalogBundle:musicien:details.html.twig', array(
             'musicien' => $musicien,
             'oeuvres' => $oeuvres,
+            'compositions' => $compositionOeuvre,
            // 'enregistrements' => $enregistrements,
             //'albums' => $albums,
             'orchestres' => $orchestres,
@@ -66,33 +78,23 @@ class MusicienController extends Controller
     }
 
 
-    public function listAction($page){
+    public function listAction($letter){
 
-
-        if($page < 1){
-            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
-        }
-
-        $nbParPage = 50;
-
-        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getMusiciens($page,$nbParPage);
-
-        $nbPages = ceil(count($musiciens)/$nbParPage);
-
-        if($page > $nbParPage){
-            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
-        }
+        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getMusiciens($letter);
 
         return $this->render('IUTCatalogBundle:musicien:index.html.twig', array(
             'musiciens' => $musiciens->getQuery()->getResult(),
-            'nbPages' => $nbPages,
-            'page' => $page
+            'letter' => $letter,
         ));
 
     }
 
     public function composersAction() {
-        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->findAll();
+        return $this->composersListAction('A');
+    }
+
+    public function composersListAction($letter){
+        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getMusiciens($letter);
         $composers = array();
 
         foreach ($musiciens as $musicien) {
@@ -104,12 +106,19 @@ class MusicienController extends Controller
                 $composers[] = $musicien;
         }
 
-        return $this->render('IUTCatalogBundle:musicien:composers.html.twig', array('composers' => $composers));
+        return $this->render('IUTCatalogBundle:musicien:composers.html.twig', array(
+            'composers' => $composers,
+            'letter' => $letter,
+        ));
 
     }
 
     public function interpretesAction() {
-        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->findAll();
+        return $this->interpretesListAction('A');
+    }
+
+    public function interpretesListAction($letter) {
+        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getMusiciens($letter);
         $interpretes = array();
 
         foreach ($musiciens as $musicien) {
@@ -122,24 +131,33 @@ class MusicienController extends Controller
 
         }
 
-        return $this->render('IUTCatalogBundle:musicien:interpretes.html.twig', array('interpretes' => $interpretes));
+        return $this->render('IUTCatalogBundle:musicien:interpretes.html.twig', array(
+            'interpretes' => $interpretes,
+            'letter' => $letter,
+        ));
 
     }
-/*
+
     public function chefsOrchestreAction() {
-        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->findAll();
+        return $this->chefsOrchestreListAction('A');
+    }
+
+    public function chefsOrchestreListAction($letter) {
+        $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getMusiciens($letter);
         $chefsOrchestre = array();
 
         foreach ($musiciens as $musicien) {
             $chefOrchestre = null;
             $chefOrchestre = $this->getDoctrine()->getRepository('IUTCatalogBundle:Direction')->findBy(array('codeMusicien' => $musicien));
 
-
             if ($chefOrchestre != null)
                 $chefsOrchestre[] = $musicien;
         }
 
-        return $this->render('IUTCatalogBundle:musicien:chefsOrchestre.html.twig', array('chefsOrchestre' => $chefsOrchestre));
+        return $this->render('IUTCatalogBundle:musicien:chefsOrchestre.html.twig', array(
+            'chefsOrchestre' => $chefsOrchestre,
+            'letter' => $letter,
+        ));
 
-    }*/
+    }
 }

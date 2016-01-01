@@ -15,12 +15,11 @@
     {#  Generation de la barre pour l'ordre alphabétique    #}
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="text-center text-danger">non fonctionnel</div>
             <nav class="block-center">
                 <ul class="pagination">
-                    {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWYZ"|split('')  %}
-                    {% for letter in letters %}
-                        <li><a href="#">{{ letter }}</a></li>
+                    {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"|split('')  %}
+                    {% for alphabetLetter in letters %}
+                        <li {% if letter == alphabetLetter %} class="active" {% endif %}><a href="{{ path('catalog_music_albums_byLetter', {'letter' : alphabetLetter }) }}">{{ alphabetLetter }}</a></li>
                     {% endfor %}
                 </ul>
             </nav>
@@ -42,7 +41,7 @@
                                 <td><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></td>
                                 <td>{{ album.annéeAlbum }}</td>
                                 <td>{{ album.codeEditeur }}</td>
-                                <td>{{ album.codeGenre }}</td>
+                                <td><a href="{{ path('catalog_genre_details', {'id' : album.codeGenre.codeGenre }) }}">{{ album.codeGenre.libelléAbrégé }}</a></td>
                             </tr>
                         {% endfor %}
 

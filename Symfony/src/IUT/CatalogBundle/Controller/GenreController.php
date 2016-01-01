@@ -8,7 +8,7 @@ class GenreController extends Controller
 {
     public function indexAction(){
         // get genre list
-        $genres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Genre')->findAll();
+        $genres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Genre')->findBy(array(), array('libelléAbrégé' => 'ASC'));
         return $this->render('IUTCatalogBundle:genre:index.html.twig', array(
             'genres' => $genres,
         ));

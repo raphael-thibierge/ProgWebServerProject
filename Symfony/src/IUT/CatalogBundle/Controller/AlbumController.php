@@ -7,10 +7,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AlbumController extends Controller
 {
     public function indexAction(){
-        $albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->findAll();
+        return $this->listAction('A');
+    }
+
+    public function listAction($letter){
+        $albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')
+            ->getAlbumList($letter);
+        //->findByTitreAlbum(array('A%'));
 
         return $this->render('IUTCatalogBundle:album:index.html.twig', array(
             'albums' => $albums,
+            'letter' => $letter,
         ));
     }
 

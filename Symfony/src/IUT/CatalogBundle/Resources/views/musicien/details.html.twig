@@ -100,4 +100,14 @@
         </div>
     </div>
 
+
+    <div class="row">
+        {% for composition in compositions %}
+            <div class="row">
+            {{ composition.codeComposition.codeComposition }}
+
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}
