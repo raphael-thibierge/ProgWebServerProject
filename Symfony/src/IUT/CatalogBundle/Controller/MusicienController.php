@@ -11,7 +11,6 @@ class MusicienController extends Controller
         return $this->listAction(1);
     }
 
-
     public function showAction($id){
         if($id < 1){
             throw $this->createNotFoundException("Le code musicien doit être positif");
@@ -76,7 +75,6 @@ class MusicienController extends Controller
             'orchestres' => $orchestres,
         ));
     }
-
 
     public function listAction($letter){
 

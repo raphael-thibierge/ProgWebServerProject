@@ -7,31 +7,70 @@
 {% block body %}
 
     <div class="row">
-        <div class="col-md-12">
-            <h1>{{ album.titreAlbum }}</h1>
+        <div class="col-md-4 col-md-offset-1">
+            <img src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="pochette de l'album {{ album.titreAlbum }}" >
+        </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <h1>{{ album.titreAlbum }}</h1>
+
+            </div>
+            <div class="row">
+                <p>Année : {{ album.annéeAlbum }}</p>
+                <p>Genre : <a href="{{ path('catalog_genre_details', {'id' : album.codeGenre.codeGenre }) }}">
+                        {{ album.codeGenre.libelléAbrégé }}
+                    </a></p>
+                <p>Editeur : {{ album.codeEditeur.nomEditeur }}</p>
+                <p>Code ASIN: {{ album.ASIN }}</p>
+
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <img src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="{{ album.titreAlbum }}" {% if  %} >
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-md-12">
-            <p>Année : {{ album.annéeAlbum }}</p>
-            <p>Genre : {{ album.codeGenre }}</p>
-            <p>Editeur : {{ album.codeEditeur }}</p>
-            <p>Code ASIN: {{ album.ASIN }}</p>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Disques</h2>
             {% for disque in disques %}
-                <p> <a href="{{ path('catalog_disque_details', {'id' : disque.codeDisque}) }}">{{ disque.référenceAlbum }} {{ disque.référenceDisque }} </a></p>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center"><a href="{{ path('catalog_disque_details', {'id' : disque['disc'].codeDisque}) }}">{{ disque['disc'].référenceAlbum }} {{ disque['disc'].référenceDisque }}</a></h2>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="com-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Durée</th>
+                                    <th>Prix</th>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {%  for enregistrement in disque['records'] %}
+                            <tr>
+                                <td>{{ enregistrement.Titre }}</td>
+                                <td>{{ enregistrement.durée }}</td>
+                                <td>{{ enregistrement.prix }}</td>
+                                <td> <audio  src="{{ enregistrement.nomDeFichier }}">
+                                    </audio></td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
             {% endfor %}
         </div>
     </div>
