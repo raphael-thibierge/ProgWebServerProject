@@ -8,7 +8,7 @@ class MusicienController extends Controller
 {
     public function indexAction()
     {
-        return $this->listAction(1);
+        return $this->listAction('A');
     }
 
     public function showAction($id){
@@ -23,8 +23,10 @@ class MusicienController extends Controller
         }
 
         // composed
-        $composers = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composer')->findBy(array('codeMusicien' => $musicien));
-        $oeuvres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')->findBy(array('codeOeuvre' => $composers));
+        $composers = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composer')
+            ->findBy(array('codeMusicien' => $musicien));
+        $oeuvres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')
+            ->findBy(array('codeOeuvre' => $composers), array('titreOeuvre' => 'ASC'));
 
 
 
@@ -63,14 +65,14 @@ class MusicienController extends Controller
         $direction = $this->getDoctrine()->getRepository('IUTCatalogBundle:Direction')
             ->findBy(array('codeMusicien' => $musicien));
         $orchestres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Orchestres')
-            ->findBy(array('codeOrchestre' => $direction));
+            ->findBy(array('codeOrchestre' => $direction), array('nomOrchestre' => 'ASC'));
 
 
         return $this->render('IUTCatalogBundle:musicien:details.html.twig', array(
             'musicien' => $musicien,
             'oeuvres' => $oeuvres,
             'compositions' => $compositionOeuvre,
-           // 'enregistrements' => $enregistrements,
+           // 'enregistrements' => $enregistrements, // est-ce pertinant d'afficher chaques enregistrement, ( liste trop longue )
             //'albums' => $albums,
             'orchestres' => $orchestres,
         ));

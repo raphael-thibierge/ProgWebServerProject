@@ -8,25 +8,10 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h1>{{ album.titreAlbum }}</h1>
+            <div class="alert alert-danger" role="alert">
+                Page inexistante
+            </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <img src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="{{ album.titreAlbum }}">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <p>Code Album : {{ album.codeAlbum }}</p>
-            <p>Année : {{ album.annéeAlbum }}</p>
-            <p>Genre : {{ album.codeGenre }}</p>
-            <p>Editeur : {{ album.codeEditeur }}</p>
-            <p>Code ASIN: {{ album.ASIN }}</p>
-        </div>
-    </div>
-
 
 {% endblock %}

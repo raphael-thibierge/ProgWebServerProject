@@ -5,6 +5,17 @@
 {% endblock %}
 
 {% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                Les albums pour chaque oeuvre ne sont pas disponibles !
+            </div>
+            <div class="alert alert-warning" role="alert">
+                La tonalité peut-être manquante !
+            </div>
+        </div>
+    </div>
+
 
 <div class="row">
     <div class="col-md-12">
@@ -16,7 +27,7 @@
 <div class="row">
     <div class="col-md-12">
         <p>Opus : {{ oeuvre.opus }}</p>
-        <p>Année : {% if oeuvre.année != 0 %}{{ oeuvre.année }}{% else %} <span class="text-danger">Non renseigné</span>{% endif %}</p></p>
+        <p>Année : {% if oeuvre.année != 0 %}{{ oeuvre.année }} {% else %} <span class="text-danger">Non renseigné</span>{% endif %}</p>
         <p>Type : {{ oeuvre.codeType }}</p>
         <p>Tonnalité : {{ oeuvre.tonalité }}</p>
     </div>

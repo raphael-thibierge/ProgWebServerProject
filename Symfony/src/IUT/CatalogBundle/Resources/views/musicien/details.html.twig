@@ -8,6 +8,17 @@
 
     <div class="row">
         <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                Les albums des musiciens ne sont pas encore disponibles !
+            </div>
+            <div class="alert alert-warning" role="alert">
+                La mise en page n'a pas encore été réalisée !
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
             <h1>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}</h1>
         </div>
     </div>
@@ -37,9 +48,11 @@
                 <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas composé d'oeuvres.</p>
 
             {% else %}
+                <ul>
                 {% for oeuvre in oeuvres %}
-                    <p>{{ oeuvre.titreOeuvre }}</p>
+                    <li><a href="{{ path('catalog_oeuvre_details', {'id' : oeuvre.codeOeuvre}) }}">{{ oeuvre.titreOeuvre }}</a></li>
                 {% endfor %}
+                </ul>
             {% endif %}
 
         </div>
@@ -102,12 +115,12 @@
 
 
     <div class="row">
-        {% for composition in compositions %}
+        {#{% for composition in compositions %}
             <div class="row">
             {{ composition.codeComposition.codeComposition }}
 
             </div>
-        {% endfor %}
+        {% endfor %}#}
     </div>
 
 {% endblock %}
