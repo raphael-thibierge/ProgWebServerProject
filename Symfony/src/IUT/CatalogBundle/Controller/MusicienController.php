@@ -83,6 +83,7 @@ class MusicienController extends Controller
         $musiciens = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getMusiciens($letter);
 
         return $this->render('IUTCatalogBundle:musicien:index.html.twig', array(
+            'listTitle' => 'Liste des musiciens',
             'musiciens' => $musiciens->getQuery()->getResult(),
             'letter' => $letter,
         ));
@@ -106,8 +107,9 @@ class MusicienController extends Controller
                 $composers[] = $musicien;
         }
 
-        return $this->render('IUTCatalogBundle:musicien:composers.html.twig', array(
-            'composers' => $composers,
+        return $this->render('IUTCatalogBundle:musicien:index.html.twig', array(
+            'listTitle' => 'Liste des compositeurs',
+            'musiciens' => $composers,
             'letter' => $letter,
         ));
 
@@ -131,8 +133,9 @@ class MusicienController extends Controller
 
         }
 
-        return $this->render('IUTCatalogBundle:musicien:interpretes.html.twig', array(
-            'interpretes' => $interpretes,
+        return $this->render('IUTCatalogBundle:musicien:index.html.twig', array(
+            'listTitle' => 'Liste des interprêtes',
+            'musiciens' => $interpretes,
             'letter' => $letter,
         ));
 
@@ -154,8 +157,9 @@ class MusicienController extends Controller
                 $chefsOrchestre[] = $musicien;
         }
 
-        return $this->render('IUTCatalogBundle:musicien:chefsOrchestre.html.twig', array(
-            'chefsOrchestre' => $chefsOrchestre,
+        return $this->render('IUTCatalogBundle:musicien:index.html.twig', array(
+            'listTitle' => 'Liste des chefs d\'orchestres',
+            'musiciens' => $chefsOrchestre,
             'letter' => $letter,
         ));
 
