@@ -6,6 +6,17 @@ r_tapp:
     resource: "@IUTappBundle/Resources/config/routing.yml"
     prefix:   /
 
+login:
+    pattern:   /login
+    defaults:  { _controller: IUTUserBundle:Security:login }
+
+login_check:
+    pattern:   /login_check
+    defaults:  { _controller: IUTUserBundle:Security:login }
+
+logout:
+    pattern:   /logout
+
 
 
 

@@ -14,6 +14,15 @@ security:
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
+
+        main_login:
+                pattern:   ^/login$
+                anonymous: true # Anonymous allowed in this firewall
+
+#        main:
+#            pattern:   ^/
+#            anonymous: false
+
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
