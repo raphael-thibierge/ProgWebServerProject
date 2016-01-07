@@ -50,6 +50,7 @@
                     <li {% if app.request.attributes.get('_route') == 'catalog_oeuvre_index' %} class="active" {% endif %}><a href="{{ path('catalog_oeuvre_index') }}">Oeuvres</a></li>
                     <li {% if app.request.attributes.get('_route') == 'catalog_genre_index' %} class="active" {% endif %}><a href="{{ path('catalog_genre_index') }}">Genres</a></li>
                     <li {% if app.request.attributes.get('_route') == 'catalog_instrument_index' %} class="active" {% endif %}><a href="{{ path('catalog_instrument_index') }}">Instruments</a></li>
+                    <li {% if app.request.attributes.get('_route') == 'catalog_orchestre_index' %} class="active" {% endif %}><a href="{{ path('catalog_orchestre_index') }}">Orchestres</a></li>
                     <li {% if app.request.attributes.get('_route') == 'r_tapp_aboutpage' %} class="active" {% endif %}><a href="{{ path('r_tapp_aboutpage') }}">A propos</a></li>
                 </ul>
             </div><!--/.nav-collapse -->

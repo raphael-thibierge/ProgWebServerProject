@@ -1,0 +1,25 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    {{ orchestre.nomOrchestre }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ orchestre.nomOrchestre }}</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <img src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : chefOrchestre.codeMusicien}) }}" alt="photo du musicien {{ chefOrchestre.prénomMusicien }} {{ chefOrchestre.nomMusicien }}">
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -91,3 +91,7 @@ catalog_musicien_chefsOrchestre:
 catalog_musicien_chefsOrchestre_byLetter:
     path:     /chefsOrchestres/{letter}
     defaults: { _controller: IUTCatalogBundle:Musicien:chefsOrchestreList }
+
+catalog_orchestre_index:
+    path:     /orchestres
+    defaults: { _controller: IUTCatalogBundle:Orchestre:index }
