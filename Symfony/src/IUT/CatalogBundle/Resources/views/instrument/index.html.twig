@@ -29,6 +29,48 @@
 
     <div class="row">
         <div class="col-md-12">
+
+            {# cpt is used to know if we have to create a new row #}
+            {% set cpt = 1 %}
+            {%  for instrument in instruments %}
+                {# new line #}
+                {% if cpt % 4 == 0 %}<div class="row">{% endif %}
+                <div class="col-md-3">
+
+                    {# album card#}
+                    <div class="panel panel panel-default">
+
+                        {# picture #}
+                        <div class="panel-heading">
+                            <div class="row">
+                                <a class="text-center"  href="{{ path('catalog_instrument_details', {'id' : instrument.codeInstrument}) }}">
+                                    <img width="100px" height="100px" class="img-rounded center-block" src="{{ path('rt_music_generatePicture', {'class':'Instrument', 'id' : instrument.codeInstrument}) }}"
+                                         alt="photo de l'instrument {{ instrument.nomInstrument }} ">
+                                </a>
+                            </div>
+                        </div>
+
+                        {# Infos #}
+                        <div class="panel-body">
+                            <p class="text-center">
+                                <strong><a href="{{ path('catalog_instrument_details', {'id' : instrument.codeInstrument}) }}">
+                                        {{ instrument.nomInstrument }}
+                                    </a></strong>
+
+                        </div>
+                    </div>
+                </div>
+
+                {# close new line #}
+                {% if cpt % 4 == 0 %}</div>{% endif %}
+                {% set cpt = cpt + 1 %}
+            {% endfor %}
+
+
+
+
+{#
+
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -48,7 +90,7 @@
 
                     </tbody>
                 </table>
-            </div>
+            </div>#}
         </div>
     </div>
 

@@ -5,10 +5,37 @@ Bienvenue
 {% endblock %}
 
 {% block body %}
-    <div class="jumbotron">
-        <h1 class="text-center">Bienvenue</h1>
 
-        <div class="text-center">Ce site a pour but de présenter les exercices réalisés en PHP avec le framework Symfony2.</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info" role="alert">
+                Le site en cours de développement !
+            </div>
+            <div class="alert alert-info" role="alert">
+                La page d'acceuil finale n'est pas encore disponible.
+            </div>
+            <div class="alert alert-info" role="alert">
+                Le design du site n'a pas encore été réalisé.
+            </div>
+        </div>
+    </div>
+
+    {#
+        TODO - Afficher le nombre de musicien
+        TODO - Afficher le nombre d'album
+        TODO - Afficher le nombre d'enregistrements
+    #}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1 class="text-center">Bienvenue</h1>
+
+                <p class="text-center">
+                    Ce site a pour but de présenter les exercices réalisés en PHP avec le framework Symfony2.
+                </p>
+        </div>
+    </div>
 
     </div>
 {% endblock %}

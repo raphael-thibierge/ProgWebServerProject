@@ -8,8 +8,18 @@
 
 
     <div class="row">
-        <h1 class="text-center">Liste des musiciens</h1>
+        <div class="col-md-12">
+            <h1 class="text-center">{{ listTitle }}</h1>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-warning" role="alert">
+                Certaines images ne sont pas chargées ! ( réponse trop longue du serveur ? )
+            </div>
+        </div>
+    </div>
+
 
     {#  Generation de la barre pour l'ordre alphabétique    #}
     <div class="row">
@@ -31,26 +41,44 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr><td></td><td>Nom</td><td>Prénom</td></tr>
-                    </thead>
-                    <tbody>
-                        {% for musicien in musiciens %}
-                            <tr>
-                                <td><img width="100px" height="100px" class="img-circle"   src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : musicien.codeMusicien}) }}"
-                                         alt="photo de {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ">
-                                </td>
-                                <td><a href="{{ path('rt_music_musicien_details_page', {'id' : musicien.codeMusicien}) }}">{{ musicien.nomMusicien }}</a></td>
-                                <td>{{ musicien.prénomMusicien }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+
+    {# cpt is used to know if we have to create a new row #}
+    {% set cpt = 1 %}
+    {%  for musicien in musiciens %}
+        {# new line #}
+        {% if cpt % 4 == 0 %}<div class="row">{% endif %}
+        <div class="col-md-3">
+
+        {# album card#}
+        <div class="panel panel panel-default">
+
+        {# picture #}
+        <div class="panel-heading">
+            <div class="row">
+                <a class="text-center"  href="{{ path('rt_music_musicien_details_page', {'id' : musicien.codeMusicien}) }}">
+                    <img width="100px" height="100px" class="img-rounded center-block" src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : musicien.codeMusicien}) }}"
+                         alt="photo de {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ">
+                </a>
             </div>
         </div>
+
+        {# Infos #}
+        <div class="panel-body">
+        <p class="text-center">
+            <strong><a href="{{ path('rt_music_musicien_details_page', {'id' : musicien.codeMusicien}) }}">
+                    {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}
+                </a></strong>
+
+        </div>
+    </div>
     </div>
 
+    {# close new line #}
+    {% if cpt % 4 == 0 %}</div>{% endif %}
+    {% set cpt = cpt + 1 %}
+    {% endfor %}
+
+    </div>
+    </div>
 
     {% endblock %}

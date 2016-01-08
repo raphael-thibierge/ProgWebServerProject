@@ -14,7 +14,6 @@ class DisqueController extends Controller
             throw $this->createNotFoundException("Le disque n'existe pas");
         }
 
-
         $discElements = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')->findBy(array('codeDisque' => $disc));
         $records = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')->findBy(array('codeEnregistrement' => $discElements));
 

@@ -12,6 +12,14 @@
     </div>
 </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                Les albums commançant par des chiffres ou des caractères spéciaux n'est pas disponible
+            </div>
+        </div>
+    </div>
+
     {#  Generation de la barre pour l'ordre alphabétique    #}
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -28,26 +36,46 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr><td></td><td><strong>Titre</strong></td><td><strong>Année</strong></td><td><strong>Editeur</strong></td><td><strong>Genre</strong></td></tr>
-                    </thead>
-                    <tbody>
+
+                        {# cpt is used to know if we have to create a new row #}
+                        {% set cpt = 1 %}
                         {%  for album in albums %}
-                            <tr>
-                                <td><img width="100px" height="100px" class="img-circle"   src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}"
-                                         alt="photo de l'album {{ album.titreAlbum }}"></td>
-                                <td><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></td>
-                                <td>{{ album.annéeAlbum }}</td>
-                                <td>{{ album.codeEditeur }}</td>
-                                <td><a href="{{ path('catalog_genre_details', {'id' : album.codeGenre.codeGenre }) }}">{{ album.codeGenre.libelléAbrégé }}</a></td>
-                            </tr>
+                            {# new line #}
+                            {% if cpt % 4 == 0 %}<div class="row">{% endif %}
+                                <div class="col-md-3">
+
+                                    {# album card#}
+                                    <div class="panel panel panel-default">
+
+                                        {# picture #}
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <a class="text-center" href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }} ">
+                                                    <img width="100px" height="100px" class="img-rounded center-block"   src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="photo de l'album {{ album.titreAlbum }}">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        {# Infos #}
+                                        <div class="panel-body">
+                                            <p class="text-center">
+                                                <strong><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></strong>
+                                            </p>
+                                            <p class="text-cente"r>Editeur : {{ album.codeEditeur.nomEditeur }}</p>
+                                            <p class="text-center">Genre : <a href="{{ path('catalog_genre_details', {'id' : album.codeGenre.codeGenre }) }}">{{ album.codeGenre.libelléAbrégé }}</a></p>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            {# close new line #}
+                            {% if cpt % 4 == 0 %}</div>{% endif %}
+                            {% set cpt = cpt + 1 %}
                         {% endfor %}
 
-                    </tbody>
-                </table>
-            </div>
+
         </div>
     </div>
 

@@ -96,7 +96,7 @@ class Editeur
         return $this->codePays;
     }
 
-    public function __toString() {
+   /* public function __toString() {
         return $this->nomEditeur;
-    }
+    }*/
 }

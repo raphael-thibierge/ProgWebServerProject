@@ -29,15 +29,28 @@ class AlbumController extends Controller
         }
 
 
-        $disques = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')->findBy(array('codeAlbum' => $album));
-        //$compoitionDisque = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')->findBy(array('codeDisque' => $disques));
+
+        // disc list
+        $discList = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')->findBy(array('codeAlbum' => $album));
+        $discsWithRecords = array();
+
+        foreach ($discList as $disc){
+            // get disc records
+            $discElements = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')
+                ->findBy(array('codeDisque' => $disc));
+            $records = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
+                ->findBy(array('codeEnregistrement' => $discElements));
+            $discsWithRecords[] = array(
+                "disc" => $disc,
+                "records" => $records
+            );
+        }
 
 
 
         return $this->render('IUTCatalogBundle:album:details.html.twig', array(
             'album' => $album,
-            'disques' => $disques,
-
+            'disques' => $discsWithRecords,
         ));
     }
 
