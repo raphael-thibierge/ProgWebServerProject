@@ -4,7 +4,7 @@ namespace IUT\CatalogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class InstrumentController extends Controller
+class OrchestreController extends Controller
 {
     public function indexAction(){
         // get orchestras list
@@ -27,12 +27,12 @@ class InstrumentController extends Controller
         }
 
 
-        // TODO - to finish, adding chief orchestra
+        // adding chief orchestra
         $direction = $this->getDoctrine()->getRepository('IUTCatalogBundle:Direction')->findBy(array('codeOrchestre' => $orchestre));
-        $chiefOrchestra = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->findBy(array('codeMusicien' => $musicien));
+        $chiefOrchestra = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->findBy(array('codeMusicien' => $direction));
 
 
-        return $this->render('IUTCatalogBundle:instrument:details.html.twig', array(
+        return $this->render('IUTCatalogBundle:orchestre:details.html.twig', array(
             'orchestre' => $orchestre,
             'chefOrchestre' => $chiefOrchestra,
         ));

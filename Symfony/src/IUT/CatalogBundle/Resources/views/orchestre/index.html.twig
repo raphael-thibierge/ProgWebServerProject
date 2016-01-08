@@ -22,7 +22,7 @@
     <tbody>
     {%  for orchestre in orchestres %}
         <tr>
-        <td>{{ orchestre.nomOrchestre }}</a></td>
+        <td><a href="{{ path('catalog_orchestre_details', {'id' : orchestre.codeOrchestre }) }}">{{ orchestre.nomOrchestre }}</a></td>
     </tr>
     {% endfor %}
 
