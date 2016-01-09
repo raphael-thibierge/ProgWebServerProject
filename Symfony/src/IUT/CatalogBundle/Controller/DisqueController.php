@@ -17,7 +17,6 @@ class DisqueController extends Controller
         $discElements = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')->findBy(array('codeDisque' => $disc));
         $records = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')->findBy(array('codeEnregistrement' => $discElements));
 
-
         return $this->render('IUTCatalogBundle:disque:details.html.twig', array(
             'disque' => $disc,
             'enregistrements' => $records,

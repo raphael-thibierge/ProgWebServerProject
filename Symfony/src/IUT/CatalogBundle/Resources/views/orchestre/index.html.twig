@@ -1,0 +1,35 @@
+{% extends('IUTappBundle::layout.html.twig') %}
+
+{% block title %}
+    Orchestres
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Liste des orchestres</h1>
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-12">
+    <div class="table-responsive">
+    <table class="table table-hover">
+    <thead>
+    <tr><td><strong>Nom</strong></td></tr>
+    </thead>
+    <tbody>
+    {%  for orchestre in orchestres %}
+        <tr>
+        <td><a href="{{ path('catalog_orchestre_details', {'id' : orchestre.codeOrchestre }) }}">{{ orchestre.nomOrchestre }}</a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+
+    {% endblock %}

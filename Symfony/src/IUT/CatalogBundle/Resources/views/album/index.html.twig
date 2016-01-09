@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="alert alert-danger" role="alert">
-                Les albums commançant par des chiffres ou des caractères spéciaux n'est pas disponible
+                Les albums commençant par des chiffres ou des caractères spéciaux n'est pas disponible
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
                                             <p class="text-center">
                                                 <strong><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></strong>
                                             </p>
-                                            <p class="text-cente"r>Editeur : {{ album.codeEditeur.nomEditeur }}</p>
+                                            <p class="text-center">Editeur : {{ album.codeEditeur.nomEditeur }}</p>
                                             <p class="text-center">Genre : <a href="{{ path('catalog_genre_details', {'id' : album.codeGenre.codeGenre }) }}">{{ album.codeGenre.libelléAbrégé }}</a></p>
 
                                         </div>
