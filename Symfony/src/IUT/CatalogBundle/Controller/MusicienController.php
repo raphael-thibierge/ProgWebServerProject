@@ -86,6 +86,7 @@ class MusicienController extends Controller
             'listTitle' => 'Liste des musiciens',
             'musiciens' => $musiciens->getQuery()->getResult(),
             'letter' => $letter,
+            'route' => 'catalog_music_all_musiciens_byLetter',
         ));
 
     }
@@ -100,7 +101,7 @@ class MusicienController extends Controller
 
         foreach ($musiciens as $musicien) {
             $composer = null;
-            $composer = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composer')->findBy(array('codeMusicien' => $musicien));
+            $composer = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composer')->findOneBy(array('codeMusicien' => $musicien));
 
             // Checking if the musician is a composer. If so, we add him to the list.
             if ($composer != null)
@@ -111,6 +112,7 @@ class MusicienController extends Controller
             'listTitle' => 'Liste des compositeurs',
             'musiciens' => $composers,
             'letter' => $letter,
+            'route' => 'catalog_musicien_composers_byLetter',
         ));
 
     }
@@ -134,9 +136,10 @@ class MusicienController extends Controller
         }
 
         return $this->render('IUTCatalogBundle:musicien:index.html.twig', array(
-            'listTitle' => 'Liste des interprêtes',
+            'listTitle' => 'Liste des interprètes',
             'musiciens' => $interpretes,
             'letter' => $letter,
+            'route' => 'catalog_musicien_interpretes_byLetter',
         ));
 
     }
@@ -161,6 +164,7 @@ class MusicienController extends Controller
             'listTitle' => 'Liste des chefs d\'orchestres',
             'musiciens' => $chefsOrchestre,
             'letter' => $letter,
+            'route' => 'catalog_musicien_chefsOrchestre_byLetter',
         ));
 
     }
