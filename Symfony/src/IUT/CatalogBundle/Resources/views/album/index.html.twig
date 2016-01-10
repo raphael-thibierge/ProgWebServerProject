@@ -22,8 +22,8 @@
 
     {#  Generation de la barre pour l'ordre alphabétique    #}
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <nav class="block-center">
+        <div class="col-md-12">
+            <nav class="center-block">
                 <ul class="pagination">
                     {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"|split('')  %}
                     {% for alphabetLetter in letters %}
@@ -39,10 +39,11 @@
 
                         {# cpt is used to know if we have to create a new row #}
                         {% set cpt = 1 %}
+                        {% set nbPanel = 6 %}
                         {%  for album in albums %}
                             {# new line #}
-                            {% if cpt % 4 == 0 %}<div class="row">{% endif %}
-                                <div class="col-md-3">
+                            {% if cpt % nbPanel == 0 %}<div class="row">{% endif %}
+                                <div class="col-md-2">
 
                                     {# album card#}
                                     <div class="panel panel panel-default">
@@ -71,7 +72,7 @@
                                 </div>
 
                             {# close new line #}
-                            {% if cpt % 4 == 0 %}</div>{% endif %}
+                            {% if cpt % nbPanel == 0 %}</div>{% endif %}
                             {% set cpt = cpt + 1 %}
                         {% endfor %}
 

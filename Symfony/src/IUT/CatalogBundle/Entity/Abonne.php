@@ -3,12 +3,21 @@
 namespace IUT\CatalogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Abonné
  *
  * @ORM\Table(name="Abonné", indexes={@ORM\Index(name="IDX_F72316A520B77BF2", columns={"Code_Pays"})})
  * @ORM\Entity
+ * @UniqueEntity("login")
+ * @UniqueEntity(
+ *     fields={"nomAbonne", "prenomAbonne"},
+ *     errorPath="name",
+ *     message="This first name is already in use with that name."
+ * )
  */
 class Abonne
 {
@@ -25,20 +34,26 @@ class Abonne
      * @var string
      *
      * @ORM\Column(name="Nom_Abonné", type="string", length=50, nullable=false)
+     * @Assert\Length(max=50)
+     * @Assert\NotNull()
      */
-    private $nomAbonné;
+    private $nomAbonne;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Prénom_Abonné", type="string", length=20, nullable=true)
+     * @Assert\Length(max=20)
+     * @Assert\NotNull()
      */
-    private $prénomAbonné;
+    private $prenomAbonne;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Login", type="string", length=10, nullable=true)
+     * @Assert\Length(max=10)
+     * @Assert\NotNull()
      */
     private $login;
 
@@ -46,6 +61,8 @@ class Abonne
      * @var string
      *
      * @ORM\Column(name="Password", type="string", length=10, nullable=true)
+     * @Assert\Length(max=10)
+     * @Assert\NotNull()
      */
     private $password;
 
@@ -65,57 +82,57 @@ class Abonne
      *
      * @return integer
      */
-    public function getCodeAbonné()
+    public function getCodeAbonne()
     {
         return $this->codeAbonne;
     }
 
     /**
-     * Set nomAbonné
+     * Set nomAbonne
      *
-     * @param string $nomAbonné
+     * @param string $nomAbonne
      *
-     * @return Abonné
+     * @return Abonne
      */
-    public function setNomAbonné($nomAbonné)
+    public function setNomAbonne($nomAbonne)
     {
-        $this->nomAbonné = $nomAbonné;
+        $this->nomAbonne = $nomAbonne;
 
         return $this;
     }
 
     /**
-     * Get nomAbonné
+     * Get nomAbonne
      *
      * @return string
      */
-    public function getNomAbonné()
+    public function getNomAbonne()
     {
-        return $this->nomAbonné;
+        return $this->nomAbonne;
     }
 
     /**
-     * Set prénomAbonné
+     * Set prenomAbonne
      *
-     * @param string $prénomAbonné
+     * @param string $prenomAbonne
      *
-     * @return Abonné
+     * @return Abonne
      */
-    public function setPrénomAbonné($prénomAbonné)
+    public function setPrenomAbonne($prenomAbonne)
     {
-        $this->prénomAbonné = $prénomAbonné;
+        $this->prenomAbonne = $prenomAbonne;
 
         return $this;
     }
 
     /**
-     * Get prénomAbonné
+     * Get prenomAbonne
      *
      * @return string
      */
-    public function getPrénomAbonné()
+    public function getPrenomAbonne()
     {
-        return $this->prénomAbonné;
+        return $this->prenomAbonne;
     }
 
     /**
@@ -123,7 +140,7 @@ class Abonne
      *
      * @param string $login
      *
-     * @return Abonné
+     * @return Abonne
      */
     public function setLogin($login)
     {
@@ -147,7 +164,7 @@ class Abonne
      *
      * @param string $password
      *
-     * @return Abonné
+     * @return Abonne
      */
     public function setPassword($password)
     {
@@ -169,11 +186,11 @@ class Abonne
     /**
      * Set codePays
      *
-     * @param \Pays $codePays
+     * @param Pays $codePays
      *
-     * @return Abonné
+     * @return Abonne
      */
-    public function setCodePays(\Acme\DemoBundle\Entity\Pays $codePays = null)
+    public function setCodePays(\IUT\CatalogBundle\Entity\Pays $codePays = null)
     {
         $this->codePays = $codePays;
 
