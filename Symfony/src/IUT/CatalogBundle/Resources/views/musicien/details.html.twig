@@ -98,7 +98,7 @@
             <h2>Albums</h2>
 
             {% if albums is defined %}
-                {% if albums == null %}
+                {% if albums === null %}
                 <p>Les oeuvres composées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ne figurent dans aucun album.</p>
 
                 {% else %}

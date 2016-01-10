@@ -15,7 +15,7 @@ class Extraits
     /**
      * @var integer
      *
-     * @ORM\Column(name="Code_Enregistrement", type="integer", nullable=false)
+     * @ORM\Column(name="Code_Morceau", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
