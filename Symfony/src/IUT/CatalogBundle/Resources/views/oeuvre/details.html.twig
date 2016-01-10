@@ -11,7 +11,7 @@
                 Les albums pour chaque oeuvre ne sont pas disponibles !
             </div>
             <div class="alert alert-warning" role="alert">
-                La tonalité peut-être manquante !
+                La tonalité peut être manquante !
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
         <p>Opus : {{ oeuvre.opus }}</p>
         <p>Année : {% if oeuvre.année != 0 %}{{ oeuvre.année }} {% else %} <span class="text-danger">Non renseigné</span>{% endif %}</p>
         <p>Type : {{ oeuvre.codeType }}</p>
-        <p>Tonnalité : {{ oeuvre.tonalité }}</p>
+        <p>Tonalité : {{ oeuvre.tonalité }}</p>
     </div>
 </div>
 

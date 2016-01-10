@@ -41,27 +41,15 @@ class AlbumController extends Controller
             $records = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
                 ->findBy(array('codeEnregistrement' => $discElements));
 
-/*
-             // doesn't work
-            $recordsWithTracks = array();
-            foreach ($records as $record) {
-                $codeRecord = $record->getCodeEnregistrement();
-                $track = $this->getDoctrine()->getRepository('IUTCatalogBundle:Extraits')->find($codeRecord);
-                $recordsWithTracks[$codeRecord] = $track;
-            }
-*/
             $discsWithRecords[] = array(
                 "disc" => $disc,
                 "records" => $records
             );
         }
 
-
-
         return $this->render('IUTCatalogBundle:album:details.html.twig', array(
             'album' => $album,
             'disques' => $discsWithRecords,
-            //'recordsWithTracks' => $recordsWithTracks
         ));
     }
 
