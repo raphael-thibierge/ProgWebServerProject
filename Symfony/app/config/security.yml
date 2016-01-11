@@ -30,8 +30,6 @@ security:
                 pattern:  ^/signin$
                 security: false
 
-
-
         main:
             pattern:   ^/
             anonymous: false
