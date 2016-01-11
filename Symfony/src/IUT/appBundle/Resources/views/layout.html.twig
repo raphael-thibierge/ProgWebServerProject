@@ -27,7 +27,7 @@
                 <a class="navbar-brand" href="#">Projet Symfony</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-left">
 
                     <li {% if app.request.attributes.get('_route') == 'r_tapp_homepage' %} class="active" {% endif %}><a href="{{ path('r_tapp_homepage') }}">Home</a></li>
 
@@ -49,6 +49,12 @@
                     <li {% if app.request.attributes.get('_route') == 'catalog_instrument_index' %} class="active" {% endif %}><a href="{{ path('catalog_instrument_index') }}">Instruments</a></li>
                     <li {% if app.request.attributes.get('_route') == 'catalog_orchestre_index' %} class="active" {% endif %}><a href="{{ path('catalog_orchestre_index') }}">Orchestres</a></li>
                     <li {% if app.request.attributes.get('_route') == 'r_tapp_aboutpage' %} class="active" {% endif %}><a href="{{ path('r_tapp_aboutpage') }}">A propos</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li {% if app.request.attributes.get('_route') == 'signin' %} class="active" {% endif %}><a href="{{ path('signin') }}">Inscription</a></li>
+                    <li {% if app.request.attributes.get('_route') == 'login' %} class="active" {% endif %}><a href="{{ path('login') }}">Se connecter</a></li>
+
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

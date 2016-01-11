@@ -12,12 +12,6 @@ class SecurityController extends Controller
     public function loginAction(Request $request)
     {
 
-        /*
-         *
-         * Code to use
-         *
-         */
-
         $session = $request->getSession();
 
         if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
@@ -36,27 +30,9 @@ class SecurityController extends Controller
         $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
 
 
-        $user = new Abonne();
-        $coucou = null;
-        $form = $this->get('form.factory')->createBuilder('form', $user)
-            ->add('login', 'text')
-            ->add('password', 'password')
-            ->add('submit', 'submit')
-            ->getForm();
-
-        $form->handleRequest($request);
-        if ($form->isValid()){
-            $coucou ='coucou';
-        }
-
-
-
         return $this->render('IUTUserBundle::login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
-            'form'          => $form->createView(),
-            'user'          => $user,
-            'coucou'           => $coucou,
         ));
     }
 
@@ -79,19 +55,26 @@ class SecurityController extends Controller
             // Mise à jour des données
             $this->getDoctrine()->getManager()->persist($abonne);
             $this->getDoctrine()->getManager()->flush();
+
             // Renvoi vers une autre url
             $router = $this->container->get('router');
-            $url = $router->generate("r_tapp_homepage");
-            return $this->redirect($url);
+            return $this->redirect($router->generate("r_tapp_homepage"));
         }
 
 
-            return $this->render('IUTUserBundle::signin.html.twig', array(
+        return $this->render('IUTUserBundle::signin.html.twig', array(
                 'form' => $form->createView()
             ));
 
     }
 
+    private function validUser(Abonne $user)
+    {
+        if ($user !== null){
+            return false;
+        }
+        return false;
+    }
 
 
 }

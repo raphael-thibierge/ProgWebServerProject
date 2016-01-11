@@ -12,7 +12,6 @@ login:
 
 login_check:
     pattern:   /login_check
-    defaults:  { _controller: IUTUserBundle:Security:login }
 
 logout:
     pattern:   /logout

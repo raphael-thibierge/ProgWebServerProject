@@ -11,17 +11,46 @@
         <div class="alert alert-danger">{{ error.message }}</div>
     {% endif %}#}
 
-    {# Login form #}
-    {{ form(form) }}
-
-    {% if user != null %}
-    {{ user.login }}
-    {{ user.password }}
-    {% endif %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="well">
 
 
-    {% if coucou != null %}
-        {{ coucou }}
-    {% endif %}
+                {# form errorrs #}
+                {% if error %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger">
+                                {{ error.message }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <form action="{{ path('login_check') }}" method="post">
+                            <label for="username">Identifiant :</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+                            <label for="password">Mot de passe :</label>
+                            <input type="password" id="password" name="_password" />
+                            <br />
+                            <input type="submit" value="Connexion" />
+                        </form>
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
 
