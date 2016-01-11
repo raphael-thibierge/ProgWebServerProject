@@ -99,3 +99,7 @@ catalog_orchestre_index:
 catalog_orchestre_details:
     path:     /orchestres/{id}
     defaults: { _controller: IUTCatalogBundle:Orchestre:show }
+
+catalog_default_generateTrack:
+    path:     /generateTrack/{id}
+    defaults: { _controller: IUTCatalogBundle:Default:generateTrack }

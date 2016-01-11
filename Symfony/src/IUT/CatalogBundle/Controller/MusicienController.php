@@ -62,11 +62,19 @@ class MusicienController extends Controller
 
         // Orchestres
 
-        $direction = $this->getDoctrine()->getRepository('IUTCatalogBundle:Direction')
+        $directions = $this->getDoctrine()->getRepository('IUTCatalogBundle:Direction')
             ->findBy(array('codeMusicien' => $musicien));
-        $orchestres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Orchestres')
-            ->findBy(array('codeOrchestre' => $direction), array('nomOrchestre' => 'ASC'));
 
+        $orchestres = array();
+
+        foreach ($directions as $direction) {
+            $orchestre = $this->getDoctrine()->getRepository('IUTCatalogBundle:Orchestres')
+                ->findOneBy(array('codeOrchestre' => $direction->getCodeOrchestre()));
+            $orchestres[] = $orchestre->getNomOrchestre();
+        }
+        $orchestres = array_unique($orchestres);
+        $orchestras = $this->getDoctrine()->getRepository('IUTCatalogBundle:Orchestres')
+            ->findBy(array('nomOrchestre' => $orchestres));
 
         return $this->render('IUTCatalogBundle:musicien:details.html.twig', array(
             'musicien' => $musicien,
@@ -74,7 +82,7 @@ class MusicienController extends Controller
             'compositions' => $compositionOeuvre,
            // 'enregistrements' => $enregistrements, // est-ce pertinant d'afficher chaques enregistrement, ( liste trop longue )
             //'albums' => $albums,
-            'orchestres' => $orchestres,
+            'orchestras' => $orchestras
         ));
     }
 

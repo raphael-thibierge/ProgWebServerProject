@@ -80,20 +80,24 @@
         <div class="col-md-12">
             <h2>Orchestres dirigés</h2>
 
-            {% if orchestres is defined %}
+            {% if orchestras is defined %}
 
-                {% if orchestres == null %}
+                {% if orchestras == null %}
                     <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas dirigé d'orchestres.</p>
 
                 {% else %}
-                    {% for orchestre in orchestres %}
-                        <p>{{ orchestre.titre }}</p>
+                    <ul>
+                    {% for orchestre in orchestras %}
+                        <li><a href="{{ path('catalog_orchestre_details', {'id' : orchestre.codeOrchestre}) }}">{{ orchestre.nomOrchestre }}</a></li>
                     {% endfor %}
+                    </ul>
                 {% endif %}
 
             {% endif %}
         </div>
     </div>
+
+
 
     <div class="row">
         <div class="col-md-12">
