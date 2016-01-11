@@ -26,6 +26,10 @@ security:
             pattern:  ^/login$
             security: false
 
+        main_signin:
+                pattern:  ^/signin$
+                security: false
+
 
 
         main:

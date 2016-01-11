@@ -6,47 +6,64 @@
 
 {% block body %}
 
-    {# display error, if there is one #}
-    {#{% if error %}
-        <div class="alert alert-danger">{{ error.message }}</div>
-    {% endif %}#}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">Connection</h1>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="well">
 
-
-                {# form errorrs #}
-                {% if error %}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-danger">
-                                {{ error.message }}
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-
+            {# form errorrs #}
+            {% if error %}
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="alert alert-danger">
+                            {{ error.message }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
 
-                        <form action="{{ path('login_check') }}" method="post">
-                            <label for="username">Identifiant :</label>
-                            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                {#  login form #}
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="{{ path('login_check') }}" method="post" class="form-horizontal">
 
-                            <label for="password">Mot de passe :</label>
-                            <input type="password" id="password" name="_password" />
-                            <br />
-                            <input type="submit" value="Connexion" />
+
+                            <div class="form-group">
+                                <div class="col-sm-3 control-label">
+                                    <label for="username">Identifiant :</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-sm-3 control-label">
+                                    <label for="password">Mot de passe :</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="password" name="_password" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-sm-8 col-sm-offset-3">
+                                    <input type="submit" value="Connexion" class="btn btn-primary col-sm-12"/>
+                                </div>
+                            </div>
+
                         </form>
-
-
                     </div>
                 </div>
 
-
-
-
+                {# end form #}
             </div>
         </div>
     </div>

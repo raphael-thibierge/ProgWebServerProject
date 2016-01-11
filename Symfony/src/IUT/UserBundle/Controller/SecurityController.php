@@ -29,7 +29,6 @@ class SecurityController extends Controller
 
         $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
 
-
         return $this->render('IUTUserBundle::login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
