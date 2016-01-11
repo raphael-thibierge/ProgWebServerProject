@@ -65,6 +65,15 @@ class Enregistrement
      */
     private $codeComposition;
 
+    /**
+     * @var binary
+     *
+     * @ORM\Column(name="Extrait", type="blob", nullable=true)
+     */
+    private $extrait;
+
+
+
 
     /**
      * Get codeEnregistrement
@@ -218,5 +227,29 @@ class Enregistrement
     public function getCodeComposition()
     {
         return $this->codeComposition;
+    }
+
+    /**
+     * Set extrait
+     *
+     * @param binary $extrait
+     *
+     * @return Enregistrement
+     */
+    public function setExtrait($extrait)
+    {
+        $this->extrait = $extrait;
+
+        return $this;
+    }
+
+    /**
+     * Get extrait
+     *
+     * @return binary
+     */
+    public function getExtrait()
+    {
+        return $this->extrait;
     }
 }

@@ -28,8 +28,6 @@ class AlbumController extends Controller
             throw $this->createNotFoundException("L'album d'identifiant " . $id . " n'existe pas");
         }
 
-
-
         // disc list
         $discList = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')->findBy(array('codeAlbum' => $album));
         $discsWithRecords = array();

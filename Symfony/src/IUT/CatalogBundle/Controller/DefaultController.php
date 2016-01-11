@@ -50,5 +50,23 @@ class DefaultController extends Controller
         return $response;
     }
 
+    public function generateTrackAction($id) {
+        $entity = $this->getDoctrine()
+            ->getRepository('IUTCatalogBundle:Enregistrement')
+            ->find($id);
+
+        $content = $entity->getExtrait();
+
+        $track = stream_get_contents($content);
+        $track = pack("H*", $track);
+
+        $response = new \Symfony\Component\HttpFoundation\Response();
+        $response->headers->set('Content-type', 'audio/mpeg');
+        $response->headers->set('Content-Transfer-Encoding', 'binary');
+        $response->setContent($track);
+
+        return $response;
+    }
+
 
 }
