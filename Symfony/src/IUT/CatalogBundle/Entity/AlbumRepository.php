@@ -25,4 +25,19 @@ class AlbumRepository extends EntityRepository
 
         return new Paginator($query, true);
     }
+
+    public function getAlbumInterpreted(){
+        $query = $this->createQueryBuilder('a')
+            ->select('a')
+            ->innerJoin('a.CompositionDisque', 'cp')
+            ->innerJoin('cp.Enregistrement', 'e')
+            ->innerJoin('e.CompositionOeuvre', 'co')
+            ->innerJoin('co.Oeuvre', 'o')
+            ->where('co.CodeOeuvre = :code')
+            ->setParameter('code', 48)
+            ->getQuery();
+        return $query;
+    }
+
+
 }
