@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+
     {% block stylesheets %}{% endblock %}
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -29,9 +30,12 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-left">
 
+
+
                     <li {% if app.request.attributes.get('_route') == 'r_tapp_homepage' %} class="active" {% endif %}>
                         <a href="{{ path('r_tapp_homepage') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
                     </li>
+
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Musiciens <span class="caret"></span></a>
@@ -45,6 +49,7 @@
                     </li>
 
 
+
                     <li {% if app.request.attributes.get('_route') == 'rt_music_albums' %} class="active" {% endif %}><a href="{{ path('rt_music_albums') }}">Albums</a></li>
                     <li {% if app.request.attributes.get('_route') == 'catalog_oeuvre_index' %} class="active" {% endif %}><a href="{{ path('catalog_oeuvre_index') }}">Oeuvres</a></li>
                     <li {% if app.request.attributes.get('_route') == 'catalog_genre_index' %} class="active" {% endif %}><a href="{{ path('catalog_genre_index') }}">Genres</a></li>
@@ -56,9 +61,28 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+
+                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true">Panier</span></a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ app.user.prenomAbonne }} {{ app.user.nomAbonne }} <span class="caret"></span></a>
+
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <Compte></Compte></a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Se déconnecter</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                    {% else %}
                     <li {% if app.request.attributes.get('_route') == 'login' %} class="active" {% endif %}>
                         <a href="{{ path('login') }}"><span class="glyphicon glyphicon-user"></span> Se connecter</a></li>
                     <li {% if app.request.attributes.get('_route') == 'signin' %} class="active" {% endif %}><a href="{{ path('signin') }}">Inscription</a></li>
+                    {% endif %}
 
                 </ul>
             </div><!--/.nav-collapse -->

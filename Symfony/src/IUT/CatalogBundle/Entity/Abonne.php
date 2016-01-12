@@ -57,7 +57,7 @@ class Abonne implements UserInterface
      * @Assert\Length(max=10)
      * @Assert\NotNull()
      */
-    private $login;
+    private $username;
 
     /**
      * @var string
@@ -254,7 +254,7 @@ class Abonne implements UserInterface
      */
     public function getUsername()
     {
-        return $this->login;
+        return $this->username;
     }
 
     /**
