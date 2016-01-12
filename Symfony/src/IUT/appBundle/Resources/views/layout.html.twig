@@ -61,7 +61,13 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    {% if app.user is null  %}
+
+                        <li {% if app.request.attributes.get('_route') == 'login' %} class="active" {% endif %}>
+                            <a href="{{ path('login') }}"><span class="glyphicon glyphicon-user"></span> Se connecter</a></li>
+                        <li {% if app.request.attributes.get('_route') == 'signin' %} class="active" {% endif %}><a href="{{ path('signin') }}">Inscription</a></li>
+
+                        {% else %}
 
                         <li><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true">Panier</span></a></li>
                         <li class="dropdown">
@@ -78,10 +84,8 @@
                             </ul>
 
                         </li>
-                    {% else %}
-                    <li {% if app.request.attributes.get('_route') == 'login' %} class="active" {% endif %}>
-                        <a href="{{ path('login') }}"><span class="glyphicon glyphicon-user"></span> Se connecter</a></li>
-                    <li {% if app.request.attributes.get('_route') == 'signin' %} class="active" {% endif %}><a href="{{ path('signin') }}">Inscription</a></li>
+
+
                     {% endif %}
 
                 </ul>

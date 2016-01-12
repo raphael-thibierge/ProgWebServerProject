@@ -151,7 +151,7 @@ class Abonne implements UserInterface
      */
     public function setLogin($login)
     {
-        $this->login = $login;
+        $this->username = $login;
 
         return $this;
     }
@@ -163,7 +163,7 @@ class Abonne implements UserInterface
      */
     public function getLogin()
     {
-        return $this->login;
+        return $this->username;
     }
 
     /**

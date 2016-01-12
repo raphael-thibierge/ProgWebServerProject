@@ -6,6 +6,10 @@ r_tapp:
     resource: "@IUTappBundle/Resources/config/routing.yml"
     prefix:   /
 
+cart:
+    resource: "@IUTUserBundle/Resources/config/routing.yml"
+    prefix:   /cart/
+
 login:
     pattern:   /login
     defaults:  { _controller: IUTUserBundle:Security:login }
