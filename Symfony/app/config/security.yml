@@ -34,19 +34,19 @@ security:
                 security: false
 
         main_cart:
-            pattern:   ^/cart/
+            pattern:   ^/
             anonymous: false
             provider : main
             form_login:
                 login_path:  login
-                check_path:   login_check
+                check_path:  login_check
             logout:
                 path:   logout
-                target: /home
+                target: r_tapp_homepage
 
-        main:
-            pattern:  ^/
-            security: false
+#        main:
+#            pattern:  ^/
+#            security: false
 
 
     access_control:
