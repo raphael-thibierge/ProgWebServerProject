@@ -35,30 +35,35 @@ class MusicienController extends Controller
         $compositionOeuvre = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionOeuvre')
             ->findBy(array('codeOeuvre' => $oeuvres));
 
-        //$compositionOeuvre = array_unique($compositionOeuvre, SORT_REGULAR);
 
 
-      //  $composition = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composition')
-        //    ->findOneBy(array('codeComposition' => $compositionOeuvre));
+        /*
+         *  Albums interpreted
+         *
+         * */
 
-      //  $enregistrementsComposed = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
-        //    ->findOneBy(array('codeComposition' => $compositionOeuvre));
-
-
-        //$compositionDisque = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')
-          //  ->findOneBy(array('codeEnregistrement' => $enregistrementsComposed));
-
-        //$disques = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')
-          //  ->findOneBy(array('codeDisque' => $compositionDisque));
-
-        //$albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')
-          //  ->findBy(array('codeAlbum' => $disques));
-
-        // interpreted
-        /*$interpreter = $this->getDoctrine()->getRepository('IUTCatalogBundle:Interpreter')
+        $interpreter = $this->getDoctrine()->getRepository('IUTCatalogBundle:Interpreter')
             ->findBy(array('codeMusicien' => $musicien));
-        $enregistrements = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
-            ->findBy(array('codeEnregistrement' => $interpreter));*/
+
+        $records = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
+            ->findBy(array('codeEnregistrement' => $interpreter));
+
+        $discParts = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')
+            ->findBy(array('codeEnregistrement' => $records));
+
+        $discs = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')
+            ->findBy(array('codeDisque' => $discParts));
+
+        $albumsInterpreted = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')
+            ->findBy(array('codeAlbum' => $discs));
+
+
+        /*
+         *
+         * end album interpreted
+         *
+         * */
+
 
         // Orchestres
 
@@ -81,7 +86,7 @@ class MusicienController extends Controller
             'oeuvres' => $oeuvres,
             'compositions' => $compositionOeuvre,
            // 'enregistrements' => $enregistrements, // est-ce pertinant d'afficher chaques enregistrement, ( liste trop longue )
-            //'albums' => $albums,
+            'albumsInterpreted' => $albumsInterpreted,
             'orchestras' => $orchestras
         ));
     }
