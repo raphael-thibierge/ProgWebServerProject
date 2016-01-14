@@ -30,9 +30,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-danger" role="alert">
-                L'écoute des morceaux n'est pas encore disponible
-            </div>
+
             <div class="alert alert-danger" role="alert">
                 L'achat des morceaux n'est pas encore disponible
             </div>
@@ -41,6 +39,8 @@
             </div>
         </div>
     </div>
+
+    {{ dump(it) }}
 
     <div class="row">
         <div class="col-md-12">
@@ -83,6 +83,34 @@
                 </div>
             </div>
 
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading"><h2 class="text-center"><a href=" {{ it["DetailPageURL"] }}">Détails sur le produit</a></h2></div>
+
+                <table class="table table-hover">
+
+                <tbody>
+                    <tr><td>Classement des meilleures ventes Amazon en Musique : {{ it["SalesRank"] }}</td></tr>
+                    <tr><td>{{ it["ItemAttributes"]["Binding"] }}</td></tr>
+                    <tr><td>Label : {{ it["ItemAttributes"]["Brand"] }}</td></tr>
+                    <tr><td>Langue : {{ it["ItemAttributes"]["Languages"]["Language"]["Name"] }}</td></tr>
+
+                    {% for creator in it["ItemAttributes"]["Creator"] %}
+                    <tr><td>{{ creator["Role"] }} : {{ creator["_"] }}</td></tr>
+                    {% endfor %}
+
+                    {% for feature in it["ItemAttributes"]["Feature"] %}
+                    <tr><td>{{ feature }}</td></tr>
+                    {% endfor %}
+
+
+                </tbody>
+                </table>
+                </div>
+            </div>
+
+
+            {{ dump (it["ItemAttributes"]) }}
 
 
             {% endfor %}

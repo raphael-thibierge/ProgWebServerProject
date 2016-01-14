@@ -28,7 +28,7 @@
             </div>
 
                 {% if enregistrements is not null %}
-                <h2>Morceaux</h2>
+                <h2>Morceaux dirigés par {{ chefOrchestre.prénomMusicien }} {{ chefOrchestre.nomMusicien }}</h2>
 
                 <div class="row">
                     <div class="com-md-12">
@@ -39,7 +39,7 @@
                                         <th>Titre</th>
                                         <th>Durée</th>
                                         <th>Prix</th>
-                                        <td></td>
+                                        <th>Extrait</th>
                                     </tr>
                                 </thead>
 
@@ -49,6 +49,7 @@
                                         <td>{{ enregistrement.titre }}</td>
                                         <td>{{ enregistrement.durée }}</td>
                                         <td>{{ enregistrement.prix }}</td>
+                                        <td><audio controls><source src="{{ path('catalog_default_generateTrack', {'id' : enregistrement.codeEnregistrement}) }}" type="audio/mpeg"></audio></td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

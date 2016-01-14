@@ -45,12 +45,31 @@ class AlbumController extends Controller
             );
         }
 
+        // Using Amazon API
+
+        require('AmazonECS.class.php'); //nom de la classe téléchargée
+        $Aws_ID = "AKIAJGEF3AU46GYXID3A"; // Identifiant
+        $Aws_SECRET = "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"; //Secret
+        $associateTag="eclass06-20"; // AssociateTag
+        $client = new AmazonECS($Aws_ID, $Aws_SECRET, 'FR', $associateTag);
+
+        $asin = $album->getASIN();
+
+        $response = $client->responseGroup('Large')->lookup($asin);
+
+        // converts object stdclass to array
+        $response = json_encode($response);
+        $response = json_decode($response, true);
+
+        $items = $response["Items"];
+        $it = $items["Item"];
+
         return $this->render('IUTCatalogBundle:album:details.html.twig', array(
             'album' => $album,
             'disques' => $discsWithRecords,
+            'it' => $it,
         ));
     }
-
 
 
 }
