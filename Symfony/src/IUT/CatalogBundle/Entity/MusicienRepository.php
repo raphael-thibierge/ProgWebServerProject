@@ -39,4 +39,12 @@ class MusicienRepository extends EntityRepository
 
         return new Paginator($query, true);
     }
+
+    public function getNb(){
+        return $this->createQueryBuilder('m')
+            ->select('COUNT(m)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 }

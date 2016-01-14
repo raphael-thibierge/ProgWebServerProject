@@ -37,34 +37,11 @@ class MusicienController extends Controller
 
 
 
-        /*
-         *  Albums interpreted
-         *
-         * */
-
-        $interpreter = $this->getDoctrine()->getRepository('IUTCatalogBundle:Interpreter')
-            ->findBy(array('codeMusicien' => $musicien));
-
-        $records = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
-            ->findBy(array('codeEnregistrement' => $interpreter));
-
-        $discParts = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionDisque')
-            ->findBy(array('codeEnregistrement' => $records));
-
-        $discs = $this->getDoctrine()->getRepository('IUTCatalogBundle:Disque')
-            ->findBy(array('codeDisque' => $discParts));
-
-        $albumsInterpreted = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')
-            ->findBy(array('codeAlbum' => $discs));
 
 
-        /*
-         *
-         * end album interpreted
-         *
-         * */
-
-
+        $albumsConducted = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsConducted($musicien);
+        $albumsInterpreted = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsInterpreted($musicien);
+        $albumsComposed = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsComposed($musicien);
         // Orchestres
 
         $directions = $this->getDoctrine()->getRepository('IUTCatalogBundle:Direction')
@@ -85,8 +62,9 @@ class MusicienController extends Controller
             'musicien' => $musicien,
             'oeuvres' => $oeuvres,
             'compositions' => $compositionOeuvre,
-           // 'enregistrements' => $enregistrements, // est-ce pertinant d'afficher chaques enregistrement, ( liste trop longue )
+            'albumsConducted' => $albumsConducted,
             'albumsInterpreted' => $albumsInterpreted,
+            'albumsComposed' => $albumsComposed,
             'orchestras' => $orchestras
         ));
     }

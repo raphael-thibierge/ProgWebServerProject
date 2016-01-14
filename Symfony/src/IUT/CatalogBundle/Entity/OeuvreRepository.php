@@ -25,4 +25,11 @@ class OeuvreRepository extends EntityRepository
 
         return new Paginator($query, true);
     }
+
+    public function getNb(){
+        return $this->createQueryBuilder('o')
+            ->select('COUNT(o)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

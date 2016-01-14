@@ -47,7 +47,7 @@
             <h2>Oeuvres composées</h2>
 
             {% if oeuvres == null %}
-                <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas composé d'oeuvres.</p>
+                <p>Aucune oeuvre disponible pour {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}</p>
 
             {% else %}
                 <ul>
@@ -98,6 +98,27 @@
     </div>
 
 
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Albums composés</h2>
+
+            {% if albumsComposed is defined %}
+                {% if albumsComposed == null %}
+                    <p>Les oeuvres composées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ne figurent dans aucun album.</p>
+
+                {% else %}
+                    <p>Les oeuvres composées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} figurent dans les albums suivants :</p>
+                    <ul>
+                        {% for album in albumsComposed %}
+                            <li><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                {% endif %}
+            {% endif %}
+
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -105,12 +126,11 @@
 
             {% if albumsInterpreted is defined %}
                 {% if albumsInterpreted == null %}
-                <p>Les oeuvres interprétées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ne figurent dans aucun album.</p>
+                <p>Les oeuvres interprétés par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ne figurent dans aucun album.</p>
 
                 {% else %}
                     <p>Les oeuvres interprétées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} figurent dans les albums suivants :</p>
                     <ul>
-
                     {% for album in albumsInterpreted %}
                         <li><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></li>
                     {% endfor %}
@@ -122,8 +142,32 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Albums dirigés</h2>
 
-    {#<div class="row">
+            {% if albumsConducted is defined %}
+                {% if albumsConducted == null %}
+                    <p>Les oeuvres dirigés par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ne figurent dans aucun album.</p>
+
+                {% else %}
+                    <p>Les oeuvres interprétées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} figurent dans les albums suivants :</p>
+                    <ul>
+                        {% for album in albumsConducted %}
+                            <li><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                {% endif %}
+            {% endif %}
+
+        </div>
+    </div>
+
+
+
+{#
+    <div class="row">
         <h3>Compositeur</h3>
         {% for composition in compositions %}
             <div class="row">
@@ -131,6 +175,7 @@
 
             </div>
         {% endfor %}
-    </div>#}
+    </div>
+#}
 
 {% endblock %}

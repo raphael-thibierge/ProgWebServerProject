@@ -11,31 +11,63 @@ Bienvenue
             <div class="alert alert-info" role="alert">
                 Le site en cours de développement !
             </div>
-            <div class="alert alert-info" role="alert">
-                La page d'accueil finale n'est pas encore disponible.
-            </div>
+
+
             <div class="alert alert-info" role="alert">
                 Le design du site n'a pas encore été réalisé.
             </div>
         </div>
     </div>
 
-    {#
-        TODO - Afficher le nombre de musiciens
-        TODO - Afficher le nombre d'albums
-        TODO - Afficher le nombre d'enregistrements
-    #}
-
     <div class="row">
         <div class="col-md-12">
             <div class="jumbotron">
-                <h1 class="text-center">Bienvenue</h1>
+                <h1 class="text-center">Bienvenue sur E-Classique</h1>
+                <p class="text-center">Catalogue et plateforme de E-Commerce de musique classique</p>
+                <br />
+                <p class="text-center">Réalisé par <a href="http://raphael.thibierge.com">Raphael Thibierge</a> et <a href="http://info-timide.iut.u-bordeaux.fr/perso/2016/edao">Emilie Dao</a>.</p>
 
-                <p class="text-center">
-                    Ce site a pour but de présenter les exercices réalisés en PHP avec le framework Symfony2.
-                </p>
+
         </div>
     </div>
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2 class="text-center"><a href="{{ path('rt_music_homepage') }}">Musiciens</a></h2>
+                            </div>
+                            <div class="panel-body">
+                                <p class="text-center">Notre catalogue est composé de <a href="{{ path('rt_music_homepage') }}">{{ nbMusicians }}</a> musiciens.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2 class="text-center"><a href="{{ path('rt_music_albums') }}">Albums</a></h2>
+                            </div>
+                            <div class="panel-body">
+                                <p class="text-center">Notre catalogue est composé de <a href="{{ path('rt_music_albums') }}">{{ nbAlbums }}</a> albums.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2 class="text-center"><a href="{{ path('catalog_oeuvre_index') }}">Oeuvres</a></h2>
+                            </div>
+                            <div class="panel-body">
+                                <p class="text-center">Notre catalogue est composé de <a href="{{ path('catalog_oeuvre_index') }}">{{ nbArtWorks }}</a> oeuvres.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 {% endblock %}

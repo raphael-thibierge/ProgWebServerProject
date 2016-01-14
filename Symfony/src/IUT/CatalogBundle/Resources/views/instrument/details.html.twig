@@ -24,9 +24,27 @@
     <div class="col-md-12">
         <img src="{{ path('rt_music_generatePicture', {'class':'Instrument', 'id' : instrument.codeInstrument}) }}" alt="image de l'instrument de musique {{ instrument.nomInstrument }}">
 
-{#
-    TODO - albums list
-#}
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Albums interprétés</h2>
+
+                {% if albums is defined %}
+                    {% if albums == null %}
+                        <p class="text-danger">Aucun album pour cet instrument</p>
+
+                    {% else %}
+                        <ul>
+
+                            {% for album in albums %}
+                                <li><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></li>
+                            {% endfor %}
+                        </ul>
+
+                    {% endif %}
+                {% endif %}
+
+            </div>
+        </div>
 
     </div>
 </div>

@@ -8,7 +8,16 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('IUTappBundle:Default:index.html.twig');
+
+        $nbAlbums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getNb();
+        $nbMusicians = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getNb();
+        $nbArtWorks = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')->getNb();
+
+        return $this->render('IUTappBundle:Default:index.html.twig', array(
+            'nbAlbums'      => $nbAlbums,
+            'nbMusicians'   => $nbMusicians,
+            'nbArtWorks'     => $nbArtWorks,
+        ));
     }
 
     public function aboutAction()
