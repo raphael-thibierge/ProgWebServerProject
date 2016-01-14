@@ -107,11 +107,11 @@ class Disque
     /**
      * Set codeAlbum
      *
-     * @param \Album $codeAlbum
+     * @param Album $codeAlbum
      *
      * @return Disque
      */
-    public function setCodeAlbum(\Album $codeAlbum = null)
+    public function setCodeAlbum(Album $codeAlbum = null)
     {
         $this->codeAlbum = $codeAlbum;
 
