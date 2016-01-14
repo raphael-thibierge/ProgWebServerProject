@@ -1,14 +1,14 @@
 {% extends('IUTappBundle::layout.html.twig') %}
 
 {% block title %}
-    {{ orchestre.nomOrchestre }}
+    {{ orchestra.nomOrchestre }}
 {% endblock %}
 
 {% block body %}
 
     <div class="row">
         <div class="col-md-12">
-            <h1>{{ orchestre.nomOrchestre }}</h1>
+            <h1>{{ orchestra.nomOrchestre }}</h1>
         </div>
     </div>
 
@@ -27,42 +27,64 @@
                 </div>
             </div>
 
-                {% if enregistrements is not null %}
-                <h2>Morceaux dirigés par {{ chefOrchestre.prénomMusicien }} {{ chefOrchestre.nomMusicien }}</h2>
-
-                <div class="row">
-                    <div class="com-md-12">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Titre</th>
-                                        <th>Durée</th>
-                                        <th>Prix</th>
-                                        <th>Extrait</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                {% for enregistrement in enregistrements %}
-                                    <tr>
-                                        <td>{{ enregistrement.titre }}</td>
-                                        <td>{{ enregistrement.durée }}</td>
-                                        <td>{{ enregistrement.prix }}</td>
-                                        <td><audio controls><source src="{{ path('catalog_default_generateTrack', {'id' : enregistrement.codeEnregistrement}) }}" type="audio/mpeg"></audio></td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
             {% endif %}
+
 
         </div>
     </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center">Albums</h2>
+
+                        {% if albums is defined %}
+                            {% if albums == null %}
+
+                                <div class="alert alert-danger text-center">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Aucun album disponible
+                                </div>
+
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {% set cpt = 1 %}
+                                        {% set nbPanel = 6 %}
+                                        {% for album in albums %}
+                                            {% if cpt % nbPanel == 0 %}<div class="row">{% endif %}
+                                            {# album card#}
+                                            <div class="col-md-2">
+                                                <div class="panel panel panel-default">
+
+                                                    {# picture #}
+                                                    <div class="panel-heading">
+                                                        <div class="row">
+                                                            <a class="text-center" href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }} ">
+                                                                <img width="100px" height="100px" class="img-rounded center-block"   src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="photo de l'album {{ album.titreAlbum }}">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    {# Infos #}
+                                                    <div class="panel-body">
+                                                        <p class="text-center"><strong><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></strong></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {# end album card #}
+
+                                            {# close new line #}
+                                            {% if cpt % nbPanel == 0 %}</div>{% endif %}
+                                            {% set cpt = cpt + 1 %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                            {% endif %}
+                        {% endif %}
+
+                    </div>
+                </div>
 
 
 
