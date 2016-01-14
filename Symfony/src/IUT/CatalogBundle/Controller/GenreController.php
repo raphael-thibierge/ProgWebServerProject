@@ -27,11 +27,14 @@ class GenreController extends Controller
         }
 
 
-        // TODO - to finish, adding albums list
+        $albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->findBy(array(
+            'codeGenre' => $genre
+        ));
 
 
         return $this->render('IUTCatalogBundle:genre:details.html.twig', array(
-            'genre' => $genre,
+            'genre'     =>  $genre,
+            'albums'    =>  $albums,
         ));
     }
 

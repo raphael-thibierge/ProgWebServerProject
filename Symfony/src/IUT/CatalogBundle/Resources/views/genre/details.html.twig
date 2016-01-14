@@ -6,28 +6,64 @@
 
 {% block body %}
 
-<div class="row">
-    <div class="col-md-12">
-        <h1>{{ genre.libelléAbrégé }}</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Genre {{ genre.libelléAbrégé }}</h1>
+        </div>
     </div>
-</div>
+        
 
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-danger" role="alert">
-                La liste des albums disponibles dans le catalogue pour ce genre de musique n'est pas encore disponible !
-            </div>
+        <h2 class="text-center">Albums</h2>
+
+        {% if albums is defined %}
+            {% if albums == null %}
+
+                <div class="alert alert-danger text-center">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Aucun album disponible
+                </div>
+
+                {% else %}
+                <div class="row">
+                    <div class="col-md-12">
+                    {% set cpt = 1 %}
+                    {% set nbPanel = 6 %}
+                    {% for album in albums %}
+                        {% if cpt % nbPanel == 0 %}<div class="row">{% endif %}
+                            {# album card#}
+                            <div class="col-md-2">
+                                <div class="panel panel panel-default">
+
+                                    {# picture #}
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <a class="text-center" href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }} ">
+                                                <img width="100px" height="100px" class="img-rounded center-block"   src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="photo de l'album {{ album.titreAlbum }}">
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    {# Infos #}
+                                    <div class="panel-body">
+                                        <p class="text-center"><strong><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                            {# end album card #}
+
+                        {# close new line #}
+                        {% if cpt % nbPanel == 0 %}</div>{% endif %}
+                        {% set cpt = cpt + 1 %}
+                    {% endfor %}
+                    </div>
+                </div>
+
+            {% endif %}
+        {% endif %}
+
         </div>
     </div>
-
-<div class="row">
-    <div class="col-md-12">
-{#
-    TODO - albums list
-#}
-
-    </div>
-</div>
 
 
 
