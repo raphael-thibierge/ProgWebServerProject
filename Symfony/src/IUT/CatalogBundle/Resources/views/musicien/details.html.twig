@@ -8,11 +8,8 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-danger" role="alert">
-                Les albums des musiciens ne sont pas encore disponibles !
-            </div>
             <div class="alert alert-warning" role="alert">
-                La mise en page n'a pas encore été réalisée !
+                La mise en page n'a pas terminée !
             </div>
         </div>
     </div>
@@ -60,16 +57,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Morceaux interprétés</h2>
-
-            {{ dump (interpreter) }}
-
-            {{ dump (interpretedRecords) }}
-
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -103,11 +90,41 @@
 
                 {% else %}
                     <p>Les oeuvres composées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} figurent dans les albums suivants :</p>
-                    <ul>
-                        {% for album in albumsComposed %}
-                            <li><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></li>
-                        {% endfor %}
-                    </ul>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% set cpt = 1 %}
+                            {% set nbPanel = 6 %}
+                            {% for album in albumsComposed %}
+                                {% if cpt % nbPanel == 0 %}<div class="row">{% endif %}
+                                {# album card#}
+                                <div class="col-md-2">
+                                    <div class="panel panel panel-default">
+
+                                        {# picture #}
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <a class="text-center" href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }} ">
+                                                    <img width="100px" height="100px" class="img-rounded center-block"   src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="photo de l'album {{ album.titreAlbum }}">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        {# Infos #}
+                                        <div class="panel-body">
+                                            <p class="text-center"><strong><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {# end album card #}
+
+                                {# close new line #}
+                                {% if cpt % nbPanel == 0 %}</div>{% endif %}
+                                {% set cpt = cpt + 1 %}
+                            {% endfor %}
+                        </div>
+                    </div>
 
                 {% endif %}
             {% endif %}
@@ -125,11 +142,39 @@
 
                 {% else %}
                     <p>Les oeuvres interprétées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} figurent dans les albums suivants :</p>
-                    <ul>
-                    {% for album in albumsInterpreted %}
-                        <li><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></li>
-                    {% endfor %}
-                    </ul>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% set cpt = 1 %}
+                            {% set nbPanel = 6 %}
+                            {% for album in albumsInterpreted %}
+                                {% if cpt % nbPanel == 0 %}<div class="row">{% endif %}
+                                {# album card#}
+                                <div class="col-md-2">
+                                    <div class="panel panel panel-default">
+
+                                        {# picture #}
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <a class="text-center" href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }} ">
+                                                    <img width="100px" height="100px" class="img-rounded center-block"   src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="photo de l'album {{ album.titreAlbum }}">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        {# Infos #}
+                                        <div class="panel-body">
+                                            <p class="text-center"><strong><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {# end album card #}
+
+                                {# close new line #}
+                                {% if cpt % nbPanel == 0 %}</div>{% endif %}
+                                {% set cpt = cpt + 1 %}
+                            {% endfor %}
+                        </div>
+                    </div>
 
                 {% endif %}
             {% endif %}
@@ -147,30 +192,46 @@
 
                 {% else %}
                     <p>Les oeuvres interprétées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} figurent dans les albums suivants :</p>
-                    <ul>
-                        {% for album in albumsConducted %}
-                            <li><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></li>
-                        {% endfor %}
-                    </ul>
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            {% set cpt = 1 %}
+                            {% set nbPanel = 6 %}
+                            {% for album in albumsConducted %}
+                                {% if cpt % nbPanel == 0 %}<div class="row">{% endif %}
+                                {# album card#}
+                                <div class="col-md-2">
+
+                                    <div class="panel panel panel-default">
+
+                                        {# picture #}
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <a class="text-center" href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }} ">
+                                                    <img width="100px" height="100px" class="img-rounded center-block"   src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="photo de l'album {{ album.titreAlbum }}">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        {# Infos #}
+                                        <div class="panel-body">
+                                            <p class="text-center"><strong><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {# end album card #}
+
+                                {# close new line #}
+                                {% if cpt % nbPanel == 0 %}</div>{% endif %}
+                                {% set cpt = cpt + 1 %}
+                            {% endfor %}
+                        </div>
+                    </div>
 
                 {% endif %}
             {% endif %}
 
         </div>
     </div>
-
-
-
-{#
-    <div class="row">
-        <h3>Compositeur</h3>
-        {% for composition in compositions %}
-            <div class="row">
-            {{ composition.codeComposition.codeComposition }}
-
-            </div>
-        {% endfor %}
-    </div>
-#}
 
 {% endblock %}
