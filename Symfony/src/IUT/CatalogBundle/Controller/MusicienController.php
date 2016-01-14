@@ -54,13 +54,22 @@ class MusicienController extends Controller
         //$albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')
           //  ->findBy(array('codeAlbum' => $disques));
 
-        // interpreted
-        /*$interpreter = $this->getDoctrine()->getRepository('IUTCatalogBundle:Interpreter')
-            ->findBy(array('codeMusicien' => $musicien));
-        $enregistrements = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
+        // Interpreted
+        $interpreter = $this->getDoctrine()->getRepository('IUTCatalogBundle:Interpreter')
+            ->findBy(array('codeMusicien' => $musicien->getCodeMusicien()));
+
+        $interpretedRecords = array();
+        foreach ($interpreter as $i) {
+            $record = $this->getDoctrine()
+                ->getRepository('IUTCatalogBundle:Enregistrement')
+                ->find($i->getCodeEnregistrement());
+            $interpretedRecords[] = $record;
+        }
+
+       /* $enregistrements = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
             ->findBy(array('codeEnregistrement' => $interpreter));*/
 
-        // Orchestres
+        // Orchestras
 
         $directions = $this->getDoctrine()->getRepository('IUTCatalogBundle:Direction')
             ->findBy(array('codeMusicien' => $musicien));
@@ -80,8 +89,10 @@ class MusicienController extends Controller
             'musicien' => $musicien,
             'oeuvres' => $oeuvres,
             'compositions' => $compositionOeuvre,
-           // 'enregistrements' => $enregistrements, // est-ce pertinant d'afficher chaques enregistrement, ( liste trop longue )
+
             //'albums' => $albums,
+            'interpreter' => $interpreter,
+            'interpretedRecords' => $interpretedRecords,
             'orchestras' => $orchestras
         ));
     }

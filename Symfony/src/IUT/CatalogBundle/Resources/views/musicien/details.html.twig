@@ -60,21 +60,25 @@
         </div>
     </div>
 
-  {#  <div class="row">
+    <div class="row">
         <div class="col-md-12">
             <h2>Morceaux interprétés</h2>
 
-            {% if enregistrements == null %}
+            {#{% if enregistrements == null %}
                 <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas interprété de morceaux, ou ces derniers ne sont pas connus.</p>
 
             {% else %}
                 {% for enregistrement in enregistrements %}
                     <p>{{ enregistrement.titre }}</p>
                 {% endfor %}
-            {% endif %}
+            {% endif %}#}
+
+            {{ dump (interpreter) }}
+
+            {{ dump (interpretedRecords) }}
 
         </div>
-    </div>#}
+    </div>
 
     <div class="row">
         <div class="col-md-12">
