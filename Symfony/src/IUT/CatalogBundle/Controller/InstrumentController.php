@@ -26,12 +26,11 @@ class InstrumentController extends Controller
             throw $this->createNotFoundException("L'instrument n'existe pas");
         }
 
-
-        // TODO - to finish, adding albums list
-
+        $albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsByInstrument($instrument);
 
         return $this->render('IUTCatalogBundle:instrument:details.html.twig', array(
-            'instrument' => $instrument,
+            'instrument'    => $instrument,
+            'albums'        => $albums,
         ));
     }
 }

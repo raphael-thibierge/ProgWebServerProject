@@ -102,6 +102,30 @@ class AlbumRepository extends EntityRepository
 
     }
 
+    public function getAlbumsByInstrument($codeInstrument){
+        $rsm = new ResultSetMapping();
+        $rsm->addEntityResult('IUT\CatalogBundle\Entity\Album', 'a');
+        $rsm->addFieldResult('a', 'Code_Album', 'codeAlbum');
+        $rsm->addFieldResult('a', 'Titre_Album', 'titreAlbum');
+        $rsm->addFieldResult('a', 'Année_Album', 'anneeAlbum');
+        //$rsm->addFieldResult('a', 'Code_Genre', 'codeGenre');
+        // $rsm->addFieldResult('a', 'Code_Editeur', 'codeEditeur');
+        $rsm->addFieldResult('a', 'Pochette', 'pochette');
+        $rsm->addFieldResult('a', 'ASIN', 'ASIN');
+
+        return $this->getEntityManager()
+            ->createNativeQuery('SELECT DISTINCT a.* FROM Album a ' .
+                'inner join Disque ON a.Code_Album = Disque.Code_Album ' .
+                'inner join Composition_Disque on Disque.Code_Disque = Composition_Disque.Code_Disque ' .
+                'inner join Enregistrement on Composition_Disque.Code_Morceau = Enregistrement.Code_Morceau ' .
+                'inner join Interpréter on Enregistrement.Code_Morceau = Interpréter.Code_Morceau ' .
+                'inner join Instrument on Interpréter.Code_Instrument = Instrument.Code_Instrument '.
+                'where Instrument.Code_Instrument = ? ', $rsm)
+            ->setParameter(1, $codeInstrument)
+            ->getResult();
+
+    }
+
     public function getNb(){
         return $this->createQueryBuilder('a')
             ->select('COUNT(a)')

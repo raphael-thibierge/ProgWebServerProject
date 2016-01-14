@@ -6,48 +6,76 @@
 
 {% block body %}
 
-<div class="row">
-    <div class="col-md-12">
-        <h1>{{ instrument.nomInstrument }}</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">{{ instrument.nomInstrument }}</h1>
+        </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+
+            <div class="thumbnail">
+                <img src="{{ path('rt_music_generatePicture', {'class':'Instrument', 'id' : instrument.codeInstrument}) }}" alt="image de l'instrument de musique {{ instrument.nomInstrument }}">
+            </div>
+
+
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-danger" role="alert">
-                La liste des albums disponibles dans le catalogue pour cet instrument de musique n'est pas encore disponible
-            </div>
-        </div>
-    </div>
+            <h2 class="text-center">Albums</h2>
 
-<div class="row">
-    <div class="col-md-12">
-        <img src="{{ path('rt_music_generatePicture', {'class':'Instrument', 'id' : instrument.codeInstrument}) }}" alt="image de l'instrument de musique {{ instrument.nomInstrument }}">
+            {% if albums is defined %}
+                {% if albums == null %}
 
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Albums interprétés</h2>
+                    <div class="alert alert-danger text-center">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Aucun album disponible
+                    </div>
 
-                {% if albums is defined %}
-                    {% if albums == null %}
-                        <p class="text-danger">Aucun album pour cet instrument</p>
-
-                    {% else %}
-                        <ul>
-
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% set cpt = 1 %}
+                            {% set nbPanel = 6 %}
                             {% for album in albums %}
-                                <li><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></li>
+                                {% if cpt % nbPanel == 0 %}<div class="row">{% endif %}
+                                {# album card#}
+                                <div class="col-md-2">
+                                    <div class="panel panel panel-default">
+
+                                        {# picture #}
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <a class="text-center" href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }} ">
+                                                    <img width="100px" height="100px" class="img-rounded center-block"   src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="photo de l'album {{ album.titreAlbum }}">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        {# Infos #}
+                                        <div class="panel-body">
+                                            <p class="text-center"><strong><a href="{{ path('rt_music_album_details', {'id' : album.codeAlbum}) }}">{{ album.titreAlbum }}</a></strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {# end album card #}
+
+                                {# close new line #}
+                                {% if cpt % nbPanel == 0 %}</div>{% endif %}
+                                {% set cpt = cpt + 1 %}
                             {% endfor %}
-                        </ul>
+                        </div>
+                    </div>
 
-                    {% endif %}
                 {% endif %}
+            {% endif %}
 
-            </div>
         </div>
-
     </div>
-</div>
+
 
 
 

@@ -21,6 +21,7 @@ class MusicienController extends Controller
             ->findBy(array('codeMusicien' => $musicien));
         $oeuvres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')
             ->findBy(array('codeOeuvre' => $composers), array('titreOeuvre' => 'ASC'));
+
         // albums containing records composed by this musician
         $compositionOeuvre = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionOeuvre')
             ->findBy(array('codeOeuvre' => $oeuvres));
@@ -50,13 +51,11 @@ class MusicienController extends Controller
             'musicien' => $musicien,
             'oeuvres' => $oeuvres,
             'compositions' => $compositionOeuvre,
+            'orchestras' => $orchestras,
 
             'albumsConducted' => $albumsConducted,
-            // 'enregistrements' => $enregistrements, // est-ce pertinant d'afficher chaques enregistrement, ( liste trop longue )
-
             'albumsInterpreted' => $albumsInterpreted,
             'albumsComposed' => $albumsComposed,
-            'orchestras' => $orchestras
         ));
     }
 
