@@ -8,7 +8,10 @@
 
     <div class="row">
         <div class="col-md-4 col-md-offset-1">
-            <img src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="pochette de l'album {{ album.titreAlbum }}" >
+            <div class="thumbnail">
+                <img src="{{ path('rt_music_generatePicture', {'class':'Album', 'id' : album.codeAlbum}) }}" alt="pochette de l'album {{ album.titreAlbum }}">
+
+            </div>
         </div>
 
         <div class="col-md-6">
@@ -35,16 +38,6 @@
                         <p>{{ infos["TotalUsed"] }} d'occasion à partir de <strong>{{ infos["LowestUsedPrice"] }} </strong></p>
                     {% endif %}
                 {% endif %}
-            </div>
-        </div>
-    </div>
-
-    <div class="row"></div>
-    <div class="row">
-        <div class="col-md-[12">
-
-            <div class="alert alert-danger" role="alert">
-                L'achat de l'album sur Amazon n'est pas encore disponible.
             </div>
         </div>
     </div>

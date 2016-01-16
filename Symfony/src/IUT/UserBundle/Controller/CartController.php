@@ -27,8 +27,6 @@ class CartController extends Controller
                 $nbItems += 1;
             }
 
-
-
         } else {
             $records = null;
         }
@@ -63,7 +61,6 @@ class CartController extends Controller
             $cart = $session->get('cart');
             $cart[] = $idRecord;
             $cart = $session->set('cart', array_unique($cart));
-
         }
 
         return $this->redirect($this->generateUrl('cart_details'));
@@ -75,19 +72,13 @@ class CartController extends Controller
         $session = $this->getRequest()->getSession();
         if ($session != null && $session->has('cart')) {
             $sessionCart = $session->get('cart');
+            $newCart = array();
             foreach($sessionCart as $cartItem){
-                if ($cartItem == $idRecord){
-                    unset($cartItem);
+                if ($cartItem != $idRecord){
+                    $newCart[] = $cartItem;
                 }
             }
-/*
-            for ($i = 0 ; $i < count($sessionCart) ; $i++){
-                if ($sessionCart[$i] == $idRecord){
-                }
-            }*/
-            $session->set('cart', $sessionCart);
-
-
+            $session->set('cart', $newCart);
         }
 
         return $this->redirect($this->generateUrl('cart_details'));
@@ -103,15 +94,24 @@ class CartController extends Controller
                 $record = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')
                     ->findOneBy(array('codeEnregistrement' => $cartItem));
 
+
                 if ($record != null){
 
                     $user = $this->get('security.context')->getToken()->getUser();
-                    $purchase = new Acheter();
+                    $purchase = $this->getDoctrine()->getRepository('IUTCatalogBundle:Acheter')
+                        ->findOneBy(array(
+                            'codeEnregistrement'    =>  $record,
+                            'codeAbonne'            =>  $user,
+                        ));
 
-                    $purchase->setCodeEnregistrement($record);
-                    $purchase->setCodeAbonné($user);
-                    $this->getDoctrine()->getManager()->persist($purchase);
-                    $this->getDoctrine()->getManager()->flush();
+                    if ($purchase == null){
+                        $purchase = new Acheter();
+
+                        $purchase->setCodeEnregistrement($record);
+                        $purchase->setCodeAbonne($user);
+                        $this->getDoctrine()->getManager()->persist($purchase);
+                        $this->getDoctrine()->getManager()->flush();
+                    }
                 }
             }
             $session->set('cart', array());

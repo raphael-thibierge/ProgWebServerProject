@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h1>{{ orchestra.nomOrchestre }}</h1>
+            <h1 class="text-center">{{ orchestra.nomOrchestre }}</h1>
         </div>
     </div>
 
@@ -17,17 +17,39 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Chefs d'orchestre</h2>
+                <h2 class="text-center">Chefs d'orchestre</h2>
 
+                {% set cpt = 1 %}
+                {% set nbPanel = 6 %}
                 {% for chief in chiefsOrchestra %}
 
-                <p><a href="{{ path('rt_music_musicien_details_page', {'id' : chief.codeMusicien}) }}">{{ chief.nomMusicien }} {{ chief.prénomMusicien }}</a> a participé à la direction de cet orchestre.</p>
+                    {% if cpt % nbPanel == 0 %}<div class="row">{% endif %}
+                    {# album card#}
+                    <div class="col-md-2">
+                        <div class="panel panel panel-default">
 
-            <div class="row">
-            <div class="col-md-12">
-                <img src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : chief.codeMusicien}) }}" alt="photo du musicien {{ chief.prénomMusicien }} {{ chief.nomMusicien }}">
-            </div>
-            </div>
+                            {# picture #}
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <a class="text-center" href="{{ path('rt_music_musicien_details_page', {'id' : chief.codeMusicien}) }}">
+                                        <img width="100px" class="img-rounded center-block" src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : chief.codeMusicien}) }}" alt="photo du musicien {{ chief.prénomMusicien }} {{ chief.nomMusicien }}">
+                                    </a>
+                                </div>
+                            </div>
+
+                            {# Infos #}
+                            <div class="panel-body">
+                                <p class="text-center"><strong><a href="{{ path('rt_music_musicien_details_page', {'id' : chief.codeMusicien}) }}">{{ chief.nomMusicien }} {{ chief.prénomMusicien }}</a></strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    {# end album card #}
+
+                    {# close new line #}
+                    {% if cpt % nbPanel == 0 %}</div>{% endif %}
+                    {% set cpt = cpt + 1 %}
+
+
                     {% endfor %}
             </div>
         </div>
@@ -38,7 +60,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Albums</h2>
+                        <h2 class="text-center">Albums</h2>
 
                         {% if albums is defined %}
                             {% if albums == null %}

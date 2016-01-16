@@ -4,6 +4,7 @@ namespace IUT\CatalogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Acheter
  *
@@ -22,7 +23,6 @@ class Acheter
      *
      */
     private $codeEnregistrement;
-     //* @ORM\Column(name="Code_Enregistrement", type="integer", nullable=false)
 
     /**
      * @var \Enregistrement

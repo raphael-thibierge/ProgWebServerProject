@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
+    public function indexRedirectedAction(){
+        return $this->redirect($this->generateUrl('r_tapp_homepage'));
+    }
+
     public function indexAction()
     {
 

@@ -6,7 +6,6 @@ cart_add:
     path:       /add/{idRecord}
     defaults:   { _controller: IUTUserBundle:Cart:pushToCart}
 
-
 cart_remove:
     path:       /remove/{idRecord}
     defaults:   { _controller: IUTUserBundle:Cart:removeFromCart}
