@@ -106,12 +106,9 @@ class CartController extends Controller
                 if ($record != null){
 
                     $user = $this->get('security.context')->getToken()->getUser();
-                    $abonne = $this->getDoctrine()->getRepository('IUTCatalogBundle:Abonne')
-                        ->findOneBy(array('codeAbonne' => $user->getCodeAbonne()));
-
                     $purchase = new Acheter();
 
-                    $purchase->setCodeEnregistrement($record->getCodeEnregistrement());
+                    $purchase->setCodeEnregistrement($record);
                     $purchase->setCodeAbonné($user);
                     $this->getDoctrine()->getManager()->persist($purchase);
                     $this->getDoctrine()->getManager()->flush();
@@ -121,6 +118,21 @@ class CartController extends Controller
 
         }
         return $this->redirect($this->generateUrl('cart_details'));
+    }
+
+    public function showPurchasesAction(){
+        $user = $this->get('security.context')->getToken()->getUser();
+        $purchases = $this->getDoctrine()->getRepository('IUTCatalogBundle:Acheter')->findBy(array(
+            'codeAbonne' => $user,
+        ));
+        $records = $this->getDoctrine()->getRepository('IUTCatalogBundle:Enregistrement')->findBy(array(
+            'codeEnregistrement'    => $purchases
+        ));
+        return $this->render('IUTUserBundle::purchasesDetails.html.twig', array(
+            'purchases'   =>  $purchases,
+            'nbItems'    =>  3,
+
+        ));
     }
 
 
