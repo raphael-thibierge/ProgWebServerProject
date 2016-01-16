@@ -24,18 +24,40 @@
                 <p>Editeur : {{ album.codeEditeur.nomEditeur }}</p>
                 <p>Code ASIN: {{ album.ASIN }}</p>
 
+                {% if infos["LowestNewPrice"] is not null %}
+                    {% if infos["TotalNew"] is not null %}
+                    <p>{{ infos["TotalNew"] }} neuf(s) à partir de <strong>{{ infos["LowestNewPrice"] }} </strong></p>
+                    {% endif %}
+                {% endif %}
+
+                {% if infos["LowestUsedPrice"] is not null %}
+                    {% if infos["TotalUsed"] is not null %}
+                        <p>{{ infos["TotalUsed"] }} d'occasion à partir de <strong>{{ infos["LowestUsedPrice"] }} </strong></p>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
     </div>
 
+    <div class="row"></div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-[12">
 
             <div class="alert alert-danger" role="alert">
-                L'achat de l'album sur Amazon n'est pas encore disponible
+                L'achat de l'album sur Amazon n'est pas encore disponible.
             </div>
         </div>
     </div>
+
+    {% if infos["EditorialReviews"] is not null %}
+    <div>
+        <h2>Description du produit</h2>
+
+        {% for reviews in infos["EditorialReviews"] %}
+            <p>{{ reviews["Content"] | raw}}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     {{ dump(it) }}
 
@@ -88,6 +110,7 @@
                 <table class="table table-hover">
 
                 <tbody>
+
                     {% if infos["SalesRank"] is not null %}
                     <tr><td>Classement des meilleures ventes Amazon en Musique : {{ infos["SalesRank"] }}</td></tr>
                     {% endif %}
@@ -132,22 +155,6 @@
 
                     {% if infos["PublicationDate"] is not null %}
                     <tr><td>Date de publication : {{ infos["PublicationDate"] }}</td></tr>
-                    {% endif %}
-
-                    {% if infos["LowestNewPrice"] is not null %}
-                    <tr><td>Prix le plus bas (neuf) : {{ infos["LowestNewPrice"] }}</td></tr>
-                    {% endif %}
-
-                    {% if infos["TotalNew"] is not null %}
-                    <tr><td>Quantité disponible (neuf) {{ infos["TotalNews"] }}</td></tr>
-                    {% endif %}
-
-                    {% if infos["LowestUsedPrice"] is not null %}
-                    <tr><td>Prix le plus bas (occasion) : {{ infos["LowestUsedPrice"] }}</td></tr>
-                    {% endif %}
-
-                    {% if infos["TotalUsed"] is not null %}
-                    <tr><td>Quantité disponible (occasion) {{ infos["TotalUsed"] }}</td></tr>
                     {% endif %}
 
                 </tbody>

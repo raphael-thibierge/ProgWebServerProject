@@ -135,26 +135,26 @@ class AlbumController extends Controller
         else $infos["PublicationDate"] = null;
 
         // Offer summary
-        if (array_key_exists('OfferSummary',$it["ItemAttributes"])) {
+        if (array_key_exists('OfferSummary',$it)) {
 
             // Lowest new price
-            if (array_key_exist('LowestNewPrice', $it["OfferSummary"]))
-                $infos["LowestNewPrice"] = $it["ItemAttributes"]["LowestNewPrice"]["FormattedPrice"];
+            if (array_key_exists('LowestNewPrice', $it["OfferSummary"]))
+                $infos["LowestNewPrice"] = $it["OfferSummary"]["LowestNewPrice"]["FormattedPrice"];
             else $infos["LowestNewPrice"] = null;
 
             // Total new
-            if (array_key_exist('TotalNew', $it["OfferSummary"]))
-                $infos["TotalNew"] = $it["ItemAttributes"]["TotalNew"];
+            if (array_key_exists('TotalNew', $it["OfferSummary"]))
+                $infos["TotalNew"] = $it["OfferSummary"]["TotalNew"];
             else $infos["TotalNew"] = null;
 
             // Lowest used price
-            if (array_key_exist('LowestUsedPrice', $it["OfferSummary"]))
-                $infos["LowestUsedPrice"] = $it["ItemAttributes"]["LowestUsedPrice"]["FormattedPrice"];
+            if (array_key_exists('LowestUsedPrice', $it["OfferSummary"]))
+                $infos["LowestUsedPrice"] = $it["OfferSummary"]["LowestUsedPrice"]["FormattedPrice"];
             else $infos["LowestUsedPrice"] = null;
 
             // Total used
-            if (array_key_exist('TotalUsed', $it["OfferSummary"]))
-                $infos["TotalUsed"] = $it["ItemAttributes"]["TotalUsed"];
+            if (array_key_exists('TotalUsed', $it["OfferSummary"]))
+                $infos["TotalUsed"] = $it["OfferSummary"]["TotalUsed"];
             else $infos["TotalUsed"] = null;
         }
 
@@ -165,8 +165,13 @@ class AlbumController extends Controller
             $infos["TotalUsed"] = null;
         }
 
+        // Product description
+        if (array_key_exists('EditorialReviews', $it))
+            $infos["EditorialReviews"] = $it["EditorialReviews"]["EditorialReview"];
+        else $infos["EditorialReviews"] = null;
 
-        return $this->render('IUTCatalogBundle:album:details.html.twig', array(
+
+            return $this->render('IUTCatalogBundle:album:details.html.twig', array(
             'album' => $album,
             'disques' => $discsWithRecords,
             'it' => $it,
