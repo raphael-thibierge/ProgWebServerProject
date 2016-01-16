@@ -12,5 +12,41 @@
         </div>
     </div>
 
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Enregistrement</th>
+                            <th>Prix</th>
+                            {#<th>Supprimer</th>#}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                            <tr>
+                                <td>{{ record.titre }}</td>
+                                <td>{{ record.prix }} €</td>
+                                {#<td><a href="{{ path('cart_remove', {'idRecord' : record.codeEnregistrement}) }}">Supprimer</a></td>#}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% if nbItems > 0 %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('cart_pay') }}" class="btn btn-success col-md-6 col-md-offset-3">Acheter : {{ price }} €</a>
+        </div>
+    </div>
+
+    {% endif %}
+
 {% endblock %}
 
