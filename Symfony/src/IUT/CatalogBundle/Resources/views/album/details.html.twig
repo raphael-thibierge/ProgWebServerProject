@@ -49,6 +49,15 @@
         </div>
     </div>
 
+    {# One review only #}
+    {% if infos["EditorialReview"] is not null %}
+    <div>
+        <h2>Description du produit</h2>
+        <p>{{ infos["EditorialReview"] | raw}}</p>
+    </div>
+    {% endif %}
+
+    {# Many reviews #}
     {% if infos["EditorialReviews"] is not null %}
     <div>
         <h2>Description du produit</h2>
@@ -58,8 +67,6 @@
         {% endfor %}
     </div>
     {% endif %}
-
-    {{ dump(it) }}
 
     <div class="row">
         <div class="col-md-12">
@@ -105,7 +112,7 @@
 
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading"><h2 class="text-center"><a href=" {{ it["DetailPageURL"] }}">Détails sur le produit</a></h2></div>
+        <div class="panel-heading"><h2 class="text-center">Détails sur le produit</h2></div>
 
                 <table class="table table-hover">
 
@@ -159,7 +166,22 @@
 
                 </tbody>
                 </table>
-        <div class="panel-footer">Retrouvez tous les détails sur <a href=" {{ it["DetailPageURL"] }}">Amazon</a> !</div>
+        <div class="panel-footer">Retrouvez tous les détails de cet album sur <a href=" {{ it["DetailPageURL"] }}">Amazon</a> !</div>
     </div>
+
+    {% if infos["SimilarProducts"] is not null %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center">Produits similaires</h2>
+            <table class="table table-hover">
+                <tbody>
+                    {% for product in infos["SimilarProducts"] %}
+                    <tr><td><a href="http://www.amazon.fr/exec/obidos/ASIN/{{ product["ASIN"] }}">{{ product["Title"] }}</a></td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
 
 {% endblock %}

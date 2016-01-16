@@ -84,8 +84,12 @@ class AlbumController extends Controller
 
         // Language
         if (array_key_exists('Languages', $it["ItemAttributes"])) {
-            if (array_key_exists('Language',$it["ItemAttributes"]["Languages"]))
-                $infos["Language"] = $it["ItemAttributes"]["Languages"]["Language"]["Name"];
+            if (array_key_exists('Language',$it["ItemAttributes"]["Languages"])) {
+                if (array_key_exists('Name', $it["ItemAttributes"]["Languages"]["Language"]))
+                    $infos["Language"] = $it["ItemAttributes"]["Languages"]["Language"]["Name"];
+                else $infos["Language"] = null;
+            }
+
             else $infos["Language"] = null;
         }
         else $infos["Language"] = null;
@@ -166,9 +170,30 @@ class AlbumController extends Controller
         }
 
         // Product description
-        if (array_key_exists('EditorialReviews', $it))
-            $infos["EditorialReviews"] = $it["EditorialReviews"]["EditorialReview"];
-        else $infos["EditorialReviews"] = null;
+        if (array_key_exists('EditorialReviews', $it)) {
+
+            // One review only
+            if (array_key_exists('Content', $it["EditorialReviews"]["EditorialReview"])) {
+                $infos["EditorialReview"] = $it["EditorialReviews"]["EditorialReview"]["Content"];
+                $infos["EditorialReviews"] = null;
+            }
+
+            // Many reviews
+            else {
+                $infos["EditorialReviews"] = $it["EditorialReviews"]["EditorialReview"];
+                $infos["EditorialReview"] = null;
+            }
+        }
+
+        else {
+            $infos["EditorialReviews"] = null;
+            $infos["EditorialReview"] = null;
+        }
+
+        // Similar products
+        if (array_key_exists('SimilarProducts', $it))
+            $infos["SimilarProducts"] = $it["SimilarProducts"]["SimilarProduct"];
+        else $infos["SimilarProducts"] = null;
 
 
             return $this->render('IUTCatalogBundle:album:details.html.twig', array(
