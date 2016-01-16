@@ -29,8 +29,8 @@ class OrchestreController extends Controller
         }
 
         $albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsByOrchestra($orchestra);
-        $chiefsOrchestra = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getChiefsByOrchestra($orchestra);
 
+        $chiefsOrchestra = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getChiefsByOrchestra($orchestra);
 
         return $this->render('IUTCatalogBundle:orchestre:details.html.twig', array(
             'orchestra'     =>  $orchestra,
