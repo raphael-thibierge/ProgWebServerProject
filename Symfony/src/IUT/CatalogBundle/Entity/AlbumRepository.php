@@ -51,30 +51,6 @@ class AlbumRepository extends EntityRepository
 
     }
 
-    public function getAlbumsInterpreted($codeMusicien){
-        $rsm = new ResultSetMapping();
-        $rsm->addEntityResult('IUT\CatalogBundle\Entity\Album', 'a');
-        $rsm->addFieldResult('a', 'Code_Album', 'codeAlbum');
-        $rsm->addFieldResult('a', 'Titre_Album', 'titreAlbum');
-        $rsm->addFieldResult('a', 'Année_Album', 'anneeAlbum');
-        //$rsm->addFieldResult('a', 'Code_Genre', 'codeGenre');
-        // $rsm->addFieldResult('a', 'Code_Editeur', 'codeEditeur');
-        $rsm->addFieldResult('a', 'Pochette', 'pochette');
-        $rsm->addFieldResult('a', 'ASIN', 'ASIN');
-// build rsm here
-
-        return $this->getEntityManager()
-            ->createNativeQuery('SELECT DISTINCT a.* FROM Album a ' .
-                'inner join Disque ON a.Code_Album = Disque.Code_Album ' .
-                'inner join Composition_Disque on Disque.Code_Disque = Composition_Disque.Code_Disque ' .
-                'inner join Enregistrement on Composition_Disque.Code_Morceau = Enregistrement.Code_Morceau ' .
-                'inner join Interpréter on Enregistrement.Code_Morceau = Interpréter.Code_Morceau ' .
-                'inner join Musicien on Interpréter.Code_Musicien = Musicien.Code_Musicien '.
-                'where Musicien.Code_Musicien = ? ', $rsm)
-            ->setParameter(1, $codeMusicien)
-            ->getResult();
-
-    }
 
     public function getAlbumsComposed($codeMusicien){
         $rsm = new ResultSetMapping();

@@ -8,14 +8,6 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="alert alert-warning" role="alert">
-                La mise en page n'a pas terminée !
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
             <h1 class="text-center">{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}</h1>
         </div>
     </div>
@@ -39,58 +31,44 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Oeuvres composées</h2>
+    {% if oeuvresComposed is not empty %}
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Oeuvres composées</h2>
 
-            {% if oeuvres == null %}
-                <p>Aucune oeuvre disponible pour {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }}</p>
-
-            {% else %}
                 <ul>
-                {% for oeuvre in oeuvres %}
+                {% for oeuvre in oeuvresComposed %}
                     <li><a href="{{ path('catalog_oeuvre_details', {'id' : oeuvre.codeOeuvre}) }}">{{ oeuvre.titreOeuvre }}</a></li>
                 {% endfor %}
                 </ul>
-            {% endif %}
+
 
         </div>
     </div>
+    {% endif %}
 
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Orchestres dirigés</h2>
+    {% if orchestras is not empty %}
 
-            {% if orchestras is defined %}
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Orchestres dirigés</h2>
 
-                {% if orchestras == null %}
-                    <p>{{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} n'a pas dirigé d'orchestres.</p>
-
-                {% else %}
                     <ul>
                     {% for orchestre in orchestras %}
                         <li><a href="{{ path('catalog_orchestre_details', {'id' : orchestre.codeOrchestre}) }}">{{ orchestre.nomOrchestre }}</a></li>
                     {% endfor %}
                     </ul>
-                {% endif %}
-
-            {% endif %}
         </div>
     </div>
+    {% endif %}
 
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Albums composés</h2>
+    {% if albumsComposed is not empty %}
 
-            {% if albumsComposed is defined %}
-                {% if albumsComposed == null %}
-                    <p>Les oeuvres composées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ne figurent dans aucun album.</p>
-
-                {% else %}
-                    <p>Les oeuvres composées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} figurent dans les albums suivants :</p>
-
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Albums composés</h2>
 
                     <div class="row">
                         <div class="col-md-12">
@@ -126,22 +104,15 @@
                         </div>
                     </div>
 
-                {% endif %}
-            {% endif %}
 
         </div>
     </div>
+    {% endif %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Albums interprétés</h2>
-
-            {% if albumsInterpreted is defined %}
-                {% if albumsInterpreted == null %}
-                <p>Les oeuvres interprétés par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ne figurent dans aucun album.</p>
-
-                {% else %}
-                    <p>Les oeuvres interprétées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} figurent dans les albums suivants :</p>
+    {% if albumsInterpreted is not empty %}
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Albums interprétés</h2>
                     <div class="row">
                         <div class="col-md-12">
                             {% set cpt = 1 %}
@@ -175,23 +146,16 @@
                             {% endfor %}
                         </div>
                     </div>
-
-                {% endif %}
-            {% endif %}
-
         </div>
     </div>
+    {% endif %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Albums dirigés</h2>
 
-            {% if albumsConducted is defined %}
-                {% if albumsConducted == null %}
-                    <p>Les oeuvres dirigés par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} ne figurent dans aucun album.</p>
+    {% if albumsConducted is not empty %}
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Albums dirigés</h2>
 
-                {% else %}
-                    <p>Les oeuvres interprétées par {{ musicien.prénomMusicien }} {{ musicien.nomMusicien }} figurent dans les albums suivants :</p>
                     <div class="row">
                         <div class="col-md-12">
 
@@ -228,10 +192,8 @@
                         </div>
                     </div>
 
-                {% endif %}
-            {% endif %}
-
         </div>
     </div>
+    {% endif %}
 
 {% endblock %}
