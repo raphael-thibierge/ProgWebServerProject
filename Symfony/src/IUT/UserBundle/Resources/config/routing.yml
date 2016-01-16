@@ -2,5 +2,15 @@ cart_details:
     path:   /details
     defaults:  { _controller: IUTUserBundle:Cart:show }
 
+cart_add:
+    path:       /add/{idRecord}
+    defaults:   { _controller: IUTUserBundle:Cart:pushToCart}
 
 
+cart_remove:
+    path:       /remove/{idRecord}
+    defaults:   { _controller: IUTUserBundle:Cart:removeFromCart}
+
+cart_pay:
+    path:       /pay
+    defaults:   { _controller: IUTUserBundle:Cart:payCart}

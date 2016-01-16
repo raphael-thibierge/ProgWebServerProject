@@ -60,6 +60,7 @@
                                     <th>Durée</th>
                                     <th>Prix</th>
                                     <th>Extrait</th>
+                                    <th>Achat</th>
                                     <td></td>
                                 </tr>
                             </thead>
@@ -70,6 +71,7 @@
                                 <td>{{ enregistrement.durée }}</td>
                                 <td>{{ enregistrement.prix }}</td>
                                 <td><audio controls><source src="{{ path('catalog_default_generateTrack', {'id' : enregistrement.codeEnregistrement}) }}" type="audio/mpeg"></audio></td>
+                                <td><a href="{{ path('cart_add', {'idRecord' : enregistrement.codeEnregistrement}) }}">Acheter</a></td>
                             </tr>
                             {% endfor %}
                             </tbody>
