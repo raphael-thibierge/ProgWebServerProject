@@ -135,6 +135,18 @@ class CartController extends Controller
         ));
     }
 
+    public function cleanCartAction(){
+
+        $session = $this->getRequest()->getSession();
+        if ($session != null) {
+            if ($session->has('cart')) {
+                $session->set('cart', array());
+            }
+        }
+
+        return $this->redirect($this->generateUrl('cart_details'));
+    }
+
 
 
 }

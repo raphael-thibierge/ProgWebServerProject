@@ -18,3 +18,7 @@ cart_pay:
 cart_purchases:
     path:       /purchases
     defaults:   { _controller: IUTUserBundle:Cart:showPurchases}
+
+cart_clean:
+    path:       /clean
+    defaults:   { _controller: IUTUserBundle:Cart:cleanCart}
