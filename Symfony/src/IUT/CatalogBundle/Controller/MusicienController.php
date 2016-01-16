@@ -19,14 +19,9 @@ class MusicienController extends Controller
         // composed
         $composers = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composer')
             ->findBy(array('codeMusicien' => $musicien));
-        $oeuvres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')
-            ->findBy(array('codeOeuvre' => $composers), array('titreOeuvre' => 'ASC'));
 
-        // albums containing records composed by this musician
-        $compositionOeuvre = $this->getDoctrine()->getRepository('IUTCatalogBundle:CompositionOeuvre')
-            ->findBy(array('codeOeuvre' => $oeuvres));
-
-
+        $oeuvresComposed = null;
+       // $oeuvresComposed = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')->getOeuvresByMusician($musicien);
 
         $albumsConducted = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsConducted($musicien);
         $albumsInterpreted = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsInterpreted($musicien);
@@ -46,8 +41,7 @@ class MusicienController extends Controller
             ->findBy(array('nomOrchestre' => $orchestres));
         return $this->render('IUTCatalogBundle:musicien:details.html.twig', array(
             'musicien' => $musicien,
-            'oeuvres' => $oeuvres,
-            'compositions' => $compositionOeuvre,
+            'oeuvresComposed' => $oeuvresComposed,
             'orchestras' => $orchestras,
 
             'albumsConducted' => $albumsConducted,
