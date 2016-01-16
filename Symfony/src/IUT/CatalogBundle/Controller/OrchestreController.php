@@ -29,11 +29,13 @@ class OrchestreController extends Controller
         }
 
         $albums = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsByOrchestra($orchestra);
-        $orchestraConductors= $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getOrchestraConductorByOrchestra($orchestra);
+
+        $chiefsOrchestra = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->getChiefsByOrchestra($orchestra);
 
         return $this->render('IUTCatalogBundle:orchestre:details.html.twig', array(
             'orchestra'     =>  $orchestra,
             'albums'        =>  $albums,
+            'chiefsOrchestra' => $chiefsOrchestra,
             'chefOrchestre' =>  null,
         ));
     }

@@ -28,9 +28,6 @@ class MusicienController extends Controller
 
 
 
-
-
-
         $albumsConducted = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsConducted($musicien);
         $albumsInterpreted = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsInterpreted($musicien);
         $albumsComposed = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->getAlbumsComposed($musicien);
@@ -127,5 +124,7 @@ class MusicienController extends Controller
             'route' => 'catalog_musicien_chefsOrchestre_byLetter',
         ));
     }
+
+
 }
 

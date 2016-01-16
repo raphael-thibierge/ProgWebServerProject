@@ -12,37 +12,39 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
 
-            {% if chefOrchestre is null %}
-                <p>Le chef d'orchestre est inconnu.</p>
-            {% else %}
+        {% if chiefsOrchestra is not null %}
 
-                <p><a href="{{ path('rt_music_musicien_details_page', {'id' : chefOrchestre.codeMusicien}) }}">{{ chefOrchestre.nomMusicien }} {{ chefOrchestre.prénomMusicien }}</a> a participé à la direction de cet orchestre.</p>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Chefs d'orchestre</h2>
+
+                {% for chief in chiefsOrchestra %}
+
+                <p><a href="{{ path('rt_music_musicien_details_page', {'id' : chief.codeMusicien}) }}">{{ chief.nomMusicien }} {{ chief.prénomMusicien }}</a> a participé à la direction de cet orchestre.</p>
 
             <div class="row">
-              <div class="col-md-12">
-                 <img src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : chefOrchestre.codeMusicien}) }}" alt="photo du musicien {{ chefOrchestre.prénomMusicien }} {{ chefOrchestre.nomMusicien }}">
-                </div>
+            <div class="col-md-12">
+                <img src="{{ path('rt_music_generatePicture', {'class':'Musicien', 'id' : chief.codeMusicien}) }}" alt="photo du musicien {{ chief.prénomMusicien }} {{ chief.nomMusicien }}">
             </div>
+            </div>
+                    {% endfor %}
+            </div>
+        </div>
 
             {% endif %}
 
 
-        </div>
-    </div>
-
 
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="text-center">Albums</h2>
+                        <h2>Albums</h2>
 
                         {% if albums is defined %}
                             {% if albums == null %}
 
                                 <div class="alert alert-danger text-center">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Aucun album disponible
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Aucun album n'est disponible.
                                 </div>
 
                             {% else %}
