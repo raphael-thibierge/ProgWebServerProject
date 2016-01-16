@@ -32,9 +32,6 @@
         <div class="col-md-12">
 
             <div class="alert alert-danger" role="alert">
-                L'achat des morceaux n'est pas encore disponible
-            </div>
-            <div class="alert alert-danger" role="alert">
                 L'achat de l'album sur Amazon n'est pas encore disponible
             </div>
         </div>
@@ -80,46 +77,82 @@
                         </table>
 
                     </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <!-- Default panel contents -->
-                <div class="panel-heading"><h2 class="text-center"><a href=" {{ it["DetailPageURL"] }}">Détails sur le produit</a></h2></div>
-
-                <table class="table table-hover">
-
-                <tbody>
-                    <tr><td>Classement des meilleures ventes Amazon en Musique : {{ it["SalesRank"] }}</td></tr>
-                    <tr><td>{{ it["ItemAttributes"]["Binding"] }}</td></tr>
-                    <tr><td>Label : {{ it["ItemAttributes"]["Brand"] }}</td></tr>
-                    <tr><td>Langue : {{ it["ItemAttributes"]["Languages"]["Language"]["Name"] }}</td></tr>
-
-                    {% for creator in it["ItemAttributes"]["Creator"] %}
-                    <tr><td>{{ creator["Role"] }} : {{ creator["_"] }}</td></tr>
-                    {% endfor %}
-
-                    {% for feature in it["ItemAttributes"]["Feature"] %}
-                    <tr><td>{{ feature }}</td></tr>
-                    {% endfor %}
-
-
-                </tbody>
-                </table>
-                </div>
-            </div>
-
-
-            {{ dump (it["ItemAttributes"]) }}
-
-
             {% endfor %}
         </div>
     </div>
 
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><h2 class="text-center"><a href=" {{ it["DetailPageURL"] }}">Détails sur le produit</a></h2></div>
 
+                <table class="table table-hover">
 
+                <tbody>
+                    {% if infos["SalesRank"] is not null %}
+                    <tr><td>Classement des meilleures ventes Amazon en Musique : {{ infos["SalesRank"] }}</td></tr>
+                    {% endif %}
 
+                    {% if infos["Binding"] is not null %}
+                    <tr><td>{{ infos["Binding"] }}</td></tr>
+                    {% endif %}
 
+                    {% if infos["Brand"] is not null %}
+                    <tr><td>Label : {{ infos["Brand"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["Language"] is not null %}
+                    <tr><td>Langue : {{ infos["Language"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["Creator"] is not null %}
+                    <tr><td>{{ infos["Creator"]["Role"] }} : {{ infos["Creator"]["_"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["Creators"] is not null %}
+                    {% for creator in infos["Creators"] %}
+                    <tr><td>{{ creator["Role"] }} : {{ creator["_"] }}</td></tr>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if infos["Genre"] is not null %}
+                    <tr><td>Genre : {{ infos["Genre"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["Studio"] is not null %}
+                    <tr><td>Studio : {{ infos["Studio"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["ProductGroup"] is not null %}
+                    <tr><td>Production : {{ infos["ProductGroup"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["ReleaseDate"] is not null %}
+                    <tr><td>Date de sortie : {{ infos["ReleaseDate"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["PublicationDate"] is not null %}
+                    <tr><td>Date de publication : {{ infos["PublicationDate"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["LowestNewPrice"] is not null %}
+                    <tr><td>Prix le plus bas (neuf) : {{ infos["LowestNewPrice"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["TotalNew"] is not null %}
+                    <tr><td>Quantité disponible (neuf) {{ infos["TotalNews"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["LowestUsedPrice"] is not null %}
+                    <tr><td>Prix le plus bas (occasion) : {{ infos["LowestUsedPrice"] }}</td></tr>
+                    {% endif %}
+
+                    {% if infos["TotalUsed"] is not null %}
+                    <tr><td>Quantité disponible (occasion) {{ infos["TotalUsed"] }}</td></tr>
+                    {% endif %}
+
+                </tbody>
+                </table>
+        <div class="panel-footer">Retrouvez tous les détails sur <a href=" {{ it["DetailPageURL"] }}">Amazon</a> !</div>
+    </div>
 
 {% endblock %}

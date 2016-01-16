@@ -64,10 +64,113 @@ class AlbumController extends Controller
         $items = $response["Items"];
         $it = $items["Item"];
 
+        $infos = array();
+
+        // Rank
+        if (array_key_exists('SalesRank',$it))
+            $infos["SalesRank"] = $it["SalesRank"];
+        else $infos["SalesRank"] = null;
+
+
+        // Binding
+        if (array_key_exists('Binding',$it))
+            $infos["Binding"] = $it["Binding"];
+        else $infos["Binding"] = null;
+
+        // Label
+        if (array_key_exists('Brand',$it["ItemAttributes"]))
+            $infos["Brand"] = $it["ItemAttributes"]["Brand"];
+        else $infos["Brand"] = null;
+
+        // Language
+        if (array_key_exists('Languages', $it["ItemAttributes"])) {
+            if (array_key_exists('Language',$it["ItemAttributes"]["Languages"]))
+                $infos["Language"] = $it["ItemAttributes"]["Languages"]["Language"]["Name"];
+            else $infos["Language"] = null;
+        }
+        else $infos["Language"] = null;
+
+        // Creators
+        if (array_key_exists('Creator', $it["ItemAttributes"])) {
+            // One creator only
+            if (array_key_exists('Role', $it["ItemAttributes"]["Creator"])){
+                $infos["Creator"] = $it["ItemAttributes"]["Creator"];
+                $infos["Creators"] = null;
+            }
+
+            // Many creators
+            else {
+                $infos["Creator"] = null;
+                $infos["Creators"] = $it["ItemAttributes"]["Creator"];
+            }
+        }
+        else {
+            $infos["Creator"] = null;
+            $infos["Creators"] = null;
+        }
+
+        // Genre
+        if (array_key_exists('Genre',$it["ItemAttributes"]))
+            $infos["Genre"] = $it["ItemAttributes"]["Genre"];
+        else $infos["Genre"] = null;
+
+        // Studio
+        if (array_key_exists('Studio',$it["ItemAttributes"]))
+            $infos["Studio"] = $it["ItemAttributes"]["Studio"];
+        else $infos["Studio"] = null;
+
+        // Production
+        if (array_key_exists('ProductGroup',$it["ItemAttributes"]))
+            $infos["ProductGroup"] = $it["ItemAttributes"]["ProductGroup"];
+        else $infos["ProductGroup"] = null;
+
+        // Release date
+        if (array_key_exists('ReleaseDate',$it["ItemAttributes"]))
+            $infos["ReleaseDate"] = $it["ItemAttributes"]["ReleaseDate"];
+        else $infos["ReleaseDate"] = null;
+
+        // Publication date
+        if (array_key_exists('PublicationDate',$it["ItemAttributes"]))
+            $infos["PublicationDate"] = $it["ItemAttributes"]["PublicationDate"];
+        else $infos["PublicationDate"] = null;
+
+        // Offer summary
+        if (array_key_exists('OfferSummary',$it["ItemAttributes"])) {
+
+            // Lowest new price
+            if (array_key_exist('LowestNewPrice', $it["OfferSummary"]))
+                $infos["LowestNewPrice"] = $it["ItemAttributes"]["LowestNewPrice"]["FormattedPrice"];
+            else $infos["LowestNewPrice"] = null;
+
+            // Total new
+            if (array_key_exist('TotalNew', $it["OfferSummary"]))
+                $infos["TotalNew"] = $it["ItemAttributes"]["TotalNew"];
+            else $infos["TotalNew"] = null;
+
+            // Lowest used price
+            if (array_key_exist('LowestUsedPrice', $it["OfferSummary"]))
+                $infos["LowestUsedPrice"] = $it["ItemAttributes"]["LowestUsedPrice"]["FormattedPrice"];
+            else $infos["LowestUsedPrice"] = null;
+
+            // Total used
+            if (array_key_exist('TotalUsed', $it["OfferSummary"]))
+                $infos["TotalUsed"] = $it["ItemAttributes"]["TotalUsed"];
+            else $infos["TotalUsed"] = null;
+        }
+
+        else {
+            $infos["LowestNewPrice"] = null;
+            $infos["TotalNew"] = null;
+            $infos["LowestUsedPrice"] = null;
+            $infos["TotalUsed"] = null;
+        }
+
+
         return $this->render('IUTCatalogBundle:album:details.html.twig', array(
             'album' => $album,
             'disques' => $discsWithRecords,
             'it' => $it,
+            'infos' => $infos
         ));
     }
 
