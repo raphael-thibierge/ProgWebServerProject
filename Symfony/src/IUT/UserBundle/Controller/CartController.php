@@ -130,7 +130,7 @@ class CartController extends Controller
         ));
         return $this->render('IUTUserBundle::purchasesDetails.html.twig', array(
             'purchases'   =>  $purchases,
-            'nbItems'    =>  3,
+            'nbItems'    =>  count($purchases),
 
         ));
     }

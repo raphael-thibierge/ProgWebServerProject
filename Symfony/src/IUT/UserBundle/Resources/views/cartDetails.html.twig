@@ -21,7 +21,7 @@
                         <tr>
                             <th>Enregistrement</th>
                             <th>Prix</th>
-                            <th>Supprimer</th>
+                            {#<th>Supprimer</th>#}
                         </tr>
                     </thead>
                     <tbody>
@@ -29,7 +29,7 @@
                             <tr>
                                 <td>{{ record.titre }}</td>
                                 <td>{{ record.prix }} €</td>
-                                <td><a href="{{ path('cart_remove', {'idRecord' : record.codeEnregistrement}) }}">Supprimer</a></td>
+                                {#<td><a href="{{ path('cart_remove', {'idRecord' : record.codeEnregistrement}) }}">Supprimer</a></td>#}
                             </tr>
                         {% endfor %}
                     </tbody>
