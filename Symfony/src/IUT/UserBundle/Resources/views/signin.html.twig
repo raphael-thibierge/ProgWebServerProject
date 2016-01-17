@@ -79,22 +79,22 @@
 
 
                         {#  LOGIN  #}
-                        {% if (form_errors(form.login)) != null %}
+                        {% if (form_errors(form.username)) != null %}
                             {% set error = true %}
                         {% else %}
                             {% set error = false %}
                         {% endif %}
                         <div class="form-group {% if error %} has-error {% endif %}">
                             {#  Label. #}
-                            {{ form_label(form.login, "Identifiant", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                            {{ form_label(form.username, "Identifiant", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
 
                             {# Input #}
                             <div class="col-sm-4">
-                                {{ form_widget(form.login, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
                             </div>
                             <div class="col-md-5">
                                 {# Errors. #}
-                                {{ form_errors(form.login) }}
+                                {{ form_errors(form.username) }}
                             </div>
                         </div>
 

@@ -42,7 +42,7 @@ class SecurityController extends Controller
         $form = $form = $this->get('form.factory')->createBuilder('form', $abonne)
             ->add('prenomAbonne', 'text')
             ->add('nomAbonne', 'text')
-            ->add('login', 'text')
+            ->add('username', 'text')
             ->add('password', 'password')
             ->add('submit', 'submit')
             ->getForm();

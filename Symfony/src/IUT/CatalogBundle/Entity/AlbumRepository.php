@@ -62,7 +62,7 @@ class AlbumRepository extends EntityRepository
         // $rsm->addFieldResult('a', 'Code_Editeur', 'codeEditeur');
         $rsm->addFieldResult('a', 'Pochette', 'pochette');
         $rsm->addFieldResult('a', 'ASIN', 'ASIN');
-// build rsm here
+
 
         return $this->getEntityManager()
             ->createNativeQuery('SELECT DISTINCT a.* FROM Album a ' .

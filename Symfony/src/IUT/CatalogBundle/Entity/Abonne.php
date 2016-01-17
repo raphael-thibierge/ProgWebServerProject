@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="Abonné", indexes={@ORM\Index(name="IDX_F72316A520B77BF2", columns={"Code_Pays"})})
  * @ORM\Entity
- * @UniqueEntity("login")
+ * @UniqueEntity("username")
  * @UniqueEntity(
  *     fields={"nomAbonne", "prenomAbonne"},
  *     errorPath="name",
@@ -149,7 +149,7 @@ class Abonne implements UserInterface
      *
      * @return Abonne
      */
-    public function setLogin($login)
+    public function setUsername($login)
     {
         $this->username = $login;
 
