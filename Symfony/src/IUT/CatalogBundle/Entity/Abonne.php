@@ -79,6 +79,24 @@ class Abonne implements UserInterface
     private $codePays;
 
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Email", type="string", length=20, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Credit", type="integer", nullable=true)
+     */
+    private $credit;
+
+
+
+
     private $salt;
 
 
@@ -213,6 +231,41 @@ class Abonne implements UserInterface
     {
         return $this->codePays;
     }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCredit()
+    {
+        return $this->credit;
+    }
+
+    /**
+     * @param string $credit
+     */
+    public function setCredit($credit)
+    {
+        $this->credit = $credit;
+    }
+
+
+
 
     /**
      * Returns the roles granted to the user.

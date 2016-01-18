@@ -28,6 +28,9 @@ class CartController extends Controller
             }
 
         } else {
+            if ($session != null){
+                $session->set('cart', array());
+            }
             $records = null;
         }
 
@@ -117,7 +120,7 @@ class CartController extends Controller
             $session->set('cart', array());
 
         }
-        return $this->redirect($this->generateUrl('cart_details'));
+        return $this->render('IUTUserBundle::purchasesDone.html.twig');
     }
 
     public function showPurchasesAction(){
@@ -135,7 +138,8 @@ class CartController extends Controller
         ));
     }
 
-    public function cleanCartAction(){
+    public function cleanCartAction()
+    {
 
         $session = $this->getRequest()->getSession();
         if ($session != null) {
@@ -145,8 +149,6 @@ class CartController extends Controller
         }
 
         return $this->redirect($this->generateUrl('cart_details'));
+
     }
-
-
-
 }

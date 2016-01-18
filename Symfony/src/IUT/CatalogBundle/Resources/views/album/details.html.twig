@@ -15,11 +15,9 @@
         </div>
 
         <div class="col-md-6">
-            <div class="row">
-                <h1>{{ album.titreAlbum }}</h1>
 
-            </div>
-            <div class="row">
+            <div class="well">
+                <h1>{{ album.titreAlbum }}</h1>
                 <p>Année : {{ album.annéeAlbum }}</p>
                 <p>Genre : <a href="{{ path('catalog_genre_details', {'id' : album.codeGenre.codeGenre }) }}">
                         {{ album.codeGenre.libelléAbrégé }}
@@ -38,9 +36,14 @@
                         <p>{{ infos["TotalUsed"] }} d'occasion à partir de <strong>{{ infos["LowestUsedPrice"] }} </strong></p>
                     {% endif %}
                 {% endif %}
+                {% if it['DetailPageURL'] is not null %}
+                    <p><a href="{{ it['DetailPageURL'] }}">Voir sur amazon</a></p>
+                {% endif %}
             </div>
+
         </div>
     </div>
+
 
     {# One review only #}
     {% if infos["EditorialReview"] is not null %}
@@ -52,12 +55,16 @@
 
     {# Many reviews #}
     {% if infos["EditorialReviews"] is not null %}
-    <div>
-        <h2>Description du produit</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well">
+                <h2>Description du produit</h2>
 
-        {% for reviews in infos["EditorialReviews"] %}
-            <p>{{ reviews["Content"] | raw}}</p>
-        {% endfor %}
+                {% for reviews in infos["EditorialReviews"] %}
+                    <p>{{ reviews["Content"] | raw}}</p>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     {% endif %}
 
@@ -65,42 +72,51 @@
         <div class="col-md-12">
 
             {% for disque in disques %}
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="text-center"><a href="{{ path('catalog_disque_details', {'id' : disque['disc'].codeDisque}) }}">{{ disque['disc'].référenceAlbum }} {{ disque['disc'].référenceDisque }}</a></h2>
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h2 class="text-center">
+                        {#<a href="{{ path('catalog_disque_details', {'id' : disque['disc'].codeDisque}) }}">#}
+                            Disque : {{ disque['disc'].référenceAlbum }} {{ disque['disc'].référenceDisque }}
+                        {#</a>#}
+                    </h2>
                 </div>
 
-            </div>
+                <div class="panel-body">
 
-            <div class="row">
-                <div class="com-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Titre</th>
-                                    <th>Durée</th>
-                                    <th>Prix</th>
-                                    <th>Extrait</th>
-                                    <th>Achat</th>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {%  for enregistrement in disque['records'] %}
-                            <tr>
-                                <td>{{ enregistrement.Titre }}</td>
-                                <td>{{ enregistrement.durée }}</td>
-                                <td>{{ enregistrement.prix }}</td>
-                                <td><audio controls><source src="{{ path('catalog_default_generateTrack', {'id' : enregistrement.codeEnregistrement}) }}" type="audio/mpeg"></audio></td>
-                                <td><a href="{{ path('cart_add', {'idRecord' : enregistrement.codeEnregistrement}) }}">Acheter</a></td>
-                            </tr>
-                            {% endfor %}
-                            </tbody>
+                    <div class="row">
+                        <div class="com-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Titre</th>
+                                            <th>Durée</th>
+                                            <th>Prix</th>
+                                            <th>Extrait</th>
+                                            <th>Achat</th>
+                                            <td></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {%  for enregistrement in disque['records'] %}
+                                    <tr>
+                                        <td>{{ enregistrement.Titre }}</td>
+                                        <td>{{ enregistrement.durée }}</td>
+                                        <td>{{ enregistrement.prix }}</td>
+                                        <td><audio controls><source src="{{ path('catalog_default_generateTrack', {'id' : enregistrement.codeEnregistrement}) }}" type="audio/mpeg"></audio></td>
+                                        <td><a href="{{ path('cart_add', {'idRecord' : enregistrement.codeEnregistrement}) }}">Acheter</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
 
-                        </table>
+                                </table>
 
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
             {% endfor %}
         </div>
     </div>
@@ -167,14 +183,25 @@
     {% if infos["SimilarProducts"] is not null %}
     <div class="row">
         <div class="col-md-12">
-            <h2 class="text-center">Produits similaires</h2>
-            <table class="table table-hover">
-                <tbody>
-                    {% for product in infos["SimilarProducts"] %}
-                    <tr><td><a href="http://www.amazon.fr/exec/obidos/ASIN/{{ product["ASIN"] }}">{{ product["Title"] }}</a></td></tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h2 class="text-center">Produits similaires</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <tbody>
+                                    {% for product in infos["SimilarProducts"] %}
+                                    <tr><td><a href="http://www.amazon.fr/exec/obidos/ASIN/{{ product["ASIN"] }}">{{ product["Title"] }}</a></td></tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     {% endif %}

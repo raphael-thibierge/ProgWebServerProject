@@ -7,13 +7,7 @@
 {% block body %}
 
 <div class="row">
-    {{  album.titreAlbum }}
-
-    {% for oeuvre in oeuvres %}
-        <div class="row">
-            {{  oeuvre.titreOeuvre }}
-        </div>
-    {% endfor %}
+    {{ form(form) }}
 
 </div>
 

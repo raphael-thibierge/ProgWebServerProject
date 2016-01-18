@@ -3,25 +3,49 @@
 namespace IUT\CatalogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
 
 
-    public function testAction(){
+    public function testAction(Request $request){
+
+        // form to edit the user account
+        // not finished
 
 
-        $album = $this->getDoctrine()->getRepository('IUTCatalogBundle:Album')->find(15);
+        $user = $this->get('security.context')->getToken()->getUser();
 
-        $bachMusicien = $this->getDoctrine()->getRepository('IUTCatalogBundle:Musicien')->find(2);
-        $bach = $this->getDoctrine()->getRepository('IUTCatalogBundle:Composer')->findBy(array('codeMusicien' => $bachMusicien));
-        $oeuvres = $this->getDoctrine()->getRepository('IUTCatalogBundle:Oeuvre')->findBy(array('codeOeuvre' => $bach));
+        $user = $this->getDoctrine()->getRepository('IUTCatalogBundle:Abonne')->findOneBy(array(
+            'codeAbonne'    =>  $user->getCodeAbonne(),
+        ));
 
+        $form = $form = $this->get('form.factory')->createBuilder('form', $user)
+            ->add('prenomAbonne', 'text')
+            ->add('nomAbonne', 'text')
+            ->add('username', 'text')
+            ->add('email', 'email')
+            ->add('credit', 'text')
+            ->add('submit', 'submit')
+            ->getForm();
+
+
+        $form->handleRequest($request);
+        if($form->isValid())
+        {
+            // Mise à jour des données
+            $this->getDoctrine()->getManager()->persist($user);
+            $this->getDoctrine()->getManager()->flush();
+
+            // Renvoi vers une autre url
+            $router = $this->container->get('router');
+            return $this->redirect($router->generate("r_tapp_homepage"));
+        }
 
 
         return $this->render('IUTCatalogBundle::test.html.twig', array(
-            'album' => $album,
-            'oeuvres' => $oeuvres,
+            'form' => $form->createView()
         ));
     }
 
